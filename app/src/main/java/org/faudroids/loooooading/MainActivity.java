@@ -9,8 +9,10 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.widget.TextView;
 
 import org.roboguice.shaded.goole.common.base.Optional;
 
@@ -30,6 +32,8 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 
 
 	@InjectView(R.id.surface_view) private SurfaceView surfaceView;
+    @InjectView(R.id.xCoord) private TextView xCoordTV;
+    @InjectView(R.id.yCoord) private TextView yCoordTV;
 
 	private Optional<DrawSnowflakesRunnable> drawRunnable = Optional.absent();
 	private Optional<SurfaceHolder> surfaceHolder = Optional.absent();
@@ -44,6 +48,21 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		surfaceHolder.setFormat(PixelFormat.TRANSPARENT);
 		surfaceView.setBackgroundColor(Color.TRANSPARENT);
 		surfaceView.setZOrderOnTop(true);
+	}
+
+	@Override
+	public boolean onTouchEvent(MotionEvent event) {
+		//return super.onTouchEvent(event);
+		int action = event.getAction();
+		switch(action){
+			case MotionEvent.ACTION_DOWN:
+                xCoordTV.setText("x: " + event.getX());
+                yCoordTV.setText("y: " + event.getY());
+				break;
+			default:
+		}
+
+		return true;
 	}
 
 	@Override
