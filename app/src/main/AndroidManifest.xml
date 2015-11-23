@@ -3,26 +3,30 @@
     package="org.faudroids.loooooading" >
 
     <application
+        android:name=".app.LoooooadingApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".app.LoooooadingApplication"
         android:theme="@style/AppTheme" >
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+
+        </activity>
+
+        <meta-data
+            android:name="roboguice.annotations.packages"
+            android:value="roboguice,org.faudroids.loooooading" />
+
+        <activity
+            android:name=".SwipeRefreshActivity"
+            android:label="@string/title_activity_swipe_refresh" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <meta-data
-            android:name="roboguice.annotations.packages"
-            android:value="roboguice,org.faudroids.loooooading"
-            />
-
     </application>
 
 </manifest>

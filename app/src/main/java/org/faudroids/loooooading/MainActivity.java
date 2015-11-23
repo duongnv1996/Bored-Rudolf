@@ -175,7 +175,6 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 					snowflakes.add(snowflake);
 					nextSnowflakeCountdown = RandomUtils.randomInt(20, 50);
 
-
 				} else {
 					--nextSnowflakeCountdown;
 				}
