@@ -1,7 +1,5 @@
 package org.faudroids.loooooading;
 
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -14,14 +12,12 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
+import org.faudroids.loooooading.game.GameManager;
 import org.faudroids.loooooading.game.Player;
 import org.faudroids.loooooading.game.Snowflake;
-import org.faudroids.loooooading.utils.RandomUtils;
 import org.roboguice.shaded.goole.common.base.Optional;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
+import javax.inject.Inject;
 
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;
@@ -35,6 +31,8 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 	@InjectView(R.id.surface_view) private SurfaceView surfaceView;
     @InjectView(R.id.xCoord) private TextView xCoordTV;
     @InjectView(R.id.yCoord) private TextView yCoordTV;
+
+	@Inject private GameManager gameManager;
 
 	private Optional<DrawSnowflakesRunnable> drawRunnable = Optional.absent();
 	private Optional<SurfaceHolder> surfaceHolder = Optional.absent();
@@ -59,36 +57,36 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		startSnowflakes();
 
         surfaceView.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
+			@Override
+			public boolean onTouch(View v, MotionEvent event) {
 
-                    //return super.onTouchEvent(event);
-                    int action = event.getAction();
+				//return super.onTouchEvent(event);
+				int action = event.getAction();
 
-                    switch(action){
-                        case MotionEvent.ACTION_UP:
-                        case MotionEvent.ACTION_MOVE:
-                        case MotionEvent.ACTION_DOWN:
+				switch (action) {
+					case MotionEvent.ACTION_UP:
+					case MotionEvent.ACTION_MOVE:
+					case MotionEvent.ACTION_DOWN:
 
-                            xCoordTV.setText("x: " + event.getX());
-                            yCoordTV.setText("y: " + event.getY());
-                            drawRunnable.get().setPlayer(
-                                    event.getX()
-                                            - drawRunnable.get().player.getBitmap().getWidth() / 2,
-                                    surfaceView.getHeight()
-                                            - drawRunnable.get().player.getBitmap().getHeight()
-                                            - getResources().getDimension(R.dimen.player_vertical_offset));
+						xCoordTV.setText("x: " + event.getX());
+						yCoordTV.setText("y: " + event.getY());
+						drawRunnable.get().setPlayer(
+								event.getX()
+										- gameManager.getPlayer().getBitmap().getWidth() / 2,
+								surfaceView.getHeight()
+										- gameManager.getPlayer().getBitmap().getHeight()
+										- getResources().getDimension(R.dimen.player_vertical_offset));
 
-                            break;
+						break;
 
-                        default:
-                            break;
-                    }
+					default:
+						break;
+				}
 
-                    return true;
+				return true;
 
-            }
-        });
+			}
+		});
 	}
 
 
@@ -127,77 +125,44 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		private final Paint PAINT = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG);
 
 		private final SurfaceHolder surfaceHolder;
-		private final Bitmap snowflakeBitmap;
-
-		private final Player player;
-        private final List<Snowflake> snowflakes = new ArrayList<>();
-
 		private volatile boolean isRunning = true;
-		private int nextSnowflakeCountdown = 0;
 
 
 		public DrawSnowflakesRunnable(SurfaceHolder surfaceHolder) {
 			this.surfaceHolder = surfaceHolder;
-			this.snowflakeBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snowflake);
-
-
-			Bitmap playerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.player);
-			this.player = new Player.Builder(playerBitmap).xPos(100).yPos(playerBitmap.getHeight()).build();
-
 		}
 
         public void setPlayer(float x, float y){
-            this.player.setxPos(x);
-            this.player.setyPos(y);
+            gameManager.getPlayer().setxPos(x);
+            gameManager.getPlayer().setyPos(y);
         }
-
 
 		@Override
 		public void run() {
-			long lastRunTimestamp = System.currentTimeMillis();
+			Canvas tmpCanvas = surfaceHolder.lockCanvas();
+			gameManager.start(tmpCanvas.getWidth(), tmpCanvas.getHeight());
+			surfaceHolder.unlockCanvasAndPost(tmpCanvas);
+
 			while (isRunning) {
 				final Canvas canvas = surfaceHolder.lockCanvas();
 				canvas.drawColor(0, PorterDuff.Mode.CLEAR);
 
-
-				final long currentTimestamp = System.currentTimeMillis();
-				final long timeDiff = currentTimestamp - lastRunTimestamp;
-
-				if (nextSnowflakeCountdown <= 0 && snowflakes.size() < 30) {
-					Snowflake snowflake = new Snowflake.Builder(snowflakeBitmap)
-							.xPos(RandomUtils.randomInt(-snowflakeBitmap.getWidth(), canvas.getWidth()))
-							.yPos(-snowflakeBitmap.getHeight())
-							.fallSpeed(RandomUtils.randomInt(50, 100))
-							.scale(RandomUtils.randomInt(400, 1000) / 1000f)
-							.rotation(RandomUtils.randomInt(0, 90))
-							.build();
-
-					snowflakes.add(snowflake);
-					nextSnowflakeCountdown = RandomUtils.randomInt(20, 50);
-
-
-				} else {
-					--nextSnowflakeCountdown;
-				}
-
 				// draw snowflakes
-				Iterator<Snowflake> iterator = snowflakes.iterator();
-				while (iterator.hasNext()) {
-					Snowflake snowflake = iterator.next();
+				for (Snowflake snowflake : gameManager.getSnowflakes()) {
 					canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
-					snowflake.onTimePassed(timeDiff);
-					if (snowflake.getyPos() > canvas.getHeight()) {
-						iterator.remove();
-					}
 				}
 
 				// draw player
+				Player player = gameManager.getPlayer();
 				canvas.drawBitmap(player.getBitmap(), player.getMatrix(), PAINT);
 
 				surfaceHolder.unlockCanvasAndPost(canvas);
 
+				// update game
+				long timeDiff = gameManager.loop();
+
 				try {
-					lastRunTimestamp = currentTimestamp;
+
 					long sleepTime = Math.max(0, msPerFrame + (msPerFrame - timeDiff));
 					Thread.sleep(sleepTime);
 				} catch (InterruptedException e) {
