@@ -1,7 +1,9 @@
-package org.faudroids.loooooading;
+package org.faudroids.loooooading.ui;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+
+import org.faudroids.loooooading.R;
 
 public class SwipeRefreshActivity extends AppCompatActivity {
 

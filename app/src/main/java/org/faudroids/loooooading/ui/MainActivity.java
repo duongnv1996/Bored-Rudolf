@@ -1,4 +1,4 @@
-package org.faudroids.loooooading;
+package org.faudroids.loooooading.ui;
 
 import android.graphics.Canvas;
 import android.graphics.Color;
@@ -12,6 +12,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 
+import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.game.GameManager;
 import org.faudroids.loooooading.game.Player;
 import org.faudroids.loooooading.game.Snowflake;
