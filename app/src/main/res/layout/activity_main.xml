@@ -1,53 +1,22 @@
-<RelativeLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#71d71e"
+    android:orientation="vertical"
     >
 
-    <LinearLayout
-        android:orientation="vertical"
+    <Button
+        android:id="@+id/btn_swipe"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:text="Swipe demo"
+        />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="100.00"
-            android:id="@+id/xCoord"
-            android:layout_gravity="right" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceSmall"
-            tools:text="200.00"
-            android:id="@+id/yCoord"
-            android:layout_gravity="right" />
-
-    </LinearLayout>
-
-    <RelativeLayout
+    <Button
+        android:id="@+id/btn_game"
         android:layout_width="match_parent"
-        android:layout_height="300dp"
-        >
+        android:layout_height="wrap_content"
+        android:text="Game demo"
+        />
 
-        <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:src="@drawable/background"
-            android:scaleType="centerCrop"
-            />
-
-        <SurfaceView
-            android:id="@+id/surface_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@android:color/transparent"
-            />
-
-    </RelativeLayout>
-
-</RelativeLayout>
+</LinearLayout>
