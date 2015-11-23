@@ -152,7 +152,7 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 				Iterator<Snowflake> iterator = snowflakes.iterator();
 				while (iterator.hasNext()) {
 					Snowflake snowflake = iterator.next();
-					canvas.drawBitmap(snowflakeBitmap, snowflake.getMatrix(), PAINT);
+					canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
 					snowflake.onTimePassed(timeDiff);
 					if (snowflake.getyPos() > canvas.getHeight()) {
 						iterator.remove();

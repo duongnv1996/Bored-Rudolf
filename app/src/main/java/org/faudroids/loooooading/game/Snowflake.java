@@ -37,6 +37,11 @@ public class Snowflake {
 	}
 
 
+	public Bitmap getBitmap() {
+		return bitmap;
+	}
+
+
 	public Matrix getMatrix() {
 		matrix.reset();
 		matrix.postScale(scale, scale, bitmap.getWidth() / 2, bitmap.getHeight() / 2);
