@@ -13,6 +13,7 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
+import org.faudroids.loooooading.game.Player;
 import org.faudroids.loooooading.game.Snowflake;
 import org.faudroids.loooooading.utils.RandomUtils;
 import org.roboguice.shaded.goole.common.base.Optional;
@@ -107,6 +108,8 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 
 		private final SurfaceHolder surfaceHolder;
 		private final Bitmap snowflakeBitmap;
+
+		private final Player player;
 		private final List<Snowflake> snowflakes = new ArrayList<>();
 
 		private volatile boolean isRunning = true;
@@ -116,6 +119,8 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		public DrawSnowflakesRunnable(SurfaceHolder surfaceHolder) {
 			this.surfaceHolder = surfaceHolder;
 			this.snowflakeBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snowflake);
+			Bitmap playerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.player);
+			this.player = new Player.Builder(playerBitmap).xPos(100).yPos(playerBitmap.getHeight()).build();
 		}
 
 		@Override
@@ -143,6 +148,7 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 					--nextSnowflakeCountdown;
 				}
 
+				// draw snowflakes
 				Iterator<Snowflake> iterator = snowflakes.iterator();
 				while (iterator.hasNext()) {
 					Snowflake snowflake = iterator.next();
@@ -152,6 +158,10 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 						iterator.remove();
 					}
 				}
+
+				// draw player
+				canvas.drawBitmap(player.getBitmap(), player.getMatrix(), PAINT);
+
 				surfaceHolder.unlockCanvasAndPost(canvas);
 
 				try {
