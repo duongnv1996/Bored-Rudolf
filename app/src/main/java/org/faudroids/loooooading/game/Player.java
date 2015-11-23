@@ -12,33 +12,24 @@ public class Player {
 	private final Matrix matrix = new Matrix();
 	private final Bitmap bitmap;
 
-	private float xPos, yPos; // in pixel
+	private final Location location;
 
-	private Player(Bitmap bitmap, float xPos, float yPos) {
+	private Player(Bitmap bitmap, Location location) {
 		this.bitmap = bitmap;
-		this.xPos = xPos;
-		this.yPos = yPos;
-	}
-
-	public float getxPos() {
-		return xPos;
+		this.location = location;
 	}
 
 	public void setxPos(float xPos) {
-		this.xPos = xPos;
-	}
-
-	public float getyPos() {
-		return yPos;
+		this.location.xPos = xPos;
 	}
 
 	public void setyPos(float yPos) {
-		this.yPos = yPos;
+		this.location.yPos = yPos;
 	}
 
 	public Matrix getMatrix() {
 		matrix.reset();
-		matrix.postTranslate(xPos, yPos);
+		matrix.postTranslate(location.xPos, location.yPos);
 		return matrix;
 	}
 
@@ -70,7 +61,7 @@ public class Player {
 		}
 
 		public Player build() {
-			return new Player(bitmap, xPos, yPos);
+			return new Player(bitmap, new Location(xPos, yPos));
 		}
 
 	}
