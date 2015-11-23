@@ -5,8 +5,8 @@ android {
     buildToolsVersion "23.0.1"
 
     defaultConfig {
-        applicationId "org.faudroids.foobar"
-        minSdkVersion 14
+        applicationId "org.faudroids.loooooading"
+        minSdkVersion 15
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
@@ -19,7 +19,17 @@ android {
     }
 }
 
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-AguiceAnnotationDatabasePackageName=org.faudroids.loooooading"
+    }
+}
+
+
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.jakewharton.timber:timber:4.1.0'
+    compile 'org.roboguice:roboguice:3.0.1'
+    provided 'org.roboguice:roboblender:3.0.1'
 }
