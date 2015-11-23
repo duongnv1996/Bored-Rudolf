@@ -7,6 +7,7 @@ import android.graphics.BitmapFactory;
 
 import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.utils.RandomUtils;
+import org.roboguice.shaded.goole.common.base.Optional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -16,6 +17,8 @@ import javax.inject.Inject;
 
 public class GameManager {
 
+	private final Context context;
+
 	private final Bitmap snowflakeBitmap;
 
 	private final Player player;
@@ -24,10 +27,12 @@ public class GameManager {
 	private long lastRunTimestamp;
 	private int fieldWidth, fieldHeight;
 	private int nextSnowflakeCountdown;
+	private Optional<Location> newPlayerLocation = Optional.absent();
 
 
 	@Inject
 	GameManager(Context context) {
+		this.context = context;
 		this.snowflakeBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake);
 		Bitmap playerBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
 		this.player = new Player.Builder(playerBitmap).xPos(100).yPos(playerBitmap.getHeight()).build();
@@ -78,10 +83,28 @@ public class GameManager {
 			}
 		}
 
+		// update player pos
+		if (newPlayerLocation.isPresent()) {
+			player.setxPos(newPlayerLocation.get().xPos);
+			player.setyPos(newPlayerLocation.get().yPos);
+			newPlayerLocation = Optional.absent();
+		}
+
 		// update timestamp
 		lastRunTimestamp = currentTimestamp;
 
 		return timeDiff;
+	}
+
+
+	/**
+	 * Call if the user wants to change the player pos.
+	 * @param xPos x-position of touch event
+	 */
+	public void onPlayerTouch(float xPos) {
+		xPos = xPos - player.getBitmap().getWidth() / 2;
+		float yPos = fieldHeight - player.getBitmap().getHeight() - context.getResources().getDimension(R.dimen.player_vertical_offset);
+		this.newPlayerLocation = Optional.of(new Location(xPos, yPos));
 	}
 
 

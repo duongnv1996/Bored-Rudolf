@@ -70,13 +70,7 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 
 						xCoordTV.setText("x: " + event.getX());
 						yCoordTV.setText("y: " + event.getY());
-						drawRunnable.get().setPlayer(
-								event.getX()
-										- gameManager.getPlayer().getBitmap().getWidth() / 2,
-								surfaceView.getHeight()
-										- gameManager.getPlayer().getBitmap().getHeight()
-										- getResources().getDimension(R.dimen.player_vertical_offset));
-
+						gameManager.onPlayerTouch(event.getX());
 						break;
 
 					default:
@@ -131,11 +125,6 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		public DrawSnowflakesRunnable(SurfaceHolder surfaceHolder) {
 			this.surfaceHolder = surfaceHolder;
 		}
-
-        public void setPlayer(float x, float y){
-            gameManager.getPlayer().setxPos(x);
-            gameManager.getPlayer().setyPos(y);
-        }
 
 		@Override
 		public void run() {
