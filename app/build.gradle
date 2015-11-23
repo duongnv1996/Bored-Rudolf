@@ -29,6 +29,7 @@ gradle.projectsEvaluated {
 
 dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
+    compile 'com.android.support:design:23.1.0'
     compile 'com.jakewharton.timber:timber:4.1.0'
     compile 'org.roboguice:roboguice:3.0.1'
     provided 'org.roboguice:roboblender:3.0.1'

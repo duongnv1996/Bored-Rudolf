@@ -39,9 +39,20 @@ public class Player {
 	}
 
 
+	// for testing only!!!
+	private int drawCount = 0;
+	private boolean showingRegular = true;
+
 	public Bitmap getDefaultBitmap() {
-		return defaultBitmap;
+		++drawCount;
+		if (drawCount > 100) {
+			showingRegular = !showingRegular;
+			drawCount = 0;
+		}
+		if (showingRegular) return defaultBitmap;
+		else return lookingUpBitmap;
 	}
+
 
 	public Bitmap getLookingUpBitmap() {
 		return lookingUpBitmap;
