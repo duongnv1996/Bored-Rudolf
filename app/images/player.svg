@@ -9,13 +9,13 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="69.478889"
-   height="126.11217"
-   viewBox="0 0 69.478888 126.11217"
+   width="40.066669"
+   height="72.725609"
+   viewBox="0 0 40.066669 72.72561"
    id="svg2"
    version="1.1"
    inkscape:version="0.91 r"
-   sodipodi:docname="player_looking_up.svg"
+   sodipodi:docname="player.svg"
    inkscape:export-filename="/home/maddoc/Desktop/heart.png"
    inkscape:export-xdpi="330.84305"
    inkscape:export-ydpi="330.84305">
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.828427"
-     inkscape:cx="58.244698"
-     inkscape:cy="62.834396"
+     inkscape:zoom="7.9999996"
+     inkscape:cx="34.266602"
+     inkscape:cy="34.020392"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -61,7 +61,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(295.54071,-1039.3914)">
+     transform="translate(401.25318,-1092.7779)">
     <g
        id="g4733"
        transform="matrix(1.9419024,0,0,1.9419024,-118.24041,-1114.5525)">
@@ -355,7 +355,7 @@
        sodipodi:nodetypes="ccscc" />
     <g
        id="g4703"
-       transform="matrix(1.9419024,0,0,1.9419024,-216.59537,-1119.6599)">
+       transform="matrix(1.1198446,0,0,1.1198446,-355.72746,-152.29083)">
       <path
          style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          d="m -16.910797,1134.2588 c 2.347489,-1.9533 6.455325,-2.6751 7.386073,-1.0677 0.725011,1.2521 -0.558571,3.9429 -2.538007,4.5011 -2.44439,0.6894 -3.527558,0.3278 -5.346898,-0.9949 -1.792701,-1.1606 0.498832,-2.4385 0.498832,-2.4385 z"
@@ -519,7 +519,7 @@
     </g>
     <g
        id="g4667"
-       transform="matrix(1.9419024,0,0,1.9419024,-187.56487,-1119.7017)">
+       transform="matrix(1.1198446,0,0,1.1198446,-353.33157,-193.68064)">
       <g
          transform="matrix(-0.22599736,0.18303521,0.18303521,0.22599736,-303.07044,907.90367)"
          id="g5694-6-8-89-4">
