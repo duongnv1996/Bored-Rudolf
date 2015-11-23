@@ -34,8 +34,7 @@ public class GameManager {
 	GameManager(Context context) {
 		this.context = context;
 		this.snowflakeBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake);
-		Bitmap playerBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player);
-		this.player = new Player.Builder(playerBitmap).xPos(100).yPos(playerBitmap.getHeight()).build();
+		this.player = new Player.Builder(context).xPos(100).build();
 	}
 
 
@@ -44,6 +43,7 @@ public class GameManager {
 		this.fieldWidth = fieldWidth;
 		this.fieldHeight = fieldHeight;
 		this.lastRunTimestamp = System.currentTimeMillis();
+		onPlayerTouch(fieldWidth / 2); // start with centered player
 	}
 
 
@@ -102,8 +102,8 @@ public class GameManager {
 	 * @param xPos x-position of touch event
 	 */
 	public void onPlayerTouch(float xPos) {
-		xPos = xPos - player.getBitmap().getWidth() / 2;
-		float yPos = fieldHeight - player.getBitmap().getHeight() - context.getResources().getDimension(R.dimen.player_vertical_offset);
+		xPos = xPos - player.getDefaultBitmap().getWidth() / 2;
+		float yPos = fieldHeight - player.getDefaultBitmap().getHeight() - context.getResources().getDimension(R.dimen.player_vertical_offset);
 		this.newPlayerLocation = Optional.of(new Location(xPos, yPos));
 	}
 

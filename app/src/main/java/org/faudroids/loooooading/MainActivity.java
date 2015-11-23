@@ -143,7 +143,7 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 
 				// draw player
 				Player player = gameManager.getPlayer();
-				canvas.drawBitmap(player.getBitmap(), player.getMatrix(), PAINT);
+				canvas.drawBitmap(player.getDefaultBitmap(), player.getMatrix(), PAINT);
 
 				surfaceHolder.unlockCanvasAndPost(canvas);
 
