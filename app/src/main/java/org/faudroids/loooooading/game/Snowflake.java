@@ -12,15 +12,14 @@ public class Snowflake {
 	private final Matrix matrix = new Matrix();
 	private final Bitmap bitmap;
 
-	private float xPos, yPos; // in pixel
+	private final Location location;
 	private final float fallSpeed; // pixel / seconds
 	private final float scale;
 	private final float rotation; // degrees
 
-	private Snowflake(Bitmap bitmap, float xPos, float yPos, float fallSpeed, float scale, float rotation) {
+	private Snowflake(Bitmap bitmap, Location location, float fallSpeed, float scale, float rotation) {
 		this.bitmap = bitmap;
-		this.xPos = xPos;
-		this.yPos = yPos;
+		this.location = location;
 		this.scale = scale;
 		this.fallSpeed = fallSpeed;
 		this.rotation = rotation;
@@ -28,12 +27,12 @@ public class Snowflake {
 
 
 	public void onTimePassed(long timeInMs) {
-		yPos += fallSpeed / 1000f * timeInMs;
+		location.yPos += fallSpeed / 1000f * timeInMs;
 	}
 
 
 	public float getyPos() {
-		return yPos;
+		return location.yPos;
 	}
 
 
@@ -46,7 +45,7 @@ public class Snowflake {
 		matrix.reset();
 		matrix.postScale(scale, scale, bitmap.getWidth() / 2, bitmap.getHeight() / 2);
 		matrix.postRotate(rotation);
-		matrix.postTranslate(xPos, yPos);
+		matrix.postTranslate(location.xPos, location.yPos);
 		return matrix;
 	}
 
@@ -91,7 +90,7 @@ public class Snowflake {
 		}
 
 		public Snowflake build() {
-			return new Snowflake(bitmap, xPos, yPos, fallSpeed, scale, rotation);
+			return new Snowflake(bitmap, new Location(xPos, yPos), fallSpeed, scale, rotation);
 		}
 
 	}

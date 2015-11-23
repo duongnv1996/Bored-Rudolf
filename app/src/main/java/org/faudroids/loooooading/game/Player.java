@@ -1,7 +1,11 @@
 package org.faudroids.loooooading.game;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+
+import org.faudroids.loooooading.R;
 
 /**
  * A snowflake!
@@ -10,53 +14,50 @@ public class Player {
 
 	// used for getting the final orientation
 	private final Matrix matrix = new Matrix();
-	private final Bitmap bitmap;
+	private final Bitmap defaultBitmap, lookingUpBitmap;
 
-	private float xPos, yPos; // in pixel
+	private final Location location;
 
-	private Player(Bitmap bitmap, float xPos, float yPos) {
-		this.bitmap = bitmap;
-		this.xPos = xPos;
-		this.yPos = yPos;
-	}
-
-	public float getxPos() {
-		return xPos;
+	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Location location) {
+		this.defaultBitmap = defaultBitmap;
+		this.lookingUpBitmap = lookingUpBitmap;
+		this.location = location;
 	}
 
 	public void setxPos(float xPos) {
-		this.xPos = xPos;
-	}
-
-	public float getyPos() {
-		return yPos;
+		this.location.xPos = xPos;
 	}
 
 	public void setyPos(float yPos) {
-		this.yPos = yPos;
+		this.location.yPos = yPos;
 	}
 
 	public Matrix getMatrix() {
 		matrix.reset();
-		matrix.postTranslate(xPos, yPos);
+		matrix.postTranslate(location.xPos, location.yPos);
 		return matrix;
 	}
 
 
-	public Bitmap getBitmap() {
-		return bitmap;
+	public Bitmap getDefaultBitmap() {
+		return defaultBitmap;
+	}
+
+	public Bitmap getLookingUpBitmap() {
+		return lookingUpBitmap;
 	}
 
 
 	public static class Builder {
 
-		private final Bitmap bitmap;
+		private final Bitmap defaultBitmap, lookingUpBitmap;
 
 		private float xPos, yPos; // in pixel
 
 
-		public Builder(Bitmap bitmap) {
-			this.bitmap = bitmap;
+		public Builder(Context context) {
+			defaultBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_default);
+			lookingUpBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_looking_up);
 		}
 
 		public Builder xPos(float xPos) {
@@ -64,13 +65,8 @@ public class Player {
 			return this;
 		}
 
-		public Builder yPos(float yPos) {
-			this.yPos = yPos;
-			return this;
-		}
-
 		public Player build() {
-			return new Player(bitmap, xPos, yPos);
+			return new Player(defaultBitmap, lookingUpBitmap, new Location(xPos, yPos));
 		}
 
 	}
