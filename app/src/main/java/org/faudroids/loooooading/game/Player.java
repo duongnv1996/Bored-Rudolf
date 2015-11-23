@@ -20,6 +20,21 @@ public class Player {
 		this.yPos = yPos;
 	}
 
+	public float getxPos() {
+		return xPos;
+	}
+
+	public void setxPos(float xPos) {
+		this.xPos = xPos;
+	}
+
+	public float getyPos() {
+		return yPos;
+	}
+
+	public void setyPos(float yPos) {
+		this.yPos = yPos;
+	}
 
 	public Matrix getMatrix() {
 		matrix.reset();

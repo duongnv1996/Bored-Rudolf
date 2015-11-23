@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
+import android.view.View;
 import android.widget.TextView;
 
 import org.faudroids.loooooading.game.Player;
@@ -48,27 +49,46 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		surfaceHolder.setFormat(PixelFormat.TRANSPARENT);
 		surfaceView.setBackgroundColor(Color.TRANSPARENT);
 		surfaceView.setZOrderOnTop(true);
+
 	}
 
-	@Override
-	public boolean onTouchEvent(MotionEvent event) {
-		//return super.onTouchEvent(event);
-		int action = event.getAction();
-		switch(action){
-			case MotionEvent.ACTION_DOWN:
-                xCoordTV.setText("x: " + event.getX());
-                yCoordTV.setText("y: " + event.getY());
-				break;
-			default:
-		}
-
-		return true;
-	}
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
 		surfaceHolder = Optional.of(holder);
 		startSnowflakes();
+
+        surfaceView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+
+                    //return super.onTouchEvent(event);
+                    int action = event.getAction();
+
+                    switch(action){
+                        case MotionEvent.ACTION_UP:
+                        case MotionEvent.ACTION_MOVE:
+                        case MotionEvent.ACTION_DOWN:
+
+                            xCoordTV.setText("x: " + event.getX());
+                            yCoordTV.setText("y: " + event.getY());
+                            drawRunnable.get().setPlayer(
+                                    event.getX()
+                                            - drawRunnable.get().player.getBitmap().getWidth() / 2,
+                                    surfaceView.getHeight()
+                                            - drawRunnable.get().player.getBitmap().getHeight()
+                                            - getResources().getDimension(R.dimen.player_vertical_offset));
+
+                            break;
+
+                        default:
+                            break;
+                    }
+
+                    return true;
+
+            }
+        });
 	}
 
 
@@ -110,7 +130,7 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		private final Bitmap snowflakeBitmap;
 
 		private final Player player;
-		private final List<Snowflake> snowflakes = new ArrayList<>();
+        private final List<Snowflake> snowflakes = new ArrayList<>();
 
 		private volatile boolean isRunning = true;
 		private int nextSnowflakeCountdown = 0;
@@ -119,9 +139,18 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		public DrawSnowflakesRunnable(SurfaceHolder surfaceHolder) {
 			this.surfaceHolder = surfaceHolder;
 			this.snowflakeBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snowflake);
+
+
 			Bitmap playerBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.player);
 			this.player = new Player.Builder(playerBitmap).xPos(100).yPos(playerBitmap.getHeight()).build();
+
 		}
+
+        public void setPlayer(float x, float y){
+            this.player.setxPos(x);
+            this.player.setyPos(y);
+        }
+
 
 		@Override
 		public void run() {
@@ -129,6 +158,7 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 			while (isRunning) {
 				final Canvas canvas = surfaceHolder.lockCanvas();
 				canvas.drawColor(0, PorterDuff.Mode.CLEAR);
+
 
 				final long currentTimestamp = System.currentTimeMillis();
 				final long timeDiff = currentTimestamp - lastRunTimestamp;
@@ -144,6 +174,8 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 
 					snowflakes.add(snowflake);
 					nextSnowflakeCountdown = RandomUtils.randomInt(20, 50);
+
+
 				} else {
 					--nextSnowflakeCountdown;
 				}
