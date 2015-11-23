@@ -29,11 +29,25 @@
 
     </LinearLayout>
 
-    <SurfaceView
-        android:id="@+id/surface_view"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        />
+        android:layout_height="300dp"
+        >
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/background"
+            android:scaleType="centerCrop"
+            />
+
+        <SurfaceView
+            android:id="@+id/surface_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/transparent"
+            />
+
+    </RelativeLayout>
 
 </RelativeLayout>
