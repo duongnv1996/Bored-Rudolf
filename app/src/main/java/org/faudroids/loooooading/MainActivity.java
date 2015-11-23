@@ -136,14 +136,15 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 				final Canvas canvas = surfaceHolder.lockCanvas();
 				canvas.drawColor(0, PorterDuff.Mode.CLEAR);
 
+				// draw player
+				Player player = gameManager.getPlayer();
+				canvas.drawBitmap(player.getDefaultBitmap(), player.getMatrix(), PAINT);
+
+
 				// draw snowflakes
 				for (Snowflake snowflake : gameManager.getSnowflakes()) {
 					canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
 				}
-
-				// draw player
-				Player player = gameManager.getPlayer();
-				canvas.drawBitmap(player.getDefaultBitmap(), player.getMatrix(), PAINT);
 
 				surfaceHolder.unlockCanvasAndPost(canvas);
 
