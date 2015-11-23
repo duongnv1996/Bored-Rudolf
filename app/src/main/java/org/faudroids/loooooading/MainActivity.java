@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Matrix;
 import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.PorterDuff;
@@ -14,13 +13,13 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.widget.TextView;
 
+import org.faudroids.loooooading.game.Snowflake;
+import org.faudroids.loooooading.utils.RandomUtils;
 import org.roboguice.shaded.goole.common.base.Optional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Random;
 
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;
@@ -108,9 +107,7 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 
 		private final SurfaceHolder surfaceHolder;
 		private final Bitmap snowflakeBitmap;
-		private final List<Snowflake> visibleSnowflakes = new ArrayList<>();
-		private final LinkedList<Snowflake> hiddenSnowflakes = new LinkedList<>();
-		private final Random random = new Random();
+		private final List<Snowflake> snowflakes = new ArrayList<>();
 
 		private volatile boolean isRunning = true;
 		private int nextSnowflakeCountdown = 0;
@@ -119,42 +116,45 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 		public DrawSnowflakesRunnable(SurfaceHolder surfaceHolder) {
 			this.surfaceHolder = surfaceHolder;
 			this.snowflakeBitmap = BitmapFactory.decodeResource(getResources(), R.drawable.snowflake);
-			for (int i = 0; i < 30; ++i) {
-				hiddenSnowflakes.add(new Snowflake());
-			}
 		}
 
 		@Override
 		public void run() {
 			long lastRunTimestamp = System.currentTimeMillis();
 			while (isRunning) {
-				Canvas canvas = surfaceHolder.lockCanvas();
+				final Canvas canvas = surfaceHolder.lockCanvas();
 				canvas.drawColor(0, PorterDuff.Mode.CLEAR);
 
-				if (nextSnowflakeCountdown <= 0 && !hiddenSnowflakes.isEmpty()) {
-					Snowflake snowflake = hiddenSnowflakes.removeFirst();
-					snowflake.reset(canvas.getWidth());
-					visibleSnowflakes.add(snowflake);
-					nextSnowflakeCountdown = randomInt(20, 50);
+				final long currentTimestamp = System.currentTimeMillis();
+				final long timeDiff = currentTimestamp - lastRunTimestamp;
+
+				if (nextSnowflakeCountdown <= 0 && snowflakes.size() < 30) {
+					Snowflake snowflake = new Snowflake.Builder(snowflakeBitmap)
+							.xPos(RandomUtils.randomInt(-snowflakeBitmap.getWidth(), canvas.getWidth()))
+							.yPos(-snowflakeBitmap.getHeight())
+							.fallSpeed(RandomUtils.randomInt(50, 100))
+							.scale(RandomUtils.randomInt(400, 1000) / 1000f)
+							.rotation(RandomUtils.randomInt(0, 90))
+							.build();
+
+					snowflakes.add(snowflake);
+					nextSnowflakeCountdown = RandomUtils.randomInt(20, 50);
 				} else {
 					--nextSnowflakeCountdown;
 				}
 
-				Iterator<Snowflake> iterator = visibleSnowflakes.iterator();
+				Iterator<Snowflake> iterator = snowflakes.iterator();
 				while (iterator.hasNext()) {
 					Snowflake snowflake = iterator.next();
 					canvas.drawBitmap(snowflakeBitmap, snowflake.getMatrix(), PAINT);
-					snowflake.y = snowflake.y + snowflake.fallSpeed;
-					if (snowflake.y > canvas.getHeight()) {
+					snowflake.onTimePassed(timeDiff);
+					if (snowflake.getyPos() > canvas.getHeight()) {
 						iterator.remove();
-						hiddenSnowflakes.addLast(snowflake);
 					}
 				}
 				surfaceHolder.unlockCanvasAndPost(canvas);
 
 				try {
-					long currentTimestamp = System.currentTimeMillis();
-					long timeDiff = currentTimestamp - lastRunTimestamp;
 					lastRunTimestamp = currentTimestamp;
 					long sleepTime = Math.max(0, msPerFrame + (msPerFrame - timeDiff));
 					Thread.sleep(sleepTime);
@@ -166,38 +166,6 @@ public class MainActivity extends RoboActionBarActivity implements SurfaceHolder
 
 		public void stop() {
 			isRunning = false;
-		}
-
-
-		public int randomInt(int min, int max) {
-			return random.nextInt((max - min) + 1) + min;
-		}
-
-
-		private class Snowflake {
-
-			private final Matrix matrix = new Matrix();
-			private int x, y;
-			private float scale;
-			private int fallSpeed;
-			private float rotation;
-
-			public void reset(int canvasWidth) {
-				scale = randomInt(400, 1000) / 1000f;
-				x = randomInt(-snowflakeBitmap.getWidth(), canvasWidth);
-				y = -snowflakeBitmap.getHeight();
-				fallSpeed = randomInt(2, 5);
-				rotation = randomInt(0, 90);
-			}
-
-			public Matrix getMatrix() {
-				matrix.reset();
-				matrix.postScale(scale, scale, snowflakeBitmap.getWidth() / 2, snowflakeBitmap.getHeight() / 2);
-				matrix.postRotate(rotation);
-				matrix.postTranslate(x, y);
-				return matrix;
-			}
-
 		}
 
 	}
