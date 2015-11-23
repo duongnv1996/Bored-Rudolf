@@ -62,7 +62,7 @@ public class GameManager {
 					.xPos(RandomUtils.randomInt(-snowflakeBitmap.getWidth(), fieldWidth))
 					.yPos(-snowflakeBitmap.getHeight())
 					.fallSpeed(RandomUtils.randomInt(50, 100))
-					.scale(RandomUtils.randomInt(400, 1000) / 1000f)
+					.scale(RandomUtils.randomInt(750, 1000) / 1000f)
 					.rotation(RandomUtils.randomInt(0, 90))
 					.build();
 
