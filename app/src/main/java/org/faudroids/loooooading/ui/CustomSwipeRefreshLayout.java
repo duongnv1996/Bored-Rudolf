@@ -67,13 +67,13 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     private static final int PROGRESS_BAR_HEIGHT = 4;
 
     // maximum swipe distance( percent of parent container)
-    private static final float MAX_SWIPE_DISTANCE_FACTOR = .5f;
+    private static final float MAX_SWIPE_DISTANCE_FACTOR = .9f;
 
     // swipe distance to trigger refreshing
-    private static final int SWIPE_REFRESH_TRIGGER_DISTANCE = 100;
+    private static final int SWIPE_REFRESH_TRIGGER_DISTANCE = 300;
 
     // swipe resistance factor
-    private static final float RESISTANCE_FACTOR = .5f;
+    private static final float RESISTANCE_FACTOR = .9f;
 
     private static final int[] LAYOUT_ATTRS = new int[]{
             android.R.attr.enabled

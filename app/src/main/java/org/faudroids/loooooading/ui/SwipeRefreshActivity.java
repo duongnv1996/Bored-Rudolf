@@ -17,6 +17,11 @@ public class SwipeRefreshActivity extends AppCompatActivity implements CustomSwi
         mCSRL = (CustomSwipeRefreshLayout) findViewById(R.id.swipelayout);
         mCSRL.setOnRefreshListener(this);
 
+        // this is anyway set as default
+        // mCSRL.setCustomHeadview(new DefaultCustomHeadView(this));
+
+        mCSRL.setCustomHeadview(new MySwipeRefreshHeadView(this));
+
         // let's say refresh task takes 10secs
         AsyncTask t = new AsyncTask() {
             @Override
