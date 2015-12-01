@@ -13,9 +13,7 @@
                                                         android:layout_height="match_parent"
                                                         swiperefresh:enable_top_progress_bar="false"
                                                         swiperefresh:keep_refresh_head="true"
-                                                        swiperefresh:refresh_mode="swipe_mode"
-                                                        swiperefresh:time_out_refresh_complete="2000"
-                                                        swiperefresh:time_out_return_to_top="1000" >
+                                                        swiperefresh:refresh_mode="pull_mode" >
 
         <!-- Attention: you can add ONLY one view in CustomSwipeRefreshLayout either in xml or java code -->
 
