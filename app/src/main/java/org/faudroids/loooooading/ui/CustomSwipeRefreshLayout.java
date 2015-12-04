@@ -15,7 +15,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.Animation.AnimationListener;
 import android.view.animation.DecelerateInterpolator;
@@ -70,23 +69,18 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     // swipe resistance factor
     private static final float RESISTANCE_FACTOR = .9f;
 
-    private static final int[] LAYOUT_ATTRS = new int[]{
-            android.R.attr.enabled
-    };
-
 
     private final DecelerateInterpolator mDecelerateInterpolator;
-    private final AccelerateInterpolator mAccelerateInterpolator;
     private final Animation mAnimateStayComplete = new Animation() {
         @Override
         public void applyTransformation(float interpolatedTime, Transformation t) {
             // DO NOTHING
         }
     };
-    boolean keepTopRefreshingHead = true;
-    int refresshMode = REFRESH_MODE_SWIPE;
-    State currentState = new State(State.STATE_NORMAL);
-    State lastState = new State(-1);
+    private boolean keepTopRefreshingHead = true;
+    private int refreshMode = REFRESH_MODE_SWIPE;
+    private State currentState = new State(State.STATE_NORMAL);
+    private State lastState = new State(-1);
     private RefreshCheckHandler mRefreshCheckHandler;
     private ScrollUpHandler mScrollUpHandler;
     private ScrollLeftOrRightHandler mScrollLeftOrRightHandler;
@@ -96,28 +90,18 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     private int mTriggerDistance = SWIPE_REFRESH_TRIGGER_DISTANCE;
     private int mReturnToTopDuration = RETURN_TO_TOP_DURATION;
     private int mReturnToHeaderDuration = RETURN_TO_HEADER_DURATION;
-    private int mConvertedProgressBarHeight;
     private View mHeadview;
     private boolean hasHeadview;
     //the content that gets pulled down
     private View mTarget = null;
     private int mTargetOriginalTop;
-    private int mOriginalOffsetBottom;
-    private OnRefreshListener mListener;
+	private OnRefreshListener mListener;
     private MotionEvent mDownEvent;
     private int mFrom;
     private boolean mRefreshing = false;
     private int mTouchSlop;
     private int mDistanceToTriggerSync = -1;
     private float mPrevY;
-    private float mFromPercentage = 0;
-    private float mCurrPercentage = 0;
-    private final AnimationListener mShrinkAnimationListener = new BaseAnimationListener() {
-        @Override
-        public void onAnimationEnd(Animation animation) {
-            mCurrPercentage = 0;
-        }
-    };
     private boolean enableHorizontalScroll = true;
     private boolean isHorizontalScroll;
     private boolean checkHorizontalMove;
@@ -242,12 +226,11 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         setWillNotDraw(false);
 
         mDecelerateInterpolator = new DecelerateInterpolator(DECELERATE_INTERPOLATION_FACTOR);
-        mAccelerateInterpolator = new AccelerateInterpolator(ACCELERATE_INTERPOLATION_FACTOR);
 
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomSwipeRefreshLayout);
         if (a != null) {
-            refresshMode = a.getInteger(R.styleable.CustomSwipeRefreshLayout_refresh_mode, REFRESH_MODE_SWIPE);
-            setRefreshMode(refresshMode);
+            refreshMode = a.getInteger(R.styleable.CustomSwipeRefreshLayout_refresh_mode, REFRESH_MODE_SWIPE);
+            setRefreshMode(refreshMode);
             mReturnToOriginalTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_return_to_top,
                     RETURN_TO_ORIGINAL_POSITION_TIMEOUT);
             mRefreshCompleteTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_refresh_complete,
@@ -395,16 +378,16 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     }
 
     public int getRefreshMode() {
-        return refresshMode;
+        return refreshMode;
     }
 
     public void setRefreshMode(int mode) {
         switch (mode) {
             case REFRESH_MODE_PULL:
-                refresshMode = REFRESH_MODE_PULL;
+                refreshMode = REFRESH_MODE_PULL;
                 break;
             case REFRESH_MODE_SWIPE:
-                refresshMode = REFRESH_MODE_SWIPE;
+                refreshMode = REFRESH_MODE_SWIPE;
                 break;
             default:
                 throw new IllegalStateException(
@@ -434,16 +417,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
      */
     public void setOnRefreshListener(OnRefreshListener listener) {
         mListener = listener;
-    }
-
-    private void setTriggerPercentage(float percent) {
-        if (percent == 0f) {
-            // No-op. A null trigger means it's uninitialized, and setting it to zero-percent
-            // means we're trying to reset state, so there's nothing to reset in this case.
-            mCurrPercentage = 0;
-            return;
-        }
-        mCurrPercentage = percent;
     }
 
     // for headview
@@ -486,23 +459,22 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     protected void setRefreshing(boolean refreshing) {
         if (mRefreshing != refreshing) {
             ensureTarget();
-            mCurrPercentage = 0;
             mRefreshing = refreshing;
             if (mRefreshing) {
-                if (refresshMode == REFRESH_MODE_PULL) {
+                if (refreshMode == REFRESH_MODE_PULL) {
                     mReturnToTrigerPosition.run();
-                } else if (refresshMode == REFRESH_MODE_SWIPE) {
+                } else if (refreshMode == REFRESH_MODE_SWIPE) {
                     mReturnToStartPosition.run();
                 }
 
             } else {
                 // keep refreshing state for refresh complete
-                if (refresshMode == REFRESH_MODE_PULL) {
+                if (refreshMode == REFRESH_MODE_PULL) {
                     mRefreshing = true;
                     removeCallbacks(mReturnToStartPosition);
                     removeCallbacks(mCancel);
                     mStayRefreshCompletePosition.run();
-                } else if (refresshMode == REFRESH_MODE_SWIPE) {
+                } else if (refreshMode == REFRESH_MODE_SWIPE) {
                     mRefreshing = false;
                     mReturnToStartPosition.run();
                 }
@@ -523,9 +495,8 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                         "CustomSwipeRefreshLayout can host ONLY one direct child");
             }
             mTarget = getContentView();
-            MarginLayoutParams lp = (MarginLayoutParams) mTarget.getLayoutParams();
             mTargetOriginalTop = mTarget.getTop();
-            mOriginalOffsetBottom = mTargetOriginalTop + mTarget.getHeight();
+			int mOriginalOffsetBottom = mTargetOriginalTop + mTarget.getHeight();
 
             if (DEBUG) {
                 Log.d(TAG, "mTargetOriginalTop = " + mTargetOriginalTop +
@@ -677,7 +648,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
         // record the first event:
         if (ev.getAction() == MotionEvent.ACTION_DOWN) {
-            mCurrPercentage = 0;
             mDownEvent = MotionEvent.obtain(ev);
             mPrevY = mDownEvent.getY();
             mCheckValidMotionFlag = true;
@@ -825,7 +795,7 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                     if (curTargetTop >= mDistanceToTriggerSync) {
                         // User movement passed distance; trigger a refresh
                         removeCallbacks(mCancel);
-                        if (refresshMode == REFRESH_MODE_SWIPE) {
+                        if (refreshMode == REFRESH_MODE_SWIPE) {
                             startRefresh();
                             handled = true;
                             break;
@@ -834,10 +804,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                     // curTargetTop is not bigger than trigger
                     else {
                         // Just track the user's movement
-                        setTriggerPercentage(
-                                mAccelerateInterpolator.getInterpolation(
-                                        (float) mCurrentTargetOffsetTop / mTriggerOffset));
-
                         if (!isScrollUp && (curTargetTop < mTargetOriginalTop + 1)) {
                             removeCallbacks(mCancel);
                             mPrevY = event.getY();
@@ -863,7 +829,7 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                     break;
 
                 if (mCurrentTargetOffsetTop >= mTriggerOffset &&
-                        refresshMode == REFRESH_MODE_PULL) {
+                        refreshMode == REFRESH_MODE_PULL) {
                     startRefresh();
                     handled = true;
                 } else {
