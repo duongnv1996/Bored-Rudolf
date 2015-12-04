@@ -39,9 +39,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     public static final boolean DEBUG = true;
     public static final String TAG = "csrl";
 
-    public static final int REFRESH_MODE_SWIPE = 1;
-    public static final int REFRESH_MODE_PULL = 2;
-
     // time out for no movements during swipe action
     private static final int RETURN_TO_ORIGINAL_POSITION_TIMEOUT = 500;
 
@@ -74,7 +71,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             // DO NOTHING
         }
     };
-    private int refreshMode = REFRESH_MODE_SWIPE;
     private State currentState = new State(State.STATE_NORMAL);
     private State lastState = new State(-1);
     private RefreshCheckHandler mRefreshCheckHandler;
@@ -225,16 +221,10 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomSwipeRefreshLayout);
         if (a != null) {
-            refreshMode = a.getInteger(R.styleable.CustomSwipeRefreshLayout_refresh_mode, REFRESH_MODE_SWIPE);
-            setRefreshMode(refreshMode);
-            mReturnToOriginalTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_return_to_top,
-                    RETURN_TO_ORIGINAL_POSITION_TIMEOUT);
-            mRefreshCompleteTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_refresh_complete,
-                    REFRESH_COMPLETE_POSITION_TIMEOUT);
-            mReturnToTopDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_top_duration,
-                    RETURN_TO_TOP_DURATION);
-            mReturnToHeaderDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_header_duration,
-                    RETURN_TO_HEADER_DURATION);
+            mReturnToOriginalTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_return_to_top, RETURN_TO_ORIGINAL_POSITION_TIMEOUT);
+            mRefreshCompleteTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_refresh_complete, REFRESH_COMPLETE_POSITION_TIMEOUT);
+            mReturnToTopDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_top_duration, RETURN_TO_TOP_DURATION);
+            mReturnToHeaderDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_header_duration, RETURN_TO_HEADER_DURATION);
             a.recycle();
         }
     }
@@ -360,25 +350,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         return false;
     }
 
-    public int getRefreshMode() {
-        return refreshMode;
-    }
-
-    public void setRefreshMode(int mode) {
-        switch (mode) {
-            case REFRESH_MODE_PULL:
-                refreshMode = REFRESH_MODE_PULL;
-                break;
-            case REFRESH_MODE_SWIPE:
-                refreshMode = REFRESH_MODE_SWIPE;
-                break;
-            default:
-                throw new IllegalStateException(
-                        "refresh mode " + mode + " is NOT supported in CustomSwipeRefreshLayout");
-
-        }
-    }
-
     @Override
     public void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -443,24 +414,15 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         if (mRefreshing != refreshing) {
             ensureTarget();
             mRefreshing = refreshing;
-            if (mRefreshing) {
-                if (refreshMode == REFRESH_MODE_PULL) {
-                    mReturnToTriggerPosition.run();
-                } else if (refreshMode == REFRESH_MODE_SWIPE) {
-                    mReturnToStartPosition.run();
-                }
+			if (mRefreshing) {
+				mReturnToTriggerPosition.run();
 
             } else {
                 // keep refreshing state for refresh complete
-                if (refreshMode == REFRESH_MODE_PULL) {
-                    mRefreshing = true;
-                    removeCallbacks(mReturnToStartPosition);
-                    removeCallbacks(mCancel);
-                    mStayRefreshCompletePosition.run();
-                } else if (refreshMode == REFRESH_MODE_SWIPE) {
-                    mRefreshing = false;
-                    mReturnToStartPosition.run();
-                }
+				mRefreshing = true;
+				removeCallbacks(mReturnToStartPosition);
+				removeCallbacks(mCancel);
+				mStayRefreshCompletePosition.run();
                 setRefreshState(State.STATE_COMPLETE);
             }
         }
@@ -741,11 +703,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                     if (curTargetTop >= mDistanceToTriggerSync) {
                         // User movement passed distance; trigger a refresh
                         removeCallbacks(mCancel);
-                        if (refreshMode == REFRESH_MODE_SWIPE) {
-                            startRefresh();
-                            handled = true;
-                            break;
-                        }
                     }
                     // curTargetTop is not bigger than trigger
                     else {
@@ -771,18 +728,15 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
                 break;
             case MotionEvent.ACTION_UP:
-                if (mRefreshing)
-                    break;
+                if (mRefreshing) break;
+				if (mCurrentTargetOffsetTop >= mTriggerOffset) {
+					startRefresh();
+				} else {
+					updatePositionTimeout(false);
+				}
+				handled = true;
+				break;
 
-                if (mCurrentTargetOffsetTop >= mTriggerOffset &&
-                        refreshMode == REFRESH_MODE_PULL) {
-                    startRefresh();
-                    handled = true;
-                } else {
-                    updatePositionTimeout(false);
-                    handled = true;
-                }
-                break;
             case MotionEvent.ACTION_CANCEL:
                 if (mDownEvent != null) {
                     mDownEvent.recycle();
