@@ -74,7 +74,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             // DO NOTHING
         }
     };
-    private boolean keepTopRefreshingHead = true;
     private int refreshMode = REFRESH_MODE_SWIPE;
     private State currentState = new State(State.STATE_NORMAL);
     private State lastState = new State(-1);
@@ -236,7 +235,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                     RETURN_TO_TOP_DURATION);
             mReturnToHeaderDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_header_duration,
                     RETURN_TO_HEADER_DURATION);
-            keepTopRefreshingHead = a.getBoolean(R.styleable.CustomSwipeRefreshLayout_keep_refresh_head, false);
             a.recycle();
         }
     }
@@ -624,11 +622,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         boolean handled = false;
         float curY = ev.getY();
 
-        if (mInReturningAnimation && !isKeepTopRefreshingHead() &&
-                ev.getAction() == MotionEvent.ACTION_DOWN) {
-            mInReturningAnimation = false;
-        }
-
         if (!isEnabled()) {
             return false;
         }
@@ -737,46 +730,12 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                     if (mCheckValidMotionFlag && (yDiff > mTouchSlop || yDiff < -mTouchSlop)) {
                         mCheckValidMotionFlag = false;
                     }
-                    // if refresh head moving with the mTarget is enabled
-                    if (!keepTopRefreshingHead) {
-                        // when it is refreshing
-                        if (isRefreshing()) {
-                            // scroll down
-                            if (!isScrollUp) {
-                                // when the top of mTarget reach the parent top
-                                if (curTargetTop <= mTargetOriginalTop) {
-                                    mPrevY = event.getY();
-                                    handled = false;
-                                    updateContentOffsetTop(mTargetOriginalTop, true);
-                                    //mStopInterceptFlag = true;
-                                    break;
-                                }
-                            }
-                            // scroll up
-                            else {
-                                // when refresh head is entirely visible
-                                if (curTargetTop >= mDistanceToTriggerSync) {
-                                    mPrevY = event.getY();
-                                    handled = true;
-                                    updateContentOffsetTop(mDistanceToTriggerSync, true);
-                                    break;
-                                }
-                            }
-
-                            setTargetOffsetTop((int) ((eventY - mPrevY)), true);
-                            mPrevY = event.getY();
-                            handled = true;
-                            break;
-                        }
-                    }
                     // keep refresh head above mTarget when refreshing
-                    else {
-                        if (isRefreshing()) {
-                            mPrevY = event.getY();
-                            handled = false;
-                            break;
-                        }
-                    }
+					if (isRefreshing()) {
+						mPrevY = event.getY();
+						handled = false;
+						break;
+					}
 
                     // curTargetTop is bigger than trigger
                     if (curTargetTop >= mDistanceToTriggerSync) {
@@ -883,14 +842,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
     public void setEnableHorizontalScroll(boolean isEnable) {
         enableHorizontalScroll = isEnable;
-    }
-
-    public void setKeepTopRefreshingHead(boolean isEnable) {
-        keepTopRefreshingHead = isEnable;
-    }
-
-    public boolean isKeepTopRefreshingHead() {
-        return keepTopRefreshingHead;
     }
 
     public void setReturnToOriginalTimeout(int mReturnToOriginalTimeout) {
