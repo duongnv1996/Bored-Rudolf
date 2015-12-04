@@ -4,6 +4,7 @@ package org.faudroids.loooooading.game;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.PointF;
 
 import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.utils.RandomUtils;
@@ -27,7 +28,7 @@ public class GameManager {
 	private long lastRunTimestamp;
 	private int fieldWidth, fieldHeight;
 	private int nextSnowflakeCountdown;
-	private Optional<Location> newPlayerLocation = Optional.absent();
+	private Optional<PointF> newPlayerLocation = Optional.absent();
 
 
 	@Inject
@@ -85,8 +86,8 @@ public class GameManager {
 
 		// update player pos
 		if (newPlayerLocation.isPresent()) {
-			player.setxPos(newPlayerLocation.get().xPos);
-			player.setyPos(newPlayerLocation.get().yPos);
+			player.setxPos(newPlayerLocation.get().x);
+			player.setyPos(newPlayerLocation.get().y);
 			newPlayerLocation = Optional.absent();
 		}
 
@@ -104,7 +105,7 @@ public class GameManager {
 	public void onPlayerTouch(float xPos) {
 		xPos = xPos - player.getDefaultBitmap().getWidth() / 2;
 		float yPos = fieldHeight - player.getDefaultBitmap().getHeight() - context.getResources().getDimension(R.dimen.player_vertical_offset);
-		this.newPlayerLocation = Optional.of(new Location(xPos, yPos));
+		this.newPlayerLocation = Optional.of(new PointF(xPos, yPos));
 	}
 
 

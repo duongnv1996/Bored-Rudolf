@@ -2,6 +2,7 @@ package org.faudroids.loooooading.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
+import android.graphics.PointF;
 
 /**
  * A snowflake!
@@ -12,12 +13,12 @@ public class Snowflake {
 	private final Matrix matrix = new Matrix();
 	private final Bitmap bitmap;
 
-	private final Location location;
+	private final PointF location;
 	private final float fallSpeed; // pixel / seconds
 	private final float scale;
 	private final float rotation; // degrees
 
-	private Snowflake(Bitmap bitmap, Location location, float fallSpeed, float scale, float rotation) {
+	private Snowflake(Bitmap bitmap, PointF location, float fallSpeed, float scale, float rotation) {
 		this.bitmap = bitmap;
 		this.location = location;
 		this.scale = scale;
@@ -27,12 +28,12 @@ public class Snowflake {
 
 
 	public void onTimePassed(long timeInMs) {
-		location.yPos += fallSpeed / 1000f * timeInMs;
+		location.y += fallSpeed / 1000f * timeInMs;
 	}
 
 
 	public float getyPos() {
-		return location.yPos;
+		return location.y;
 	}
 
 
@@ -45,7 +46,7 @@ public class Snowflake {
 		matrix.reset();
 		matrix.postScale(scale, scale, bitmap.getWidth() / 2, bitmap.getHeight() / 2);
 		matrix.postRotate(rotation);
-		matrix.postTranslate(location.xPos, location.yPos);
+		matrix.postTranslate(location.x, location.y);
 		return matrix;
 	}
 
@@ -90,7 +91,7 @@ public class Snowflake {
 		}
 
 		public Snowflake build() {
-			return new Snowflake(bitmap, new Location(xPos, yPos), fallSpeed, scale, rotation);
+			return new Snowflake(bitmap, new PointF(xPos, yPos), fallSpeed, scale, rotation);
 		}
 
 	}

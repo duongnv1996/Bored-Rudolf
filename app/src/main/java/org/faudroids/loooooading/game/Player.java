@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Matrix;
+import android.graphics.PointF;
 
 import org.faudroids.loooooading.R;
 
@@ -16,25 +17,25 @@ public class Player {
 	private final Matrix matrix = new Matrix();
 	private final Bitmap defaultBitmap, lookingUpBitmap;
 
-	private final Location location;
+	private final PointF location;
 
-	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Location location) {
+	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, PointF location) {
 		this.defaultBitmap = defaultBitmap;
 		this.lookingUpBitmap = lookingUpBitmap;
 		this.location = location;
 	}
 
 	public void setxPos(float xPos) {
-		this.location.xPos = xPos;
+		this.location.x = xPos;
 	}
 
 	public void setyPos(float yPos) {
-		this.location.yPos = yPos;
+		this.location.y = yPos;
 	}
 
 	public Matrix getMatrix() {
 		matrix.reset();
-		matrix.postTranslate(location.xPos, location.yPos);
+		matrix.postTranslate(location.x , location.y);
 		return matrix;
 	}
 
@@ -77,7 +78,7 @@ public class Player {
 		}
 
 		public Player build() {
-			return new Player(defaultBitmap, lookingUpBitmap, new Location(xPos, yPos));
+			return new Player(defaultBitmap, lookingUpBitmap, new PointF(xPos, yPos));
 		}
 
 	}
