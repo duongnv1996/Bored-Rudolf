@@ -10,7 +10,6 @@
         android:id="@+id/layout_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        swiperefresh:enable_top_progress_bar="false"
         swiperefresh:keep_refresh_head="true"
         swiperefresh:refresh_mode="pull_mode"
         >
