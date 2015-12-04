@@ -7,8 +7,7 @@ import java.util.Set;
 /**
  * State machine, not very smart at the moment ...
  *
- * Especially the possibleNextState method is pointless at the moment.
- * Once there are more states it might make sense ...
+ * Especially the possibleNextState method is pointless at as it might make sense ...
  */
 public enum PlayerState {
 
@@ -29,7 +28,7 @@ public enum PlayerState {
 	},
 
 	// not moving, eating the snowflake
-	EATING {
+	CHEWING {
 		@Override
 		public Set<PlayerState> possibleNextState() {
 			return EnumSet.allOf(PlayerState.class);

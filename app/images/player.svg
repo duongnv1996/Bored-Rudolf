@@ -16,7 +16,7 @@
    version="1.1"
    inkscape:version="0.91 r"
    sodipodi:docname="player.svg"
-   inkscape:export-filename="/home/maddoc/Desktop/heart.png"
+   inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
    inkscape:export-xdpi="330.84305"
    inkscape:export-ydpi="330.84305">
   <defs
@@ -28,9 +28,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="7.9999996"
-     inkscape:cx="34.266602"
-     inkscape:cy="34.020392"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="-12.849127"
+     inkscape:cy="16.633891"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -41,7 +41,7 @@
      fit-margin-bottom="0"
      inkscape:window-width="1916"
      inkscape:window-height="1143"
-     inkscape:window-x="0"
+     inkscape:window-x="1680"
      inkscape:window-y="36"
      inkscape:window-maximized="0"
      showguides="true" />
@@ -61,7 +61,7 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(401.25318,-1092.7779)">
+     transform="translate(476.56006,-1051.4122)">
     <g
        id="g4733"
        transform="matrix(1.9419024,0,0,1.9419024,-118.24041,-1114.5525)">
@@ -519,7 +519,7 @@
     </g>
     <g
        id="g4667"
-       transform="matrix(1.1198446,0,0,1.1198446,-353.33157,-193.68064)">
+       transform="matrix(1.1198446,0,0,1.1198446,-396.46508,-291.96848)">
       <g
          transform="matrix(-0.22599736,0.18303521,0.18303521,0.22599736,-303.07044,907.90367)"
          id="g5694-6-8-89-4">
@@ -716,5 +716,597 @@
        id="path4643"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="zscszsz" />
+    <g
+       id="g4785"
+       transform="translate(29.44327,-2.4770914)">
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         transform="matrix(-0.26672587,0.18687128,0.18687128,0.26672587,-763.0061,807.16966)"
+         id="g5694-6-8-89-4-5-1">
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5696-3-9-33-6-8-9"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5698-9-0-78-4-2-2"
+           transform="translate(21.526092,989.2529)"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -6.535507,-2.78057 -15.191704,-2.49163 -20.566406,-0.47461 z"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         sodipodi:nodetypes="csscc"
+         inkscape:connector-curvature="0"
+         id="path5640-1-9-0"
+         d="m -554.52468,1072.2313 c -1.39094,-3.1243 -5.15983,-5.8829 -6.89049,-4.7291 -1.34814,0.8988 -1.39094,4.237 0.32098,5.7777 2.11402,1.9026 3.38105,2.0756 5.86334,1.6478 2.37529,-0.2783 0.70617,-2.6964 0.70617,-2.6964 z"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -537.73492,1072.2313 c 1.39094,-3.1243 5.15982,-5.8829 6.89049,-4.7291 1.34814,0.8988 1.39094,4.237 -0.32098,5.7777 -2.11402,1.9026 -3.38105,2.0756 -5.86334,1.6478 -2.37529,-0.2783 -0.70617,-2.6964 -0.70617,-2.6964 z"
+         id="path5642-6-3-1"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="csscc" />
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         style="stroke:#7a552f;stroke-opacity:1"
+         transform="matrix(0.32567401,0,0,0.32567401,-534.66612,743.86192)"
+         id="g5789-2-1-5">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -55.723908,1007.2279 c -0.625,-2.125 -15.875,-58.625 -15.875,-58.625"
+           id="path5770-7-2-0"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -86.348908,963.1029 c 0,0 10.75,4.625 19.125,2.25 8.375,-2.375 15.875,-11.75 15.875,-11.75"
+           id="path5772-2-4-4"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -88.800999,981.61863 c 0,0 14.806845,6.37032 26.34241,3.09904 11.535565,-3.27121 21.865922,-16.18416 21.865922,-16.18416"
+           id="path5772-9-2-8-4"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         style="stroke:#7a552f;stroke-opacity:1"
+         id="g5806-1-2-4"
+         transform="matrix(-0.32567401,0,0,0.32567401,-557.26957,743.8619)">
+        <path
+           inkscape:connector-curvature="0"
+           id="path5808-4-1-7"
+           d="m -55.723908,1007.2279 c -0.625,-2.125 -15.875,-58.625 -15.875,-58.625"
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path5810-2-8-9"
+           d="m -86.348908,963.1029 c 0,0 10.75,4.625 19.125,2.25 8.375,-2.375 15.875,-11.75 15.875,-11.75"
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path5812-66-1-1"
+           d="m -88.800999,981.61863 c 0,0 14.806845,6.37032 26.34241,3.09904 11.535565,-3.27121 21.865922,-16.18416 21.865922,-16.18416"
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         sodipodi:nodetypes="ssscssscs"
+         inkscape:connector-curvature="0"
+         id="path5620-5-9-8"
+         d="m -535.4238,1091.6189 c 1.52229,-2.5851 0.007,-8.2746 0.007,-9.5584 0,-1.2839 0.71507,-6.7978 -1.71505,-10.4898 -1.9221,-2.9202 -5.07202,-4.2606 -8.9811,-4.4577 -3.90907,0.1971 -7.05899,1.5375 -8.98109,4.4577 -2.43013,3.692 -1.71506,9.2059 -1.71506,10.4898 0,1.2838 -1.51543,6.9733 0.007,9.5584 1.13188,1.9223 6.37363,2.7736 10.68929,2.7359 4.31565,0.037 9.5574,-0.8136 10.68928,-2.7359 z"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         ry="2.5250871"
+         rx="5.0287738"
+         cy="1087.4128"
+         cx="-546.20148"
+         id="path5648-8-4-4"
+         style="opacity:1;fill:#a01309;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <ellipse
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         ry="1.7855059"
+         rx="0.90788436"
+         cy="1078.2126"
+         cx="-548.70935"
+         id="path5650-6-3-1"
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <ellipse
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="ellipse5652-0-2-8"
+         cx="-543.49854"
+         cy="1078.2126"
+         rx="0.90788436"
+         ry="1.7855059" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         sodipodi:nodetypes="cscscc"
+         inkscape:connector-curvature="0"
+         id="path5654-4-4-2"
+         d="m -555.11266,1092.6184 c -1.75531,6.1365 -5.34089,15.0092 -3.28295,18.6796 2.05793,3.6705 9.13983,3.8794 12.28253,3.8221 3.14269,0.058 10.22458,-0.1516 12.28252,-3.8221 2.05795,-3.6704 -1.52765,-12.5431 -3.28295,-18.6796 z"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.0973438;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         transform="matrix(0.32567401,0,0,0.32567401,-534.55098,744.03463)"
+         id="g5669-2-8-6">
+        <path
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           id="path5659-26-5-1"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="csscc" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -4.179034,2.01541 -16.245824,1.65445 -20.566406,-0.47461 z"
+           transform="translate(21.526092,989.2529)"
+           id="path5666-5-0-9" />
+      </g>
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         transform="matrix(-0.32567401,0,0,0.32567401,-557.73921,744.03463)"
+         id="g5694-5-8-9">
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5696-1-8-8"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path5698-4-2-0"
+           transform="translate(21.526092,989.2529)"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -4.179034,2.01541 -16.245824,1.65445 -20.566406,-0.47461 z"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         transform="matrix(0.27126678,0.18021625,-0.18021625,0.27126678,-336.88291,802.22962)"
+         id="g5694-6-8-89-2-4">
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5696-3-9-33-4-4"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5698-9-0-78-1-8"
+           transform="translate(21.526092,989.2529)"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -6.535507,-2.78057 -15.191704,-2.49163 -20.566406,-0.47461 z"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         sodipodi:nodetypes="czzcc"
+         inkscape:connector-curvature="0"
+         id="path5702-3-7-9"
+         d="m -556.3008,1098.5093 c 0,0 -2.36339,17.9 -1.53814,18.8088 0.82526,0.9087 9.02825,1.079 9.91662,0.2135 0.88838,-0.8655 -1.274,-18.6798 -1.274,-18.6798 z"
+         style="fill:#ab47bc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         inkscape:connector-curvature="0"
+         id="rect5737-6-1-4"
+         d="m -557.44272,1108.2182 c -0.18193,1.7529 -0.34489,3.4806 -0.44843,4.9631 l 10.08699,0 c -0.0881,-1.497 -0.22994,-3.2246 -0.39119,-4.9631 l -9.24737,0 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         inkscape:connector-curvature="0"
+         id="rect5737-5-67-3-5"
+         d="m -556.34993,1098.8975 c -0.0508,0.388 -0.2929,2.2461 -0.6119,4.9627 l 8.32949,0 c -0.29803,-2.7897 -0.5531,-4.9131 -0.55911,-4.9627 l -7.15848,0 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         sodipodi:nodetypes="zszzszz"
+         inkscape:connector-curvature="0"
+         id="path5700-5-6-7"
+         d="m -559.38226,1099.8361 c 0.55646,1.0317 8.6076,3.0158 13.187,2.8873 4.57939,-0.1283 12.49074,-1.6791 13.21941,-2.716 0.72866,-1.0371 -1.61164,-6.8249 -2.61068,-7.447 -0.99904,-0.622 -6.72538,1.4447 -10.36322,1.6159 -3.63784,0.1713 -9.18092,-2.1874 -10.39385,-1.7442 -1.21293,0.4431 -3.59513,6.3722 -3.03866,7.404 z"
+         style="fill:#ab47bc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="rect5704-8-6-6"
+         d="m -553.7369,1092.7719 -2.30388,8.5008 c 1.18279,0.3302 2.56989,0.6448 3.99396,0.8974 l 1.44708,-8.6068 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         inkscape:connector-curvature="0"
+         id="rect5704-3-4-3-6"
+         d="m -538.50019,1092.7874 c -0.95112,0.2023 -2.03658,0.4601 -3.14987,0.7047 l 1.33831,8.6075 c 1.43676,-0.234 2.83818,-0.5134 4.02767,-0.8079 l -2.21611,-8.5043 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         inkscape:connector-curvature="0"
+         id="path5758-7-8-2"
+         d="m -544.44692,1094.0239 c -0.52577,0.076 -1.03243,0.1306 -1.50306,0.1527 -0.54703,0.025 -1.13978,-0.011 -1.75177,-0.081 l -0.6647,8.5564 c 0.7725,0.06 1.51009,0.091 2.17094,0.071 0.5985,-0.017 1.25566,-0.059 1.94451,-0.1202 l -0.19592,-8.5796 z"
+         style="fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <circle
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         r="4.125"
+         cy="1087.6512"
+         cx="-556.09033"
+         id="path4409-8"
+         style="opacity:1;fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <circle
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         r="4.125"
+         cy="1087.5022"
+         cx="-536.13684"
+         id="path4409-5-7"
+         style="opacity:1;fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4428-7"
+         d="m -548.90515,1091.8007 c 1.49177,1.1212 3.82074,0.9735 5.20711,-0.086"
+         style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         inkscape:connector-curvature="0"
+         id="path4430-82"
+         d="m -548.7556,1090.5283 c -0.18317,0.9641 -0.58268,1.7391 -1.51216,1.8006"
+         style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player2.png"
+         inkscape:connector-curvature="0"
+         id="path4430-8-2"
+         d="m -543.77022,1090.5419 c 0.18317,0.9641 0.58268,1.7391 1.51216,1.8006"
+         style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+    <g
+       id="g4826"
+       transform="translate(149.4897,-2.2537414)">
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         transform="matrix(-0.25308192,0.20497099,0.20497099,0.25308192,-842.21307,825.28414)"
+         id="g5694-6-8-89-4-5-1-4">
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5696-3-9-33-6-8-9-1"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5698-9-0-78-4-2-2-1"
+           transform="translate(21.526092,989.2529)"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -6.535507,-2.78057 -15.191704,-2.49163 -20.566406,-0.47461 z"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         sodipodi:nodetypes="csscc"
+         inkscape:connector-curvature="0"
+         id="path5640-1-9-0-7"
+         d="m -614.15426,1074.008 c -1.39094,-3.1243 -5.15983,-5.8829 -6.89049,-4.7291 -1.34814,0.8988 -1.39094,4.237 0.32098,5.7777 2.11402,1.9026 3.38105,2.0756 5.86334,1.6478 2.37529,-0.2783 0.70617,-2.6964 0.70617,-2.6964 z"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         d="m -597.3645,1074.008 c 1.39094,-3.1243 5.15982,-5.8829 6.89049,-4.7291 1.34814,0.8988 1.39094,4.237 -0.32098,5.7777 -2.11402,1.9026 -3.38105,2.0756 -5.86334,1.6478 -2.37529,-0.2783 -0.70617,-2.6964 -0.70617,-2.6964 z"
+         id="path5642-6-3-1-1"
+         inkscape:connector-curvature="0"
+         sodipodi:nodetypes="csscc" />
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         style="stroke:#7a552f;stroke-opacity:1"
+         transform="matrix(0.32567401,0,0,0.32567401,-594.2957,745.63857)"
+         id="g5789-2-1-5-7">
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -55.723908,1007.2279 c -0.625,-2.125 -15.875,-58.625 -15.875,-58.625"
+           id="path5770-7-2-0-9"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -86.348908,963.1029 c 0,0 10.75,4.625 19.125,2.25 8.375,-2.375 15.875,-11.75 15.875,-11.75"
+           id="path5772-2-4-4-0"
+           inkscape:connector-curvature="0" />
+        <path
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -88.800999,981.61863 c 0,0 14.806845,6.37032 26.34241,3.09904 11.535565,-3.27121 21.865922,-16.18416 21.865922,-16.18416"
+           id="path5772-9-2-8-4-9"
+           inkscape:connector-curvature="0" />
+      </g>
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         style="stroke:#7a552f;stroke-opacity:1"
+         id="g5806-1-2-4-7"
+         transform="matrix(-0.32567401,0,0,0.32567401,-616.89915,745.63855)">
+        <path
+           inkscape:connector-curvature="0"
+           id="path5808-4-1-7-3"
+           d="m -55.723908,1007.2279 c -0.625,-2.125 -15.875,-58.625 -15.875,-58.625"
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path5810-2-8-9-0"
+           d="m -86.348908,963.1029 c 0,0 10.75,4.625 19.125,2.25 8.375,-2.375 15.875,-11.75 15.875,-11.75"
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path5812-66-1-1-6"
+           d="m -88.800999,981.61863 c 0,0 14.806845,6.37032 26.34241,3.09904 11.535565,-3.27121 21.865922,-16.18416 21.865922,-16.18416"
+           style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:5.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         sodipodi:nodetypes="ssscssscs"
+         inkscape:connector-curvature="0"
+         id="path5620-5-9-8-3"
+         d="m -595.05338,1093.3956 c 1.52229,-2.5851 0.007,-8.2746 0.007,-9.5584 0,-1.2839 0.71507,-6.7978 -1.71505,-10.4898 -1.9221,-2.9202 -5.07202,-4.2606 -8.9811,-4.4577 -3.90907,0.1971 -7.05899,1.5375 -8.98109,4.4577 -2.43013,3.692 -1.71506,9.2059 -1.71506,10.4898 0,1.2838 -1.51543,6.9733 0.007,9.5584 1.13188,1.9223 6.37363,2.7736 10.68929,2.7359 4.31565,0.037 9.5574,-0.8136 10.68928,-2.7359 z"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         ry="1.7855059"
+         rx="0.90788436"
+         cy="1079.9894"
+         cx="-608.33893"
+         id="path5650-6-3-1-0"
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <ellipse
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="ellipse5652-0-2-8-7"
+         cx="-603.12811"
+         cy="1079.9894"
+         rx="0.90788436"
+         ry="1.7855059" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         sodipodi:nodetypes="cscscc"
+         inkscape:connector-curvature="0"
+         id="path5654-4-4-2-0"
+         d="m -614.74224,1094.3951 c -1.75531,6.1365 -5.34089,15.0092 -3.28295,18.6796 2.05793,3.6705 9.13983,3.8794 12.28253,3.8221 3.14269,0.058 10.22458,-0.1516 12.28252,-3.8221 2.05795,-3.6704 -1.52765,-12.5431 -3.28295,-18.6796 z"
+         style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.0973438;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         transform="matrix(0.32567401,0,0,0.32567401,-594.18056,745.81128)"
+         id="g5669-2-8-6-1">
+        <path
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           id="path5659-26-5-1-3"
+           inkscape:connector-curvature="0"
+           sodipodi:nodetypes="csscc" />
+        <path
+           inkscape:connector-curvature="0"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -4.179034,2.01541 -16.245824,1.65445 -20.566406,-0.47461 z"
+           transform="translate(21.526092,989.2529)"
+           id="path5666-5-0-9-7" />
+      </g>
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         transform="matrix(-0.32567401,0,0,0.32567401,-617.36879,745.81128)"
+         id="g5694-5-8-9-8">
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5696-1-8-8-1"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           inkscape:connector-curvature="0"
+           id="path5698-4-2-0-3"
+           transform="translate(21.526092,989.2529)"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -4.179034,2.01541 -16.245824,1.65445 -20.566406,-0.47461 z"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <g
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         transform="matrix(0.25308192,0.20497099,-0.20497099,0.25308192,-369.81979,826.25528)"
+         id="g5694-6-8-89-2-4-0">
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5696-3-9-33-4-4-1"
+           d="m -50.489724,1126.6088 c 0,0 4.042178,36.9371 1.208007,39.9107 -2.914076,3.0574 -16.042017,2.4852 -18.817035,-0.604 -2.462476,-2.7412 1.350128,-40.4443 1.350128,-40.4443 z"
+           style="fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+        <path
+           sodipodi:nodetypes="csscc"
+           inkscape:connector-curvature="0"
+           id="path5698-9-0-78-1-8-3"
+           transform="translate(21.526092,989.2529)"
+           d="m -90.419922,171.47461 c 0.07447,2.70984 0.308495,4.64601 0.794922,5.1875 2.775018,3.0892 15.90233,3.66091 18.816406,0.60351 0.566093,-0.59394 0.85065,-2.57746 0.955078,-5.3164 -6.535507,-2.78057 -15.191704,-2.49163 -20.566406,-0.47461 z"
+           style="fill:#7a552f;fill-opacity:1;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      </g>
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         sodipodi:nodetypes="czzcc"
+         inkscape:connector-curvature="0"
+         id="path5702-3-7-9-0"
+         d="m -615.93038,1100.286 c 0,0 -2.36339,17.9 -1.53814,18.8088 0.82526,0.9087 9.02825,1.079 9.91662,0.2135 0.88838,-0.8655 -1.274,-18.6798 -1.274,-18.6798 z"
+         style="fill:#ab47bc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         inkscape:connector-curvature="0"
+         id="rect5737-6-1-4-1"
+         d="m -617.0723,1109.9949 c -0.18193,1.7529 -0.34489,3.4806 -0.44843,4.9631 l 10.08699,0 c -0.0881,-1.497 -0.22994,-3.2246 -0.39119,-4.9631 l -9.24737,0 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         inkscape:connector-curvature="0"
+         id="rect5737-5-67-3-5-7"
+         d="m -615.97951,1100.6742 c -0.0508,0.388 -0.2929,2.2461 -0.6119,4.9627 l 8.32949,0 c -0.29803,-2.7897 -0.5531,-4.9131 -0.55911,-4.9627 l -7.15848,0 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         sodipodi:nodetypes="zszzszz"
+         inkscape:connector-curvature="0"
+         id="path5700-5-6-7-2"
+         d="m -619.01184,1101.6128 c 0.55646,1.0317 8.6076,3.0158 13.187,2.8873 4.57939,-0.1283 12.49074,-1.6791 13.21941,-2.716 0.72866,-1.0371 -1.61164,-6.8249 -2.61068,-7.447 -0.99904,-0.622 -6.72538,1.4447 -10.36322,1.6159 -3.63784,0.1713 -9.18092,-2.1874 -10.39385,-1.7442 -1.21293,0.4431 -3.59513,6.3722 -3.03866,7.404 z"
+         style="fill:#ab47bc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         sodipodi:nodetypes="ccccc"
+         inkscape:connector-curvature="0"
+         id="rect5704-8-6-6-6"
+         d="m -613.36648,1094.5486 -2.30388,8.5008 c 1.18279,0.3302 2.56989,0.6448 3.99396,0.8974 l 1.44708,-8.6068 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         inkscape:connector-curvature="0"
+         id="rect5704-3-4-3-6-8"
+         d="m -598.12977,1094.5641 c -0.95112,0.2023 -2.03658,0.4601 -3.14987,0.7047 l 1.33831,8.6075 c 1.43676,-0.234 2.83818,-0.5134 4.02767,-0.8079 l -2.21611,-8.5043 z"
+         style="opacity:1;fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         inkscape:connector-curvature="0"
+         id="path5758-7-8-2-5"
+         d="m -604.0765,1095.8006 c -0.52577,0.076 -1.03243,0.1306 -1.50306,0.1527 -0.54703,0.025 -1.13978,-0.011 -1.75177,-0.081 l -0.6647,8.5564 c 0.7725,0.06 1.51009,0.091 2.17094,0.071 0.5985,-0.017 1.25566,-0.059 1.94451,-0.1202 l -0.19592,-8.5796 z"
+         style="fill:#6a1b9a;fill-opacity:1;fill-rule:evenodd;stroke:#6a1b9a;stroke-width:0.01628371;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <circle
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         r="4.125"
+         cy="1089.6931"
+         cx="-614.3941"
+         id="path4409-8-3"
+         style="opacity:1;fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <circle
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         r="4.125"
+         cy="1089.2789"
+         cx="-596.82709"
+         id="path4409-5-7-2"
+         style="opacity:1;fill:#c5986c;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         sodipodi:nodetypes="cc"
+         inkscape:connector-curvature="0"
+         id="path4428-7-2"
+         d="m -608.57917,1093.5051 c 1.51723,0.7505 3.88596,0.6516 5.29599,-0.058"
+         style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         inkscape:connector-curvature="0"
+         id="path4430-82-4"
+         d="m -608.10082,1092.4996 c -0.42573,0.8842 -1.01167,1.5299 -1.92555,1.3494"
+         style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <path
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         inkscape:connector-curvature="0"
+         id="path4430-8-2-4"
+         d="m -603.67581,1092.6576 c 0.52281,0.8305 1.17789,1.4059 2.06556,1.1235"
+         style="fill:none;fill-rule:evenodd;stroke:#7a552f;stroke-width:0.5;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <ellipse
+         inkscape:export-ydpi="330"
+         inkscape:export-xdpi="330"
+         inkscape:export-filename="/home/maddoc/android/looooooooooading/app/player1.png"
+         ry="2.5250871"
+         rx="5.0287738"
+         cy="1088.7035"
+         cx="-605.74268"
+         id="path5648-8-4-4-2"
+         style="opacity:1;fill:#a01309;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:0.099;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1" />
+    </g>
   </g>
 </svg>

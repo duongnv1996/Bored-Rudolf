@@ -16,7 +16,7 @@ public class Player {
 
 	// used for getting the final orientation
 	private final Matrix matrix = new Matrix();
-	private final Bitmap defaultBitmap, lookingUpBitmap;
+	private final Bitmap defaultBitmap, lookingUpBitmap, chewing0Bitmap, chewing1Bitmap;
 
 	private final PointF location;
 
@@ -24,11 +24,16 @@ public class Player {
 	private final float mouthWidth, mouthHeight;
 	private final float mouthOffsetFromBottom;
 
+	private long chewingStartTimestamp; // if player is eating, this will indicate when he / she started eating
+
 	private PlayerState state;
 
-	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, PointF location, float mouthWidth, float mouthHeight, float mouthOffsetFromBottom) {
+	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Bitmap chewing0Bitmap, Bitmap chewing1Bitmap,
+				   PointF location, float mouthWidth, float mouthHeight, float mouthOffsetFromBottom) {
 		this.defaultBitmap = defaultBitmap;
 		this.lookingUpBitmap = lookingUpBitmap;
+		this.chewing0Bitmap = chewing0Bitmap;
+		this.chewing1Bitmap = chewing1Bitmap;
 		this.location = location;
 		this.mouthWidth = mouthWidth;
 		this.mouthHeight = mouthHeight;
@@ -100,6 +105,25 @@ public class Player {
 		return lookingUpBitmap;
 	}
 
+	public Bitmap getChewing0Bitmap() {
+		return chewing0Bitmap;
+	}
+
+	public Bitmap getChewing1Bitmap() {
+		return chewing1Bitmap;
+	}
+
+	/**
+	 * @return how long the player has been eating in ms
+	 */
+	public long getChewingDuration() {
+		return System.currentTimeMillis() - chewingStartTimestamp;
+	}
+
+	public void startChewingTimer() {
+		this.chewingStartTimestamp = System.currentTimeMillis();
+	}
+
 	public PlayerState getState() {
 		return state;
 	}
@@ -112,7 +136,7 @@ public class Player {
 
 	public static class Builder {
 
-		private final Bitmap defaultBitmap, lookingUpBitmap;
+		private final Bitmap defaultBitmap, lookingUpBitmap, chewing0Bitmap, chewing1Bitmap;
 		private final float mouthWidth, mouthHeight;
 		private final float mouthOffsetFromBottom;
 
@@ -122,6 +146,8 @@ public class Player {
 		public Builder(Context context) {
 			this.defaultBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_default);
 			this.lookingUpBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_looking_up);
+			this.chewing0Bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_0);
+			this.chewing1Bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_1);
 			this.mouthWidth = context.getResources().getDimension(R.dimen.player_mouth_width);
 			this.mouthHeight = context.getResources().getDimension(R.dimen.player_mouth_height);
 			this.mouthOffsetFromBottom = context.getResources().getDimension(R.dimen.player_mouth_offset_from_bottom);
@@ -133,7 +159,7 @@ public class Player {
 		}
 
 		public Player build() {
-			return new Player(defaultBitmap, lookingUpBitmap, new PointF(xPos, yPos), mouthWidth, mouthHeight, mouthOffsetFromBottom);
+			return new Player(defaultBitmap, lookingUpBitmap, chewing0Bitmap, chewing1Bitmap, new PointF(xPos, yPos), mouthWidth, mouthHeight, mouthOffsetFromBottom);
 		}
 
 	}

@@ -19,6 +19,8 @@ import javax.inject.Inject;
 
 public class GameManager {
 
+	private static final int PLAYER_CHEWING_DURATION_IN_MS = 750;
+
 	private final Context context;
 
 	private final Bitmap snowflakeBitmap;
@@ -75,6 +77,11 @@ public class GameManager {
 			--nextSnowflakeCountdown;
 		}
 
+		// stop chewing if necessary
+		if (player.getChewingDuration() >= PLAYER_CHEWING_DURATION_IN_MS) {
+			player.setState(PlayerState.DEFAULT);
+		}
+
 		// update player pos
 		if (newPlayerLocation.isPresent()) {
 			player.setxPos(newPlayerLocation.get().x);
@@ -98,6 +105,8 @@ public class GameManager {
 			RectF mouthRect = player.getMouthRect();
 			if (mouthRect.contains(snowflake.getCenter().x, snowflake.getCenter().y)) {
 				iterator.remove();
+				player.setState(PlayerState.CHEWING);
+				player.startChewingTimer();
 				continue;
 			}
 
@@ -109,10 +118,13 @@ public class GameManager {
 			}
 		}
 
-		if (playerBelowSnowflake) {
-			player.setState(PlayerState.LOOKING_UP);
-		} else {
-			player.setState(PlayerState.DEFAULT);
+		// let him finish eating that snow!
+		if (!player.getState().equals(PlayerState.CHEWING)) {
+			if (playerBelowSnowflake) {
+				player.setState(PlayerState.LOOKING_UP);
+			} else {
+				player.setState(PlayerState.DEFAULT);
+			}
 		}
 
 		// update timestamp
@@ -127,6 +139,8 @@ public class GameManager {
 	 * @param xPos x-position of touch event
 	 */
 	public void onPlayerTouch(float xPos) {
+		// if eating don't move the player
+		if (player.getState().equals(PlayerState.CHEWING)) return;
 		xPos = xPos - player.getDefaultBitmap().getWidth() / 2;
 		float yPos = fieldHeight - player.getDefaultBitmap().getHeight() - context.getResources().getDimension(R.dimen.player_vertical_offset);
 		this.newPlayerLocation = Optional.of(new PointF(xPos, yPos));

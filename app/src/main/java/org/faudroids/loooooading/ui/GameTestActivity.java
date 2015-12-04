@@ -28,7 +28,7 @@ import timber.log.Timber;
 @ContentView(R.layout.activity_game_test)
 public class GameTestActivity extends RoboActionBarActivity implements SurfaceHolder.Callback {
 
-	private static final boolean DEBUG = true;
+	private static final boolean DEBUG = false;
 
 
 	@InjectView(R.id.surface_view) private SurfaceView surfaceView;
@@ -119,15 +119,18 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 	private class DrawSnowflakesRunnable implements Runnable {
 
 		private final int msPerFrame = 1000 / 50; // = 40 FPS
-		private final Paint PAINT = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG);
 
-		private final Paint DEBUG_PAINT = new Paint();
-		private final Paint DEBUG_PAINT_STORKE = new Paint();
+		private final int CHEWING_ANIM_FRAME_LENGTH_IN_MS = 150;
+
+		private final Paint
+				PAINT = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG),
+				DEBUG_PAINT = new Paint(),
+				DEBUG_PAINT_STROKE = new Paint();
 		{
 			DEBUG_PAINT.setColor(getResources().getColor(android.R.color.holo_red_light));
-			DEBUG_PAINT_STORKE.setColor(getResources().getColor(android.R.color.holo_red_light));
-			DEBUG_PAINT_STORKE.setStrokeWidth(3);
-			DEBUG_PAINT_STORKE.setStyle(Paint.Style.STROKE);
+			DEBUG_PAINT_STROKE.setColor(getResources().getColor(android.R.color.holo_red_light));
+			DEBUG_PAINT_STROKE.setStrokeWidth(3);
+			DEBUG_PAINT_STROKE.setStyle(Paint.Style.STROKE);
 		}
 
 		private final SurfaceHolder surfaceHolder;
@@ -158,6 +161,14 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 					case LOOKING_UP:
 						canvas.drawBitmap(player.getLookingUpBitmap(), player.getMatrix(), PAINT);
 						break;
+
+					case CHEWING:
+						if ((player.getChewingDuration() / CHEWING_ANIM_FRAME_LENGTH_IN_MS) % 2 == 0) {
+							canvas.drawBitmap(player.getChewing0Bitmap(), player.getMatrix(), PAINT);
+						} else {
+							canvas.drawBitmap(player.getChewing1Bitmap(), player.getMatrix(), PAINT);
+						}
+						break;
 				}
 
 
@@ -168,10 +179,10 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 
 				// draw debug
 				if (DEBUG) {
-					canvas.drawRect(player.getMouthRect(), DEBUG_PAINT_STORKE);
+					canvas.drawRect(player.getMouthRect(), DEBUG_PAINT_STROKE);
 					canvas.drawCircle(player.getxPos(), player.getyPos(), 3, DEBUG_PAINT);
 					for (Snowflake snowflake : gameManager.getSnowflakes()) {
-						canvas.drawRect(snowflake.getBoundingBox(), DEBUG_PAINT_STORKE);
+						canvas.drawRect(snowflake.getBoundingBox(), DEBUG_PAINT_STROKE);
 						canvas.drawCircle(snowflake.getCenter().x, snowflake.getCenter().y, 3, DEBUG_PAINT);
 					}
 				}
