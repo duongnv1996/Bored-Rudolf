@@ -24,7 +24,6 @@ public class GameManager {
 	private final Bitmap snowflakeBitmap;
 
 	private final Player player;
-	private PlayerState playerState = PlayerState.DEFAULT;
 	private final List<Snowflake> snowflakes = new ArrayList<>();
 
 	private long lastRunTimestamp;
@@ -111,9 +110,9 @@ public class GameManager {
 		}
 
 		if (playerBelowSnowflake) {
-			playerState = PlayerState.LOOKING_UP;
+			player.setState(PlayerState.LOOKING_UP);
 		} else {
-			playerState = PlayerState.DEFAULT;
+			player.setState(PlayerState.DEFAULT);
 		}
 
 		// update timestamp
@@ -141,11 +140,6 @@ public class GameManager {
 
 	public List<Snowflake> getSnowflakes() {
 		return snowflakes;
-	}
-
-
-	public PlayerState getPlayerState() {
-		return playerState;
 	}
 
 }

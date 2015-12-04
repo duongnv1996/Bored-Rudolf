@@ -24,8 +24,9 @@ public class Player {
 	private final float mouthWidth, mouthHeight;
 	private final float mouthOffsetFromBottom;
 
-	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, PointF location, float mouthWidth, float mouthHeight, float mouthOffsetFromBottom) {
+	private PlayerState state;
 
+	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, PointF location, float mouthWidth, float mouthHeight, float mouthOffsetFromBottom) {
 		this.defaultBitmap = defaultBitmap;
 		this.lookingUpBitmap = lookingUpBitmap;
 		this.location = location;
@@ -33,6 +34,7 @@ public class Player {
 		this.mouthHeight = mouthHeight;
 		this.mouthOffsetFromBottom = mouthOffsetFromBottom;
 		updateMouthRect();
+		this.state = PlayerState.DEFAULT;
 	}
 
 	public void setxPos(float xPos) {
@@ -98,6 +100,15 @@ public class Player {
 		return lookingUpBitmap;
 	}
 
+	public PlayerState getState() {
+		return state;
+	}
+
+	public void setState(PlayerState state) {
+		if (!this.state.possibleNextState().contains(state))
+			throw new IllegalStateException("cannot go to state " + state.name() + " from " + this.state.name());
+		this.state = state;
+	}
 
 	public static class Builder {
 

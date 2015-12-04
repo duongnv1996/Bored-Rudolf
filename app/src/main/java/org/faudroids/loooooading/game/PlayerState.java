@@ -6,6 +6,9 @@ import java.util.Set;
 
 /**
  * State machine, not very smart at the moment ...
+ *
+ * Especially the possibleNextState method is pointless at the moment.
+ * Once there are more states it might make sense ...
  */
 public enum PlayerState {
 
@@ -13,7 +16,7 @@ public enum PlayerState {
 	DEFAULT {
 		@Override
 		public Set<PlayerState> possibleNextState() {
-			return EnumSet.of(LOOKING_UP, EATING);
+			return EnumSet.allOf(PlayerState.class);
 		}
 	},
 
@@ -21,7 +24,7 @@ public enum PlayerState {
 	LOOKING_UP {
 		@Override
 		public Set<PlayerState> possibleNextState() {
-			return EnumSet.of(DEFAULT, EATING);
+			return EnumSet.allOf(PlayerState.class);
 		}
 	},
 
@@ -29,7 +32,7 @@ public enum PlayerState {
 	EATING {
 		@Override
 		public Set<PlayerState> possibleNextState() {
-			return EnumSet.of(DEFAULT, LOOKING_UP);
+			return EnumSet.allOf(PlayerState.class);
 		}
 	};
 

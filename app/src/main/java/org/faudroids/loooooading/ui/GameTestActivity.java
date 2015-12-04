@@ -150,7 +150,7 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 
 				// draw player
 				Player player = gameManager.getPlayer();
-				switch (gameManager.getPlayerState()) {
+				switch (player.getState()) {
 					case DEFAULT:
 						canvas.drawBitmap(player.getDefaultBitmap(), player.getMatrix(), PAINT);
 						break;
