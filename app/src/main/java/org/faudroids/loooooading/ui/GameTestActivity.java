@@ -28,6 +28,8 @@ import timber.log.Timber;
 @ContentView(R.layout.activity_game_test)
 public class GameTestActivity extends RoboActionBarActivity implements SurfaceHolder.Callback {
 
+	private static final boolean DEBUG = true;
+
 
 	@InjectView(R.id.surface_view) private SurfaceView surfaceView;
     @InjectView(R.id.xCoord) private TextView xCoordTV;
@@ -119,6 +121,15 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 		private final int msPerFrame = 1000 / 50; // = 40 FPS
 		private final Paint PAINT = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG);
 
+		private final Paint DEBUG_PAINT = new Paint();
+		private final Paint DEBUG_PAINT_STORKE = new Paint();
+		{
+			DEBUG_PAINT.setColor(getResources().getColor(android.R.color.holo_red_light));
+			DEBUG_PAINT_STORKE.setColor(getResources().getColor(android.R.color.holo_red_light));
+			DEBUG_PAINT_STORKE.setStrokeWidth(3);
+			DEBUG_PAINT_STORKE.setStyle(Paint.Style.STROKE);
+		}
+
 		private final SurfaceHolder surfaceHolder;
 		private volatile boolean isRunning = true;
 
@@ -145,6 +156,16 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 				// draw snowflakes
 				for (Snowflake snowflake : gameManager.getSnowflakes()) {
 					canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
+				}
+
+				// draw debug
+				if (DEBUG) {
+					canvas.drawRect(player.getMouthRect(), DEBUG_PAINT_STORKE);
+					canvas.drawCircle(player.getxPos(), player.getyPos(), 3, DEBUG_PAINT);
+					for (Snowflake snowflake : gameManager.getSnowflakes()) {
+						canvas.drawRect(snowflake.getBoundingBox(), DEBUG_PAINT_STORKE);
+						canvas.drawCircle(snowflake.getCenter().x, snowflake.getCenter().y, 3, DEBUG_PAINT);
+					}
 				}
 
 				surfaceHolder.unlockCanvasAndPost(canvas);

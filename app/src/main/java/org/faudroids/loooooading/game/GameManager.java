@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
+import android.graphics.RectF;
 
 import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.utils.RandomUtils;
@@ -23,6 +24,7 @@ public class GameManager {
 	private final Bitmap snowflakeBitmap;
 
 	private final Player player;
+	private PlayerState playerState = PlayerState.DEFAULT;
 	private final List<Snowflake> snowflakes = new ArrayList<>();
 
 	private long lastRunTimestamp;
@@ -58,7 +60,7 @@ public class GameManager {
 		final long timeDiff = currentTimestamp - lastRunTimestamp;
 
 		// create new snowflakes
-		if (nextSnowflakeCountdown <= 0 && snowflakes.size() < 30) {
+		if (nextSnowflakeCountdown <= 0 && snowflakes.size() < 10) {
 			Snowflake snowflake = new Snowflake.Builder(snowflakeBitmap)
 					.xPos(RandomUtils.randomInt(-snowflakeBitmap.getWidth(), fieldWidth))
 					.yPos(-snowflakeBitmap.getHeight())
@@ -91,6 +93,16 @@ public class GameManager {
 			newPlayerLocation = Optional.absent();
 		}
 
+		// check for collisions
+		RectF mouthRect = player.getMouthRect();
+		Iterator<Snowflake> snowflakeIterator = snowflakes.iterator();
+		while (snowflakeIterator.hasNext()) {
+			Snowflake snowflake = snowflakeIterator.next();
+			if (mouthRect.contains(snowflake.getCenter().x, snowflake.getCenter().y)) {
+				snowflakeIterator.remove();
+			}
+		}
+
 		// update timestamp
 		lastRunTimestamp = currentTimestamp;
 
@@ -113,8 +125,14 @@ public class GameManager {
 		return player;
 	}
 
+
 	public List<Snowflake> getSnowflakes() {
 		return snowflakes;
+	}
+
+
+	public PlayerState getPlayerState() {
+		return playerState;
 	}
 
 }
