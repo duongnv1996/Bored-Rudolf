@@ -7,5 +7,5 @@
     <dimen name="player_vertical_offset">30dp</dimen>
     <dimen name="player_mouth_width">20dp</dimen>
     <dimen name="player_mouth_height">15dp</dimen>
-    <dimen name="player_mouth_offset_from_bottom">36dp</dimen>
+    <dimen name="player_mouth_offset_from_bottom">35dp</dimen>
 </resources>

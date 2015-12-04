@@ -150,7 +150,15 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 
 				// draw player
 				Player player = gameManager.getPlayer();
-				canvas.drawBitmap(player.getDefaultBitmap(), player.getMatrix(), PAINT);
+				switch (gameManager.getPlayerState()) {
+					case DEFAULT:
+						canvas.drawBitmap(player.getDefaultBitmap(), player.getMatrix(), PAINT);
+						break;
+
+					case LOOKING_UP:
+						canvas.drawBitmap(player.getLookingUpBitmap(), player.getMatrix(), PAINT);
+						break;
+				}
 
 
 				// draw snowflakes

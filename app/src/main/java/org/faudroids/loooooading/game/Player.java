@@ -90,21 +90,9 @@ public class Player {
 		return matrix;
 	}
 
-
-	// for testing only!!!
-	private int drawCount = 0;
-	private boolean showingRegular = true;
-
 	public Bitmap getDefaultBitmap() {
-		++drawCount;
-		if (drawCount > 100) {
-			showingRegular = !showingRegular;
-			drawCount = 0;
-		}
-		if (showingRegular) return defaultBitmap;
-		else return lookingUpBitmap;
+		return defaultBitmap;
 	}
-
 
 	public Bitmap getLookingUpBitmap() {
 		return lookingUpBitmap;

@@ -76,16 +76,6 @@ public class GameManager {
 			--nextSnowflakeCountdown;
 		}
 
-		// update snowflakes
-		Iterator<Snowflake> iterator = snowflakes.iterator();
-		while (iterator.hasNext()) {
-			Snowflake snowflake = iterator.next();
-			snowflake.onTimePassed(timeDiff);
-			if (snowflake.getyPos() > fieldHeight) {
-				iterator.remove();
-			}
-		}
-
 		// update player pos
 		if (newPlayerLocation.isPresent()) {
 			player.setxPos(newPlayerLocation.get().x);
@@ -93,14 +83,37 @@ public class GameManager {
 			newPlayerLocation = Optional.absent();
 		}
 
-		// check for collisions
-		RectF mouthRect = player.getMouthRect();
-		Iterator<Snowflake> snowflakeIterator = snowflakes.iterator();
-		while (snowflakeIterator.hasNext()) {
-			Snowflake snowflake = snowflakeIterator.next();
-			if (mouthRect.contains(snowflake.getCenter().x, snowflake.getCenter().y)) {
-				snowflakeIterator.remove();
+		boolean playerBelowSnowflake = false;
+		Iterator<Snowflake> iterator = snowflakes.iterator();
+		while (iterator.hasNext()) {
+
+			// update snowflakes
+			Snowflake snowflake = iterator.next();
+			snowflake.onTimePassed(timeDiff);
+			if (snowflake.getyPos() > fieldHeight) {
+				iterator.remove();
+				continue;
 			}
+
+			// check for collisions
+			RectF mouthRect = player.getMouthRect();
+			if (mouthRect.contains(snowflake.getCenter().x, snowflake.getCenter().y)) {
+				iterator.remove();
+				continue;
+			}
+
+			// make player look up
+			if (mouthRect.left <= snowflake.getCenter().x
+					&& mouthRect.right > snowflake.getCenter().x
+					&& mouthRect.bottom >= snowflake.getCenter().y) {
+				playerBelowSnowflake = true;
+			}
+		}
+
+		if (playerBelowSnowflake) {
+			playerState = PlayerState.LOOKING_UP;
+		} else {
+			playerState = PlayerState.DEFAULT;
 		}
 
 		// update timestamp
