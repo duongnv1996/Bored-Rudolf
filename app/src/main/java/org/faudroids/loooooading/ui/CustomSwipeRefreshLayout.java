@@ -547,7 +547,7 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (!hasHeadview) {
-            setCustomHeadview(new DefaultCustomHeadView(getContext()));
+            setCustomHeadview(new MySwipeRefreshHeadView(getContext()));
         }
 
         if (getChildCount() > 2 && !isInEditMode()) {
@@ -999,7 +999,7 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     /**
      * Classes that must be implemented by for custom headview
      *
-     * @see DefaultCustomHeadView a default headview if no custom headview provided
+     * @see MySwipeRefreshHeadView a default headview if no custom headview provided
      */
     public interface CustomSwipeRefreshHeadLayout {
         void onStateChange(State currentState, State lastState);
