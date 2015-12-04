@@ -54,9 +54,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     // Duration of the animation from the top of the content view to the height of header
     private static final int RETURN_TO_HEADER_DURATION = 500;
 
-    // acceleration of progress bar
-    private static final float ACCELERATE_INTERPOLATION_FACTOR = 1.5f;
-
     // deceleration of progress bar
     private static final float DECELERATE_INTERPOLATION_FACTOR = 2f;
 
@@ -120,13 +117,13 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     private boolean mInReturningAnimation;
     private int mTriggerOffset = 0;
 
-    private final Runnable mReturnToTrigerPosition = new Runnable() {
+    private final Runnable mReturnToTriggerPosition = new Runnable() {
 
         @Override
         public void run() {
             mInReturningAnimation = true;
-            animateOffsetToTrigerPosition(mTarget.getTop(),
-                    mReturningAnimationListener);
+            animateOffsetToTriggerPosition(mTarget.getTop(),
+					mReturningAnimationListener);
         }
 
     };
@@ -184,7 +181,7 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         }
     };
 
-    private final Animation mAnimateToTrigerPosition = new Animation() {
+    private final Animation mAnimateToTriggerPosition = new Animation() {
         @Override
         public void applyTransformation(float interpolatedTime, Transformation t) {
             int targetTop = mDistanceToTriggerSync;
@@ -251,13 +248,13 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         mTarget.startAnimation(mAnimateStayComplete);
     }
 
-    private void animateOffsetToTrigerPosition(int from, AnimationListener listener) {
+    private void animateOffsetToTriggerPosition(int from, AnimationListener listener) {
         mFrom = from;
-        mAnimateToTrigerPosition.reset();
-        mAnimateToTrigerPosition.setDuration(mReturnToHeaderDuration);
-        mAnimateToTrigerPosition.setAnimationListener(listener);
-        mAnimateToTrigerPosition.setInterpolator(mDecelerateInterpolator);
-        mTarget.startAnimation(mAnimateToTrigerPosition);
+        mAnimateToTriggerPosition.reset();
+        mAnimateToTriggerPosition.setDuration(mReturnToHeaderDuration);
+        mAnimateToTriggerPosition.setAnimationListener(listener);
+        mAnimateToTriggerPosition.setInterpolator(mDecelerateInterpolator);
+        mTarget.startAnimation(mAnimateToTriggerPosition);
     }
 
     private void animateOffsetToStartPosition(int from, AnimationListener listener) {
@@ -291,17 +288,17 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
                         && (absListView.getFirstVisiblePosition() > 0 || absListView.getChildAt(0)
                         .getTop() < absListView.getPaddingTop());
             } else {
-                ret = view.getScrollY() > 0 || canChildrenScroolUp(view, event);
+                ret = view.getScrollY() > 0 || canChildrenScrollUp(view, event);
             }
         } else {
-            ret = ViewCompat.canScrollVertically(view, -1) || canChildrenScroolUp(view, event);
+            ret = ViewCompat.canScrollVertically(view, -1) || canChildrenScrollUp(view, event);
         }
         if (DEBUG)
             Log.d(TAG, "canViewScrollUp " + view.getClass().getName() + " " + ret);
         return ret;
     }
 
-    private boolean canChildrenScroolUp(View view, MotionEvent event) {
+    private boolean canChildrenScrollUp(View view, MotionEvent event) {
         if (view instanceof ViewGroup) {
             final ViewGroup viewgroup = (ViewGroup) view;
             int count = viewgroup.getChildCount();
@@ -341,13 +338,13 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             ret = ViewCompat.canScrollHorizontally(view, direction);
         }
 
-        ret = ret || canChildrenScroolHorizontally(view, event, direction);
+        ret = ret || canChildrenScrollHorizontally(view, event, direction);
         if (DEBUG)
             Log.d(TAG, "canViewScrollHorizontally " + view.getClass().getName() + " " + ret);
         return ret;
     }
 
-    private boolean canChildrenScroolHorizontally(View view, MotionEvent event, int direction) {
+    private boolean canChildrenScrollHorizontally(View view, MotionEvent event, int direction) {
         if (view instanceof ViewGroup) {
             final ViewGroup viewgroup = (ViewGroup) view;
             int count = viewgroup.getChildCount();
@@ -363,18 +360,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             }
         }
         return false;
-    }
-
-
-    public void setCustomHeadview(View customHeadview) {
-        if (mHeadview != null) {
-            if (mHeadview == customHeadview)
-                return;
-            removeView(mHeadview);
-        }
-        mHeadview = customHeadview;
-        addView(mHeadview, new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
-        hasHeadview = true;
     }
 
     public int getRefreshMode() {
@@ -462,7 +447,7 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             mRefreshing = refreshing;
             if (mRefreshing) {
                 if (refreshMode == REFRESH_MODE_PULL) {
-                    mReturnToTrigerPosition.run();
+                    mReturnToTriggerPosition.run();
                 } else if (refreshMode == REFRESH_MODE_SWIPE) {
                     mReturnToStartPosition.run();
                 }
@@ -547,7 +532,9 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (!hasHeadview) {
-            setCustomHeadview(new MySwipeRefreshHeadView(getContext()));
+			mHeadview = new MySwipeRefreshHeadView(getContext());
+			addView(mHeadview, new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			hasHeadview = true;
         }
 
         if (getChildCount() > 2 && !isInEditMode()) {
@@ -998,8 +985,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
     /**
      * Classes that must be implemented by for custom headview
-     *
-     * @see MySwipeRefreshHeadView a default headview if no custom headview provided
      */
     public interface CustomSwipeRefreshHeadLayout {
         void onStateChange(State currentState, State lastState);
@@ -1050,22 +1035,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             return refreshState;
         }
 
-        public float getPercent() {
-            return percent;
-        }
-
-        public int getHeaderTop() {
-            return headerTop;
-        }
-
-        public int getTrigger() {
-            return trigger;
-        }
-
-        public String toString() {
-            return "[refreshState = " + refreshState + ", percent = " +
-                    percent + ", top = " + headerTop + ", trigger = " + trigger + "]";
-        }
     }
 
     /**

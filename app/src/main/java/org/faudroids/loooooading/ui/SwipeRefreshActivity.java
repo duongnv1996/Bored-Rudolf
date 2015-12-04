@@ -18,11 +18,7 @@ public class SwipeRefreshActivity extends RoboActionBarActivity implements Custo
         super.onCreate(savedInstanceState);
 
         refreshLayout.setOnRefreshListener(this);
-		refreshLayout.setCustomHeadview(new MySwipeRefreshHeadView(this));
-
-        // this is anyway set as default
-        // mCSRL.setCustomHeadview(new DefaultCustomHeadView(this));
-
+		// refreshLayout.setCustomHeadview(new MySwipeRefreshHeadView(this));
     }
 
     @Override
