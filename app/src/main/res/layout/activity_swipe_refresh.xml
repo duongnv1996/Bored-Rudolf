@@ -14,14 +14,10 @@
         swiperefresh:refresh_mode="pull_mode"
         >
 
-        <TextView
+        <ListView
+            android:id="@+id/list_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:text="Pull to refresh!"
-            android:textColor="@android:color/black"
-            android:textSize="22sp"
-            android:gravity="center"
             />
 
     </org.faudroids.loooooading.ui.CustomSwipeRefreshLayout>
