@@ -7,7 +7,7 @@
     android:orientation="vertical">
 
     <org.faudroids.loooooading.ui.CustomSwipeRefreshLayout
-        android:id="@+id/swipelayout"
+        android:id="@+id/layout_swipe"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         swiperefresh:enable_top_progress_bar="false"
@@ -15,74 +15,15 @@
         swiperefresh:refresh_mode="pull_mode"
         >
 
-        <!-- Attention: you can add ONLY one view in CustomSwipeRefreshLayout either in xml or java code -->
-
-        <LinearLayout
-            android:id="@+id/content"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:text="a ScrollView below"
-                android:textColor="#223333"
-                android:textSize="25sp" />
-
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/view_border">
-
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/text_1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="TextView 1 in ScrollView"
-                        android:layout_marginTop="10dp"
-                        android:textColor="#aa4422"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/text_2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/text_1"
-                        android:layout_marginTop="10dp"
-                        android:text="TextView 2 in ScrollView"
-                        android:textColor="#2244aa"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:id="@+id/text_3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/text_2"
-                        android:layout_marginTop="10dp"
-                        android:text="TextView 3 in ScrollView"
-                        android:textColor="#44aa22"
-                        android:textSize="20sp" />
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/text_3"
-                        android:layout_marginTop="10dp"
-                        android:text="TextView 4 in ScrollView"
-                        android:textColor="#a424dd"
-                        android:textSize="20sp" />
-                </RelativeLayout>
-            </ScrollView>
-
-        </LinearLayout>
+            android:layout_gravity="center"
+            android:text="Pull to refresh!"
+            android:textColor="@android:color/black"
+            android:textSize="22sp"
+            android:gravity="center"
+            />
 
     </org.faudroids.loooooading.ui.CustomSwipeRefreshLayout>
 

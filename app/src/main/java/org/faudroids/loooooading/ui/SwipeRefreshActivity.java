@@ -11,7 +11,7 @@ import roboguice.inject.InjectView;
 @ContentView(R.layout.activity_swipe_refresh)
 public class SwipeRefreshActivity extends RoboActionBarActivity implements CustomSwipeRefreshLayout.OnRefreshListener {
 
-    @InjectView(R.id.swipelayout) private CustomSwipeRefreshLayout refreshLayout;
+    @InjectView(R.id.layout_swipe) private CustomSwipeRefreshLayout refreshLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
