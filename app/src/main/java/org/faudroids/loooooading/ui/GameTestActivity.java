@@ -100,6 +100,13 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 	}
 
 
+	@Override
+	public void onBackPressed() {
+		super.onBackPressed();
+		if (drawRunnable.isPresent()) drawRunnable.get().stop();
+	}
+
+
 	private void startSnowflakes() {
 		if (surfaceHolder.isPresent()) {
 			drawRunnable = Optional.of(new DrawSnowflakesRunnable(surfaceHolder.get()));

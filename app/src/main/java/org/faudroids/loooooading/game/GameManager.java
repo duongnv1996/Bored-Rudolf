@@ -44,9 +44,11 @@ public class GameManager {
 
 	public void start(int fieldWidth, int fieldHeight) {
 		this.nextSnowflakeCountdown = 0;
+		this.snowflakes.clear();
 		this.fieldWidth = fieldWidth;
 		this.fieldHeight = fieldHeight;
 		this.lastRunTimestamp = System.currentTimeMillis();
+		this.player.setState(PlayerState.DEFAULT);
 		onPlayerTouch(fieldWidth / 2); // start with centered player
 	}
 
