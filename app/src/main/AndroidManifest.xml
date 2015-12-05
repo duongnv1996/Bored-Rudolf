@@ -26,7 +26,7 @@
             />
 
         <activity
-            android:name=".ui.SwipeRefreshActivity"
+            android:name=".ui.SwipeGameActivity"
             />
 
         <meta-data

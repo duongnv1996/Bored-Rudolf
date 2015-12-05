@@ -9,7 +9,6 @@ import android.graphics.Rect;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
@@ -57,9 +56,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     // maximum swipe distance( percent of parent container)
     private static final float MAX_SWIPE_DISTANCE_FACTOR = .9f;
 
-    // swipe distance to trigger refreshing
-    private static final int SWIPE_REFRESH_TRIGGER_DISTANCE = 300;
-
     // swipe resistance factor
     private static final float RESISTANCE_FACTOR = .9f;
 
@@ -79,7 +75,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     private int mReturnToOriginalTimeout = RETURN_TO_ORIGINAL_POSITION_TIMEOUT;
     private int mRefreshCompleteTimeout = REFRESH_COMPLETE_POSITION_TIMEOUT;
     private float mResistanceFactor = RESISTANCE_FACTOR;
-    private int mTriggerDistance = SWIPE_REFRESH_TRIGGER_DISTANCE;
     private int mReturnToTopDuration = RETURN_TO_TOP_DURATION;
     private int mReturnToHeaderDuration = RETURN_TO_HEADER_DURATION;
     private View mHeadview;
@@ -227,6 +222,8 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             mReturnToHeaderDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_header_duration, RETURN_TO_HEADER_DURATION);
             a.recycle();
         }
+
+		mTriggerOffset = getResources().getDimensionPixelOffset(R.dimen.game_height);
     }
 
     private void animateStayComplete(AnimationListener listener) {
@@ -450,8 +447,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         }
         if (mDistanceToTriggerSync == -1) {
             if (getParent() != null && ((View) getParent()).getHeight() > 0) {
-                final DisplayMetrics metrics = getResources().getDisplayMetrics();
-                mTriggerOffset = (int) (mTriggerDistance * metrics.density);
                 mDistanceToTriggerSync = (int) Math.min(
                         ((View) getParent()).getHeight() * MAX_SWIPE_DISTANCE_FACTOR,
                         mTriggerOffset + mTargetOriginalTop);
@@ -492,8 +487,8 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         if (!hasHeadview) {
-			mHeadview = new MySwipeRefreshHeadView(getContext());
-			addView(mHeadview, new MarginLayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT));
+			mHeadview = new GameView(getContext());
+			addView(mHeadview, new MarginLayoutParams(LayoutParams.MATCH_PARENT, getResources().getDimensionPixelOffset(R.dimen.game_height)));
 			hasHeadview = true;
         }
 
@@ -848,21 +843,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
     public void setResistanceFactor(float factor) {
         mResistanceFactor = factor;
-    }
-
-    public int getTriggerDistance() {
-        return mTriggerDistance;
-    }
-
-    /**
-     * set refresh trigger distance, in dp.
-     *
-     * @param distance
-     */
-    public void setTriggerDistance(int distance) {
-        if (distance < 0)
-            distance = 0;
-        mTriggerDistance = distance;
     }
 
     /**

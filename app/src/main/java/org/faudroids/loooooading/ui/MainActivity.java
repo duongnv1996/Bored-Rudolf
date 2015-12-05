@@ -23,7 +23,7 @@ public class MainActivity extends RoboActionBarActivity {
 		swipeButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				startActivity(new Intent(MainActivity.this, SwipeRefreshActivity.class));
+				startActivity(new Intent(MainActivity.this, SwipeGameActivity.class));
 			}
 		});
 		gameButton.setOnClickListener(new View.OnClickListener() {
