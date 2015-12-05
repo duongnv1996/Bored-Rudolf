@@ -35,7 +35,7 @@ public class GameManager {
 
 
 	@Inject
-	GameManager(Context context) {
+	public GameManager(Context context) {
 		this.context = context;
 		this.snowflakeBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake);
 		this.player = new Player.Builder(context).xPos(100).build();
