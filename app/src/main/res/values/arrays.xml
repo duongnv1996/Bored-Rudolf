@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="loading_time_strings">
+        <item>1s</item>
+        <item>5s</item>
+        <item>15s</item>
+        <item>30s</item>
+        <item>Forever</item>
+    </string-array>
+
+    <integer-array name="loading_time_values">
+        <item>1</item>
+        <item>5</item>
+        <item>15</item>
+        <item>30</item>
+        <item>2147483647</item> <!-- forever! -->
+    </integer-array>
+
+</resources>
