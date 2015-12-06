@@ -106,7 +106,7 @@ public class GameManager {
 
 			// check for collisions
 			RectF mouthRect = player.getMouthRect();
-			if (mouthRect.contains(snowflake.getCenter().x, snowflake.getCenter().y)) {
+			if (player.canEatSnowflake() && mouthRect.contains(snowflake.getCenter().x, snowflake.getCenter().y)) {
 				iterator.remove();
 				player.setState(PlayerState.CHEWING);
 				player.startChewingTimer();

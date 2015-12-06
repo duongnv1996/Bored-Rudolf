@@ -124,6 +124,10 @@ public class Player {
 		this.chewingStartTimestamp = System.currentTimeMillis();
 	}
 
+	public boolean canEatSnowflake() {
+		return !state.equals(PlayerState.CHEWING);
+	}
+
 	public PlayerState getState() {
 		return state;
 	}
