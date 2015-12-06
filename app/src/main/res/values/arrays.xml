@@ -14,7 +14,7 @@
         <item>5</item>
         <item>15</item>
         <item>30</item>
-        <item>2147483647</item> <!-- forever! -->
+        <item>-1</item>
     </integer-array>
 
 </resources>

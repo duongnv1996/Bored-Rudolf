@@ -46,6 +46,7 @@ public class DemoActivity extends RoboActionBarActivity implements CustomSwipeRe
     public void onRefresh() {
 		stopLoadingButton.setEnabled(true);
 		int loadingTime= loadingTimeValues[loadingTimesSpinner.getSelectedItemPosition()] * 1000;
+		if (loadingTime <= 0) return;
 		refreshLayout.postDelayed(new Runnable() {
 			@Override
 			public void run() {
