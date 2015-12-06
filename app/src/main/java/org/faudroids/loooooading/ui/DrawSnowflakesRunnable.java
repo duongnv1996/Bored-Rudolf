@@ -26,7 +26,6 @@ class DrawSnowflakesRunnable implements Runnable {
 			DEBUG_PAINT = new Paint(),
 			DEBUG_PAINT_STROKE = new Paint();
 
-	private final Context context;
 	private final GameManager gameManager;
 	private final SurfaceHolder surfaceHolder;
 
@@ -34,7 +33,6 @@ class DrawSnowflakesRunnable implements Runnable {
 
 
 	public DrawSnowflakesRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder) {
-		this.context = context;
 		this.gameManager = gameManager;
 		this.surfaceHolder = surfaceHolder;
 
@@ -51,6 +49,9 @@ class DrawSnowflakesRunnable implements Runnable {
 		surfaceHolder.unlockCanvasAndPost(tmpCanvas);
 
 		while (isRunning) {
+			// update game
+			long timeDiff = gameManager.loop();
+
 			final Canvas canvas = surfaceHolder.lockCanvas();
 			canvas.drawColor(0, PorterDuff.Mode.CLEAR);
 
@@ -74,7 +75,6 @@ class DrawSnowflakesRunnable implements Runnable {
 					break;
 			}
 
-
 			// draw snowflakes
 			for (Snowflake snowflake : gameManager.getSnowflakes()) {
 				canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
@@ -92,11 +92,7 @@ class DrawSnowflakesRunnable implements Runnable {
 
 			surfaceHolder.unlockCanvasAndPost(canvas);
 
-			// update game
-			long timeDiff = gameManager.loop();
-
 			try {
-
 				long sleepTime = Math.max(0, MS_PER_FRAME + (MS_PER_FRAME - timeDiff));
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
