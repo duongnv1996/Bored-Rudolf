@@ -5,6 +5,7 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.view.SurfaceHolder;
+import android.widget.TextView;
 
 import org.faudroids.loooooading.game.GameManager;
 import org.faudroids.loooooading.game.Player;
@@ -28,13 +29,15 @@ class DrawGameRunnable implements Runnable {
 
 	private final GameManager gameManager;
 	private final SurfaceHolder surfaceHolder;
+	private final TextView scoreView;
 
 	private volatile boolean isRunning = true;
 
 
-	public DrawGameRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder) {
+	public DrawGameRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder, TextView scoreView) {
 		this.gameManager = gameManager;
 		this.surfaceHolder = surfaceHolder;
+		this.scoreView = scoreView;
 
 		DEBUG_PAINT.setColor(context.getResources().getColor(android.R.color.holo_red_light));
 		DEBUG_PAINT_STROKE.setColor(context.getResources().getColor(android.R.color.holo_red_light));
@@ -52,6 +55,15 @@ class DrawGameRunnable implements Runnable {
 			// update game
 			long timeDiff = gameManager.loop();
 
+			// update score
+			scoreView.post(new Runnable() {
+				@Override
+				public void run() {
+					scoreView.setText(String.valueOf(gameManager.getScore().toNumericScore()));
+				}
+			});
+
+			// start drawing + clear background
 			final Canvas canvas = surfaceHolder.lockCanvas();
 			canvas.drawColor(0, PorterDuff.Mode.CLEAR);
 

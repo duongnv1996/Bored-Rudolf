@@ -27,6 +27,6 @@ public class DemoActivity extends RoboActionBarActivity implements CustomSwipeRe
 			public void run() {
 				refreshLayout.refreshComplete();
 			}
-		}, 10000);
+		}, 15000);
     }
 }

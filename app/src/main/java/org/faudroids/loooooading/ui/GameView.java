@@ -10,6 +10,7 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.game.GameManager;
@@ -24,6 +25,7 @@ public class GameView extends LinearLayout implements
 
 	private GameManager gameManager;
 	private SurfaceView surfaceView;
+	private TextView scoreView;
 
 	private Optional<DrawGameRunnable> drawRunnable = Optional.absent();
 	private Optional<SurfaceHolder> surfaceHolder = Optional.absent();
@@ -35,8 +37,9 @@ public class GameView extends LinearLayout implements
 				new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
 		this.gameManager = new GameManager(getContext());
-
 		this.surfaceView = (SurfaceView) findViewById(R.id.surface_view);
+		this.scoreView = (TextView) findViewById(R.id.txt_score);
+
 		SurfaceHolder surfaceHolder = surfaceView.getHolder();
 		surfaceHolder.addCallback(this);
 		surfaceHolder.setFormat(PixelFormat.TRANSPARENT);
@@ -84,7 +87,7 @@ public class GameView extends LinearLayout implements
 
 	private void startSnowflakes() {
 		if (surfaceHolder.isPresent()) {
-			drawRunnable = Optional.of(new DrawGameRunnable(getContext(), gameManager, surfaceHolder.get()));
+			drawRunnable = Optional.of(new DrawGameRunnable(getContext(), gameManager, surfaceHolder.get(), scoreView));
 			new Thread(drawRunnable.get()).start();
 		}
 	}

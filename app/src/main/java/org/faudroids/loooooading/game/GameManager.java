@@ -27,6 +27,7 @@ public class GameManager {
 
 	private final Player player;
 	private final List<Snowflake> snowflakes = new ArrayList<>();
+	private final Score score = new Score();
 
 	private long lastRunTimestamp;
 	private int fieldWidth, fieldHeight;
@@ -67,7 +68,7 @@ public class GameManager {
 			Snowflake snowflake = new Snowflake.Builder(snowflakeBitmap)
 					.xPos(RandomUtils.randomInt(-snowflakeBitmap.getWidth(), fieldWidth))
 					.yPos(-snowflakeBitmap.getHeight())
-					.fallSpeed(RandomUtils.randomInt(50, 100))
+					.fallSpeed(RandomUtils.randomInt(100, 150))
 					.scale(RandomUtils.randomInt(750, 1000) / 1000f)
 					.rotation(RandomUtils.randomInt(0, 90))
 					.build();
@@ -109,6 +110,7 @@ public class GameManager {
 				iterator.remove();
 				player.setState(PlayerState.CHEWING);
 				player.startChewingTimer();
+				score.onSnowflakeConsumed();
 				continue;
 			}
 
@@ -156,6 +158,11 @@ public class GameManager {
 
 	public List<Snowflake> getSnowflakes() {
 		return snowflakes;
+	}
+
+
+	public Score getScore() {
+		return score;
 	}
 
 }
