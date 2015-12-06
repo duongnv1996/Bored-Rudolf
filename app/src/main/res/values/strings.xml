@@ -11,5 +11,6 @@
     <string name="csr_text_last_refresh">last update:  </string>
     <string name="title_activity_swipe_refresh">SwipeRefreshActivity</string>
     <string name="loading_time">Loading time</string>
+    <string name="stop_loading">Stop loading</string>
 
 </resources>

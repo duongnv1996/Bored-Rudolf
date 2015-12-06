@@ -1,7 +1,9 @@
 package org.faudroids.loooooading.ui;
 
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import org.faudroids.loooooading.R;
@@ -15,6 +17,7 @@ public class DemoActivity extends RoboActionBarActivity implements CustomSwipeRe
 
     @InjectView(R.id.layout_swipe) private CustomSwipeRefreshLayout refreshLayout;
 	@InjectView(R.id.spinner_loading_time) private Spinner loadingTimesSpinner;
+	@InjectView(R.id.btn_stop_loading) private Button stopLoadingButton;
 	private int[] loadingTimeValues;
 
     @Override
@@ -29,16 +32,30 @@ public class DemoActivity extends RoboActionBarActivity implements CustomSwipeRe
 		loadingTimesSpinner.setSelection(2);
 
 		loadingTimeValues = getResources().getIntArray(R.array.loading_time_values);
+
+		stopLoadingButton.setEnabled(false);
+		stopLoadingButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				stopRefreshing();
+			}
+		});
     }
 
     @Override
     public void onRefresh() {
+		stopLoadingButton.setEnabled(true);
 		int loadingTime= loadingTimeValues[loadingTimesSpinner.getSelectedItemPosition()] * 1000;
 		refreshLayout.postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				refreshLayout.refreshComplete();
+				stopRefreshing();
 			}
 		}, loadingTime);
     }
+
+	private void stopRefreshing() {
+		stopLoadingButton.setEnabled(false);
+		refreshLayout.refreshComplete();
+	}
 }
