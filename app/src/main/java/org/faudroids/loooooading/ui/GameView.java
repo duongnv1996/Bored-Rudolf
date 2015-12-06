@@ -25,7 +25,7 @@ public class GameView extends LinearLayout implements
 	private GameManager gameManager;
 	private SurfaceView surfaceView;
 
-	private Optional<DrawSnowflakesRunnable> drawRunnable = Optional.absent();
+	private Optional<DrawGameRunnable> drawRunnable = Optional.absent();
 	private Optional<SurfaceHolder> surfaceHolder = Optional.absent();
 
 	public GameView(Context context) {
@@ -84,7 +84,7 @@ public class GameView extends LinearLayout implements
 
 	private void startSnowflakes() {
 		if (surfaceHolder.isPresent()) {
-			drawRunnable = Optional.of(new DrawSnowflakesRunnable(getContext(), gameManager, surfaceHolder.get()));
+			drawRunnable = Optional.of(new DrawGameRunnable(getContext(), gameManager, surfaceHolder.get()));
 			new Thread(drawRunnable.get()).start();
 		}
 	}

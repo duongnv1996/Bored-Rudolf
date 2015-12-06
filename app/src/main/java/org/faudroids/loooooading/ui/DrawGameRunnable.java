@@ -13,7 +13,7 @@ import org.faudroids.loooooading.game.Snowflake;
 import timber.log.Timber;
 
 
-class DrawSnowflakesRunnable implements Runnable {
+class DrawGameRunnable implements Runnable {
 
 	private static final boolean DEBUG = false;
 
@@ -32,7 +32,7 @@ class DrawSnowflakesRunnable implements Runnable {
 	private volatile boolean isRunning = true;
 
 
-	public DrawSnowflakesRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder) {
+	public DrawGameRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder) {
 		this.gameManager = gameManager;
 		this.surfaceHolder = surfaceHolder;
 

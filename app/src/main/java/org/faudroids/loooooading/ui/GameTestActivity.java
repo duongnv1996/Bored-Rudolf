@@ -28,7 +28,7 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 
 	@Inject private GameManager gameManager;
 
-	private Optional<DrawSnowflakesRunnable> drawRunnable = Optional.absent();
+	private Optional<DrawGameRunnable> drawRunnable = Optional.absent();
 	private Optional<SurfaceHolder> surfaceHolder = Optional.absent();
 
 
@@ -100,7 +100,7 @@ public class GameTestActivity extends RoboActionBarActivity implements SurfaceHo
 
 	private void startSnowflakes() {
 		if (surfaceHolder.isPresent()) {
-			drawRunnable = Optional.of(new DrawSnowflakesRunnable(this, gameManager, surfaceHolder.get()));
+			drawRunnable = Optional.of(new DrawGameRunnable(this, gameManager, surfaceHolder.get()));
 			new Thread(drawRunnable.get()).start();
 		}
 	}
