@@ -137,15 +137,6 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
         }
     };
 
-    private final Runnable mStayRefreshCompletePosition = new Runnable() {
-
-        @Override
-        public void run() {
-            animateStayComplete(mStayCompleteListener);
-        }
-
-    };
-
     // Cancel the refresh gesture and animate everything back to its original state.
     private final Runnable mCancel = new Runnable() {
         @Override
@@ -419,7 +410,7 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 				mRefreshing = true;
 				removeCallbacks(mReturnToStartPosition);
 				removeCallbacks(mCancel);
-				mStayRefreshCompletePosition.run();
+				animateStayComplete(mStayCompleteListener);
                 setRefreshState(State.STATE_COMPLETE);
             }
         }
