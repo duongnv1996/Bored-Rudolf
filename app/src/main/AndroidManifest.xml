@@ -11,23 +11,13 @@
         >
 
         <activity
-            android:label="@string/app_name"
-            android:name=".ui.MainActivity"
+            android:name=".ui.DemoActivity"
             >
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-
-
-        <activity
-            android:name=".ui.GameTestActivity"
-            />
-
-        <activity
-            android:name=".ui.SwipeGameActivity"
-            />
 
         <meta-data
             android:name="roboguice.annotations.packages"
