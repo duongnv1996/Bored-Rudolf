@@ -35,7 +35,7 @@ import org.faudroids.loooooading.R;
  */
 public class CustomSwipeRefreshLayout extends ViewGroup {
 
-    public static final boolean DEBUG = true;
+    public static final boolean DEBUG = false;
     public static final String TAG = "csrl";
 
     // time out for no movements during swipe action
@@ -911,6 +911,9 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
             return refreshState;
         }
 
+		public float getPercent() {
+			return percent;
+		}
     }
 
     /**

@@ -9,6 +9,9 @@ import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -26,6 +29,8 @@ public class GameView extends LinearLayout implements
 	private GameManager gameManager;
 	private SurfaceView surfaceView;
 	private TextView scoreView;
+	private ImageView downArrowView;
+	private Animation arrowFadeOutAnim;
 
 	private Optional<DrawGameRunnable> drawRunnable = Optional.absent();
 	private Optional<SurfaceHolder> surfaceHolder = Optional.absent();
@@ -39,6 +44,8 @@ public class GameView extends LinearLayout implements
 		this.gameManager = new GameManager(getContext());
 		this.surfaceView = (SurfaceView) findViewById(R.id.surface_view);
 		this.scoreView = (TextView) findViewById(R.id.txt_score);
+		this.downArrowView = (ImageView) findViewById(R.id.img_arrow_down);
+		this.arrowFadeOutAnim = AnimationUtils.loadAnimation(context, R.anim.arrow_fade_out);
 
 		SurfaceHolder surfaceHolder = surfaceView.getHolder();
 		surfaceHolder.addCallback(this);
@@ -104,6 +111,12 @@ public class GameView extends LinearLayout implements
 
     @Override
     public void onStateChange(CustomSwipeRefreshLayout.State state, CustomSwipeRefreshLayout.State lastState) {
+		float alpha = Math.min(state.getPercent() + 0.1f, 1f);
+		downArrowView.setAlpha(alpha);
+		float scale = Math.min(0.5f + state.getPercent() / 2f, 1f);
+		downArrowView.setScaleX(scale);
+		downArrowView.setScaleY(scale);
+
         int stateCode = state.getRefreshState();
         int lastStateCode = lastState.getRefreshState();
         if (stateCode == lastStateCode) {
@@ -113,6 +126,7 @@ public class GameView extends LinearLayout implements
         switch (stateCode) {
             case CustomSwipeRefreshLayout.State.STATE_NORMAL:
 				Timber.d("normal state");
+				downArrowView.setVisibility(View.VISIBLE);
                 break;
 
             case CustomSwipeRefreshLayout.State.STATE_READY:
@@ -120,9 +134,27 @@ public class GameView extends LinearLayout implements
 				break;
 
             case CustomSwipeRefreshLayout.State.STATE_REFRESHING:
-				surfaceView.setVisibility(View.VISIBLE);
-				startSnowflakes();
 				Timber.d("refreshing state");
+				surfaceView.setVisibility(View.VISIBLE);
+
+				arrowFadeOutAnim.reset();
+				downArrowView.clearAnimation();
+				downArrowView.startAnimation(arrowFadeOutAnim);
+				arrowFadeOutAnim.setAnimationListener(new Animation.AnimationListener() {
+					@Override
+					public void onAnimationStart(Animation animation) { }
+
+					@Override
+					public void onAnimationEnd(Animation animation) {
+						downArrowView.setVisibility(View.GONE);
+						startSnowflakes();
+					}
+
+					@Override
+					public void onAnimationRepeat(Animation animation) { }
+				});
+
+
                 break;
 
             case CustomSwipeRefreshLayout.State.STATE_COMPLETE:
