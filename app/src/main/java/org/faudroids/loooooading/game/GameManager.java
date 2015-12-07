@@ -67,7 +67,7 @@ public class GameManager {
 		// create new snowflakes
 		if (nextSnowflakeCountdown <= 0 && snowflakes.size() < 10) {
 			Snowflake snowflake = new Snowflake.Builder(snowflakeBitmap)
-					.xPos(RandomUtils.randomInt(-snowflakeBitmap.getWidth(), fieldWidth))
+					.xPos(RandomUtils.randomInt(snowflakeBitmap.getWidth(), fieldWidth - snowflakeBitmap.getWidth() * 2))
 					.yPos(-snowflakeBitmap.getHeight())
 					.fallSpeed(RandomUtils.randomInt(100, 150))
 					.scale(RandomUtils.randomInt(750, 1000) / 1000f)
