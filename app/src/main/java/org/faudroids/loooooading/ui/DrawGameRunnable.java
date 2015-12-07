@@ -22,7 +22,7 @@ class DrawGameRunnable implements Runnable {
 
 	private static final boolean DEBUG = false;
 
-	private static final int MS_PER_FRAME = 1000 / 50; // = 40 FPS
+	private static final int MS_PER_FRAME = 1000 / 50;
 
 	private static final int CHEWING_ANIM_FRAME_LENGTH_IN_MS = 150;
 
@@ -58,7 +58,7 @@ class DrawGameRunnable implements Runnable {
 
 		while (!gameManager.getState().equals(GameState.STOPPED)) {
 			// update game
-			long timeDiff = gameManager.loop();
+			final long timeDiff = gameManager.loop();
 
 			// update score
 			final int score = gameManager.getScore().getNumericScore();
@@ -128,7 +128,7 @@ class DrawGameRunnable implements Runnable {
 			surfaceHolder.unlockCanvasAndPost(canvas);
 
 			try {
-				long sleepTime = Math.max(0, MS_PER_FRAME + (MS_PER_FRAME - timeDiff));
+				long sleepTime = Math.max(0, MS_PER_FRAME - timeDiff);
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
 				Timber.e(e, "interrupted while sleeping in draw");
