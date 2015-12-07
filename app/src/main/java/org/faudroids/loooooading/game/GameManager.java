@@ -51,6 +51,7 @@ public class GameManager {
 		this.lastRunTimestamp = System.currentTimeMillis();
 		this.player.setState(PlayerState.DEFAULT);
 		onPlayerTouch(fieldWidth / 2); // start with centered player
+		this.score.reset();
 	}
 
 

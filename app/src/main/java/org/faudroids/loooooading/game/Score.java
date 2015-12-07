@@ -12,4 +12,8 @@ public class Score {
 		return consumedSnowflakes;
 	}
 
+	public void reset() {
+		this.consumedSnowflakes = 0;
+	}
+
 }
