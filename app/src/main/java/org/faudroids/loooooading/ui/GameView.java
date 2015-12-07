@@ -29,6 +29,7 @@ public class GameView extends LinearLayout implements
 	private GameManager gameManager;
 	private SurfaceView surfaceView;
 	private TextView scoreView, highScoreView;
+	private View whiteView; // clouds overlay when game over
 	private ImageView downArrowView;
 	private Animation arrowFadeOutAnim;
 
@@ -45,6 +46,7 @@ public class GameView extends LinearLayout implements
 		this.surfaceView = (SurfaceView) findViewById(R.id.surface_view);
 		this.scoreView = (TextView) findViewById(R.id.txt_score);
 		this.highScoreView = (TextView) findViewById(R.id.txt_high_score);
+		this.whiteView = findViewById(R.id.view_white);
 		this.downArrowView = (ImageView) findViewById(R.id.img_arrow_down);
 		this.arrowFadeOutAnim = AnimationUtils.loadAnimation(context, R.anim.arrow_fade_out);
 
@@ -103,7 +105,26 @@ public class GameView extends LinearLayout implements
 
 	private void stopSnowflakes() {
 		if (drawRunnable.isPresent()) {
-			drawRunnable.get().stop();
+			drawRunnable.get().stop(new Runnable() {
+				@Override
+				public void run() {
+					// post action
+					surfaceView.post(new Runnable() {
+						@Override
+						public void run() {
+							// ui thread
+							whiteView.setVisibility(View.VISIBLE);
+							surfaceView.post(new Runnable() {
+								@Override
+								public void run() {
+									// avoid flickering
+									surfaceView.setVisibility(View.INVISIBLE);
+								}
+							});
+						}
+					});
+				}
+			});
 			drawRunnable = Optional.absent();
 		}
 
@@ -127,6 +148,7 @@ public class GameView extends LinearLayout implements
         switch (stateCode) {
             case CustomSwipeRefreshLayout.State.STATE_NORMAL:
 				Timber.d("normal state");
+				whiteView.setVisibility(View.GONE);
 				downArrowView.setVisibility(View.VISIBLE);
 				setHighScore();
 				scoreView.setText(String.valueOf(0));
@@ -163,12 +185,6 @@ public class GameView extends LinearLayout implements
             case CustomSwipeRefreshLayout.State.STATE_COMPLETE:
 				Timber.d("complete state");
 				stopSnowflakes();
-				surfaceView.postDelayed(new Runnable() {
-					@Override
-					public void run() {
-						surfaceView.setVisibility(View.INVISIBLE);
-					}
-				}, (int) (getContext().getResources().getInteger(R.integer.game_shutdown_delay) * 1.1f));
                 break;
 
             default:

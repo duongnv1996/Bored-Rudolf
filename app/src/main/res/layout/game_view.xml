@@ -50,6 +50,14 @@
         android:textStyle="bold"
         />
 
+    <View
+        android:id="@+id/view_white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/white"
+        android:visibility="gone"
+        />
+
     <ImageView
         android:id="@+id/img_arrow_down"
         android:layout_width="wrap_content"

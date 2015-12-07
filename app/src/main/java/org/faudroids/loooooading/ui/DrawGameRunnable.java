@@ -36,6 +36,8 @@ class DrawGameRunnable implements Runnable {
 	private final TextView scoreView;
 	private final Animation scoreAnimation;
 
+	private Runnable postAction = null; // action to be run after this thread stops
+
 
 	public DrawGameRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder, TextView scoreView) {
 		this.gameManager = gameManager;
@@ -111,7 +113,7 @@ class DrawGameRunnable implements Runnable {
 			PAINT.setAlpha(255);
 
 			// draw superman clouds
-			if (gameManager.getState().equals(GameState.SHUTDOWN_REQUESTED)) {
+			if (!gameManager.getState().equals(GameState.RUNNING)) {
 				canvas.drawBitmap(gameManager.getSupermanClouds().getBitmap(), gameManager.getSupermanClouds().getMatrix(), PAINT);
 			}
 
@@ -134,9 +136,14 @@ class DrawGameRunnable implements Runnable {
 				Timber.e(e, "interrupted while sleeping in draw");
 			}
 		}
+
+		if (postAction != null) {
+			postAction.run();
+		}
 	}
 
-	public void stop() {
+	public void stop(Runnable postAction) {
+		this.postAction = postAction;
 		gameManager.requestShutdown();
 	}
 
