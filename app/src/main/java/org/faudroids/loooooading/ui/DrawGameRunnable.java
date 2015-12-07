@@ -55,14 +55,14 @@ class DrawGameRunnable implements Runnable {
 		Canvas tmpCanvas = surfaceHolder.lockCanvas();
 		gameManager.start(tmpCanvas.getWidth(), tmpCanvas.getHeight());
 		surfaceHolder.unlockCanvasAndPost(tmpCanvas);
-		int lastScore = gameManager.getScore().toNumericScore();
+		int lastScore = gameManager.getScore().getNumericScore();
 
 		while (isRunning) {
 			// update game
 			long timeDiff = gameManager.loop();
 
 			// update score
-			final int score = gameManager.getScore().toNumericScore();
+			final int score = gameManager.getScore().getNumericScore();
 			if (lastScore != score) {
 				lastScore = score;
 				scoreView.post(new Runnable() {

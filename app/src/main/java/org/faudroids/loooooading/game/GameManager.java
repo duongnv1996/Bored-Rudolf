@@ -27,7 +27,7 @@ public class GameManager {
 
 	private final Player player;
 	private final List<Snowflake> snowflakes = new ArrayList<>();
-	private final Score score = new Score();
+	private final Score score;
 
 	private long lastRunTimestamp;
 	private int fieldWidth, fieldHeight;
@@ -40,6 +40,7 @@ public class GameManager {
 		this.context = context;
 		this.snowflakeBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake);
 		this.player = new Player.Builder(context).xPos(100).build();
+		this.score = new Score(context);
 	}
 
 

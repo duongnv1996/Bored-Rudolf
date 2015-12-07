@@ -28,7 +28,7 @@ public class GameView extends LinearLayout implements
 
 	private GameManager gameManager;
 	private SurfaceView surfaceView;
-	private TextView scoreView;
+	private TextView scoreView, highScoreView;
 	private ImageView downArrowView;
 	private Animation arrowFadeOutAnim;
 
@@ -44,6 +44,7 @@ public class GameView extends LinearLayout implements
 		this.gameManager = new GameManager(getContext());
 		this.surfaceView = (SurfaceView) findViewById(R.id.surface_view);
 		this.scoreView = (TextView) findViewById(R.id.txt_score);
+		this.highScoreView = (TextView) findViewById(R.id.txt_high_score);
 		this.downArrowView = (ImageView) findViewById(R.id.img_arrow_down);
 		this.arrowFadeOutAnim = AnimationUtils.loadAnimation(context, R.anim.arrow_fade_out);
 
@@ -127,6 +128,8 @@ public class GameView extends LinearLayout implements
             case CustomSwipeRefreshLayout.State.STATE_NORMAL:
 				Timber.d("normal state");
 				downArrowView.setVisibility(View.VISIBLE);
+				setHighScore();
+				scoreView.setText(String.valueOf(0));
                 break;
 
             case CustomSwipeRefreshLayout.State.STATE_READY:
@@ -168,5 +171,16 @@ public class GameView extends LinearLayout implements
 				break;
         }
     }
+
+
+	private void setHighScore() {
+		int highScore = gameManager.getScore().getNumbericHighScore();
+		if (highScore == 0) {
+			highScoreView.setVisibility(View.GONE);
+		} else {
+			highScoreView.setVisibility(View.VISIBLE);
+			highScoreView.setText(getContext().getString(R.string.high_score_value, highScore));
+		}
+	}
 
 }

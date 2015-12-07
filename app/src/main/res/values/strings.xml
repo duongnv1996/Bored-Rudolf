@@ -13,4 +13,6 @@
     <string name="loading_time">Loading time</string>
     <string name="stop_loading">Stop loading</string>
 
+    <string name="high_score_value">HI %1$d</string>
+
 </resources>
