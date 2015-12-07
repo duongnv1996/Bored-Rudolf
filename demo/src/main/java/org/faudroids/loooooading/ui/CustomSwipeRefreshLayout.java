@@ -1,7 +1,23 @@
-package org.faudroids.loooooading.ui;
-/**
- * Created by tony.lxy on 2014/9/5.
+/*
+ * Copyright 2015 FauDroids
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may
+ * not use this file except in compliance with the License. You may obtain
+ * a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+ * implied. See the License for the specific language governing
+ * permissions and limitations under the License.
+ *
+ * Courtesy to Reginald (xyxyLiu)
+ * https://github.com/xyxyLiu/SwipeRefreshLayout/blob/master/library/src/main/java/com/reginald/swiperefresh/CustomSwipeRefreshLayout.java
  */
+
+package org.faudroids.loooooading.ui;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -21,16 +37,14 @@ import android.widget.AbsListView;
 
 import org.faudroids.loooooading.R;
 
+
 /**
  * The CustomSwipeRefreshLayout should be used whenever the user can refresh the
  * contents of a view via a vertical swipe gesture. The activity that
  * instantiates this view should add an OnRefreshListener to be notified
  * whenever the swipe to refresh gesture is completed. And refreshComplete()
  * should be called whenever the refreshing is complete. The CustomSwipeRefreshLayout
- * will notify the listener each and every time the gesture is completed again;
- * Two refresh mode are supported:
- * swipe mode: android.support.v4.widget.SwipeRefreshLayout style with custom refresh head
- * pull mode: pull-to-refresh style with progress bar and custom refresh head
+ * will notify the listener each and every time the gesture is completed again.
  */
 public class CustomSwipeRefreshLayout extends ViewGroup {
 
