@@ -205,10 +205,10 @@ public class CustomSwipeRefreshLayout extends ViewGroup {
 
         mDecelerateInterpolator = new DecelerateInterpolator(DECELERATE_INTERPOLATION_FACTOR);
 
+		mRefreshCompleteTimeout = context.getResources().getInteger(R.integer.game_shutdown_delay);
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.CustomSwipeRefreshLayout);
         if (a != null) {
             mReturnToOriginalTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_return_to_top, RETURN_TO_ORIGINAL_POSITION_TIMEOUT);
-            mRefreshCompleteTimeout = a.getInteger(R.styleable.CustomSwipeRefreshLayout_time_out_refresh_complete, REFRESH_COMPLETE_POSITION_TIMEOUT);
             mReturnToTopDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_top_duration, RETURN_TO_TOP_DURATION);
             mReturnToHeaderDuration = a.getInteger(R.styleable.CustomSwipeRefreshLayout_return_to_header_duration, RETURN_TO_HEADER_DURATION);
             a.recycle();

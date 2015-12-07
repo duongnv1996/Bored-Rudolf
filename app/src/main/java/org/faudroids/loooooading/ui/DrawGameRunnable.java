@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.game.GameManager;
+import org.faudroids.loooooading.game.GameState;
 import org.faudroids.loooooading.game.Player;
 import org.faudroids.loooooading.game.Snowflake;
 
@@ -35,8 +36,6 @@ class DrawGameRunnable implements Runnable {
 	private final TextView scoreView;
 	private final Animation scoreAnimation;
 
-	private volatile boolean isRunning = true;
-
 
 	public DrawGameRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder, TextView scoreView) {
 		this.gameManager = gameManager;
@@ -57,7 +56,7 @@ class DrawGameRunnable implements Runnable {
 		surfaceHolder.unlockCanvasAndPost(tmpCanvas);
 		int lastScore = gameManager.getScore().getNumericScore();
 
-		while (isRunning) {
+		while (!gameManager.getState().equals(GameState.STOPPED)) {
 			// update game
 			long timeDiff = gameManager.loop();
 
@@ -98,12 +97,19 @@ class DrawGameRunnable implements Runnable {
 						canvas.drawBitmap(player.getChewing1Bitmap(), player.getMatrix(), PAINT);
 					}
 					break;
+
+				case SUPERMAN:
+					canvas.drawBitmap(player.getSupermanBitmap(), player.getMatrix(), PAINT);
+					break;
 			}
 
 			// draw snowflakes
 			for (Snowflake snowflake : gameManager.getSnowflakes()) {
+				PAINT.setAlpha((int) (snowflake.getAlpha() * 255));
 				canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
+				// Timber.d("alpha = " + snowflake.getAlpha());
 			}
+			PAINT.setAlpha(255);
 
 			// draw debug
 			if (DEBUG) {
@@ -127,7 +133,7 @@ class DrawGameRunnable implements Runnable {
 	}
 
 	public void stop() {
-		isRunning = false;
+		gameManager.requestShutdown();
 	}
 
 }

@@ -21,6 +21,8 @@ public class Snowflake {
 	private final float rotation; // degrees
 	private final RectF boundingBox;
 
+	private float alpha;
+
 	private Snowflake(Bitmap bitmap, PointF location, float size, float fallSpeed, float scale, float rotation) {
 		this.bitmap = bitmap;
 		this.location = location;
@@ -31,6 +33,7 @@ public class Snowflake {
 		this.center = new PointF();
 		updateCenter();
 		this.boundingBox = new RectF();
+		this.alpha = 1;
 	}
 
 	public void onTimePassed(long timeInMs) {
@@ -69,6 +72,14 @@ public class Snowflake {
 
 	public RectF getBoundingBox() {
 		return boundingBox;
+	}
+
+	public float getAlpha() {
+		return alpha;
+	}
+
+	public void setAlpha(float alpha) {
+		this.alpha = alpha;
 	}
 
 	private void updateCenter() {

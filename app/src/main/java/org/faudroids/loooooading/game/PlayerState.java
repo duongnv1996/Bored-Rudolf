@@ -1,41 +1,18 @@
 package org.faudroids.loooooading.game;
 
 
-import java.util.EnumSet;
-import java.util.Set;
-
 /**
- * State machine, not very smart at the moment ...
- *
- * Especially the possibleNextState method is pointless at as it might make sense ...
+ * Possible player states.
  */
 public enum PlayerState {
 
 	// not doing anything
-	DEFAULT {
-		@Override
-		public Set<PlayerState> possibleNextState() {
-			return EnumSet.allOf(PlayerState.class);
-		}
-	},
-
+	DEFAULT,
 	// mouth open
-	LOOKING_UP {
-		@Override
-		public Set<PlayerState> possibleNextState() {
-			return EnumSet.allOf(PlayerState.class);
-		}
-	},
-
+	LOOKING_UP,
 	// not moving, eating the snowflake
-	CHEWING {
-		@Override
-		public Set<PlayerState> possibleNextState() {
-			return EnumSet.allOf(PlayerState.class);
-		}
-	};
+	CHEWING,
+	// game over, flying out!
+	SUPERMAN
 
-	public Set<PlayerState> possibleNextState() {
-		return EnumSet.noneOf(PlayerState.class);
-	}
 }

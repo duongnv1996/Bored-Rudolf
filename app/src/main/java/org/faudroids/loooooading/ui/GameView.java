@@ -163,7 +163,12 @@ public class GameView extends LinearLayout implements
             case CustomSwipeRefreshLayout.State.STATE_COMPLETE:
 				Timber.d("complete state");
 				stopSnowflakes();
-				surfaceView.setVisibility(View.INVISIBLE);
+				surfaceView.postDelayed(new Runnable() {
+					@Override
+					public void run() {
+						surfaceView.setVisibility(View.INVISIBLE);
+					}
+				}, (int) (getContext().getResources().getInteger(R.integer.game_shutdown_delay) * 1.1f));
                 break;
 
             default:
