@@ -62,6 +62,7 @@ public class GameManager {
 		onPlayerTouch(fieldWidth / 2); // start with centered player
 		this.score.reset();
 		this.gameState = GameState.RUNNING;
+		this.supermanClouds.setyPos(supermanClouds.getHeight());
 	}
 
 
