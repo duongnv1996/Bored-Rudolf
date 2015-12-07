@@ -1,9 +1,13 @@
 package org.faudroids.loooooading.demo.app;
 
 import android.app.Application;
+import android.util.Log;
+
+import com.crashlytics.android.Crashlytics;
 
 import org.faudroids.loooooading.demo.BuildConfig;
 
+import io.fabric.sdk.android.Fabric;
 import roboguice.RoboGuice;
 import timber.log.Timber;
 
@@ -12,6 +16,7 @@ public class LoooooadingApplication extends Application {
 	@Override
 	public void onCreate() {
 		super.onCreate();
+		Fabric.with(this, new Crashlytics());
 
 		// setup DI
 		RoboGuice.getOrCreateBaseApplicationInjector(
@@ -23,16 +28,12 @@ public class LoooooadingApplication extends Application {
 		if (BuildConfig.DEBUG) {
 			Timber.plant(new Timber.DebugTree());
 		} else {
-			throw new IllegalStateException("not production ready");
-			/*
 			Fabric.with(this, new Crashlytics());
 			Timber.plant(new CrashReportingTree());
-			*/
 		}
 	}
 
 
-	/*
 	private static final class CrashReportingTree extends Timber.Tree {
 
 		@Override
@@ -79,7 +80,6 @@ public class LoooooadingApplication extends Application {
 		}
 
 	}
-	*/
 
 }
 
