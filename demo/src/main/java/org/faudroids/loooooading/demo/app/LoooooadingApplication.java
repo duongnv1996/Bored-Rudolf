@@ -1,8 +1,8 @@
-package org.faudroids.loooooading.app;
+package org.faudroids.loooooading.demo.app;
 
 import android.app.Application;
 
-import org.faudroids.loooooading.BuildConfig;
+import org.faudroids.loooooading.demo.BuildConfig;
 
 import roboguice.RoboGuice;
 import timber.log.Timber;

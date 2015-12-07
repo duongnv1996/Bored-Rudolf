@@ -17,7 +17,7 @@
  * https://github.com/xyxyLiu/SwipeRefreshLayout/blob/master/library/src/main/java/com/reginald/swiperefresh/CustomSwipeRefreshLayout.java
  */
 
-package org.faudroids.loooooading.ui;
+package org.faudroids.loooooading.demo.ui;
 
 import android.content.Context;
 import android.graphics.Rect;

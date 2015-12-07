@@ -5,11 +5,4 @@
     <dimen name="margin_default">16dp</dimen>
     <dimen name="margin_default_half">8dp</dimen>
     <dimen name="margin_default_quarter">4dp</dimen>
-
-    <dimen name="game_height">320dp</dimen>
-
-    <dimen name="player_vertical_offset">50dp</dimen>
-    <dimen name="player_mouth_width">20dp</dimen>
-    <dimen name="player_mouth_height">15dp</dimen>
-    <dimen name="player_mouth_offset_from_bottom">35dp</dimen>
 </resources>

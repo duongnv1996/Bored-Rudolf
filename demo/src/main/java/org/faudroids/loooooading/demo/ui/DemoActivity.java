@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.ui;
+package org.faudroids.loooooading.demo.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,7 +6,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import org.faudroids.loooooading.R;
+import org.faudroids.loooooading.demo.R;
 
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;

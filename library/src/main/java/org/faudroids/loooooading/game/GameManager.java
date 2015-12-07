@@ -9,7 +9,6 @@ import android.graphics.RectF;
 
 import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.utils.RandomUtils;
-import org.roboguice.shaded.goole.common.base.Optional;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -33,7 +32,7 @@ public class GameManager {
 	private long lastRunTimestamp;
 	private int fieldWidth, fieldHeight;
 	private int nextSnowflakeCountdown;
-	private Optional<PointF> newPlayerLocation = Optional.absent();
+	private PointF newPlayerLocation = null;
 
 	private GameState gameState = GameState.STOPPED;
 	private long gameShutdownRequestTimestamp = 0; // when the game was stopped, in ms
@@ -110,10 +109,10 @@ public class GameManager {
 			}
 
 			// update player pos
-			if (newPlayerLocation.isPresent()) {
-				player.setxPos(newPlayerLocation.get().x);
-				player.setyPos(newPlayerLocation.get().y);
-				newPlayerLocation = Optional.absent();
+			if (newPlayerLocation != null) {
+				player.setxPos(newPlayerLocation.x);
+				player.setyPos(newPlayerLocation.y);
+				newPlayerLocation = null;
 			}
 		}
 
@@ -175,7 +174,7 @@ public class GameManager {
 		if (player.getState().equals(PlayerState.CHEWING)) return;
 		xPos = xPos - player.getDefaultBitmap().getWidth() / 2;
 		float yPos = getDefaultPlayerHeight();
-		this.newPlayerLocation = Optional.of(new PointF(xPos, yPos));
+		this.newPlayerLocation = new PointF(xPos, yPos);
 	}
 
 

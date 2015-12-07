@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.ui;
+package org.faudroids.loooooading.demo.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -158,7 +158,8 @@ public class GameView extends LinearLayout implements
 				downArrowView.startAnimation(arrowFadeOutAnim);
 				arrowFadeOutAnim.setAnimationListener(new Animation.AnimationListener() {
 					@Override
-					public void onAnimationStart(Animation animation) { }
+					public void onAnimationStart(Animation animation) {
+					}
 
 					@Override
 					public void onAnimationEnd(Animation animation) {
@@ -167,7 +168,8 @@ public class GameView extends LinearLayout implements
 					}
 
 					@Override
-					public void onAnimationRepeat(Animation animation) { }
+					public void onAnimationRepeat(Animation animation) {
+					}
 				});
                 break;
 
