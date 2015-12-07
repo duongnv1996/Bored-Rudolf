@@ -5,8 +5,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
 import android.view.SurfaceHolder;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
+import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.game.GameManager;
 import org.faudroids.loooooading.game.Player;
 import org.faudroids.loooooading.game.Snowflake;
@@ -30,6 +33,7 @@ class DrawGameRunnable implements Runnable {
 	private final GameManager gameManager;
 	private final SurfaceHolder surfaceHolder;
 	private final TextView scoreView;
+	private final Animation scoreAnimation;
 
 	private volatile boolean isRunning = true;
 
@@ -38,6 +42,7 @@ class DrawGameRunnable implements Runnable {
 		this.gameManager = gameManager;
 		this.surfaceHolder = surfaceHolder;
 		this.scoreView = scoreView;
+		this.scoreAnimation = AnimationUtils.loadAnimation(context, R.anim.score_zoom);
 
 		DEBUG_PAINT.setColor(context.getResources().getColor(android.R.color.holo_red_light));
 		DEBUG_PAINT_STROKE.setColor(context.getResources().getColor(android.R.color.holo_red_light));
@@ -50,18 +55,26 @@ class DrawGameRunnable implements Runnable {
 		Canvas tmpCanvas = surfaceHolder.lockCanvas();
 		gameManager.start(tmpCanvas.getWidth(), tmpCanvas.getHeight());
 		surfaceHolder.unlockCanvasAndPost(tmpCanvas);
+		int lastScore = gameManager.getScore().toNumericScore();
 
 		while (isRunning) {
 			// update game
 			long timeDiff = gameManager.loop();
 
 			// update score
-			scoreView.post(new Runnable() {
-				@Override
-				public void run() {
-					scoreView.setText(String.valueOf(gameManager.getScore().toNumericScore()));
-				}
-			});
+			final int score = gameManager.getScore().toNumericScore();
+			if (lastScore != score) {
+				lastScore = score;
+				scoreView.post(new Runnable() {
+					@Override
+					public void run() {
+						scoreView.setText(String.valueOf(score));
+						scoreAnimation.reset();
+						scoreView.clearAnimation();
+						scoreView.startAnimation(scoreAnimation);
+					}
+				});
+			}
 
 			// start drawing + clear background
 			final Canvas canvas = surfaceHolder.lockCanvas();
