@@ -15,8 +15,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import javax.inject.Inject;
-
 public class GameManager {
 
 	private static final int PLAYER_CHEWING_DURATION_IN_MS = 750;
@@ -41,7 +39,6 @@ public class GameManager {
 	private long gameShutdownRequestTimestamp = 0; // when the game was stopped, in ms
 
 
-	@Inject
 	public GameManager(Context context) {
 		this.GAME_SHUTDOWN_DELAY = context.getResources().getInteger(R.integer.game_shutdown_delay);
 		this.context = context;

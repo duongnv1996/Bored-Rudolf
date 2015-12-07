@@ -17,9 +17,6 @@ import android.widget.TextView;
 
 import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.game.GameManager;
-import org.roboguice.shaded.goole.common.base.Optional;
-
-import timber.log.Timber;
 
 
 public class GameView extends LinearLayout implements
@@ -33,8 +30,8 @@ public class GameView extends LinearLayout implements
 	private ImageView downArrowView;
 	private Animation arrowFadeOutAnim;
 
-	private Optional<DrawGameRunnable> drawRunnable = Optional.absent();
-	private Optional<SurfaceHolder> surfaceHolder = Optional.absent();
+	private DrawGameRunnable drawRunnable = null;
+	private SurfaceHolder surfaceHolder = null;
 
 	public GameView(Context context) {
         super(context);
@@ -60,7 +57,7 @@ public class GameView extends LinearLayout implements
 
 	@Override
 	public void surfaceCreated(SurfaceHolder holder) {
-		surfaceHolder = Optional.of(holder);
+		surfaceHolder = holder;
 		surfaceView.setOnTouchListener(new View.OnTouchListener() {
 			@Override
 			public boolean onTouch(View v, MotionEvent event) {
@@ -90,22 +87,22 @@ public class GameView extends LinearLayout implements
 
 	@Override
 	public void surfaceDestroyed(SurfaceHolder holder) {
-		surfaceHolder = Optional.absent();
+		surfaceHolder = null;
 		stopSnowflakes();
 	}
 
 
 	private void startSnowflakes() {
-		if (surfaceHolder.isPresent()) {
-			drawRunnable = Optional.of(new DrawGameRunnable(getContext(), gameManager, surfaceHolder.get(), scoreView));
-			new Thread(drawRunnable.get()).start();
+		if (surfaceHolder != null) {
+			drawRunnable = new DrawGameRunnable(getContext(), gameManager, surfaceHolder, scoreView);
+			new Thread(drawRunnable).start();
 		}
 	}
 
 
 	private void stopSnowflakes() {
-		if (drawRunnable.isPresent()) {
-			drawRunnable.get().stop(new Runnable() {
+		if (drawRunnable != null) {
+			drawRunnable.stop(new Runnable() {
 				@Override
 				public void run() {
 					// post action
@@ -125,7 +122,7 @@ public class GameView extends LinearLayout implements
 					});
 				}
 			});
-			drawRunnable = Optional.absent();
+			drawRunnable = null;
 		}
 
 	}
@@ -147,19 +144,13 @@ public class GameView extends LinearLayout implements
 
         switch (stateCode) {
             case CustomSwipeRefreshLayout.State.STATE_NORMAL:
-				Timber.d("normal state");
 				whiteView.setVisibility(View.GONE);
 				downArrowView.setVisibility(View.VISIBLE);
 				setHighScore();
 				scoreView.setText(String.valueOf(0));
                 break;
 
-            case CustomSwipeRefreshLayout.State.STATE_READY:
-				Timber.d("ready state");
-				break;
-
             case CustomSwipeRefreshLayout.State.STATE_REFRESHING:
-				Timber.d("refreshing state");
 				surfaceView.setVisibility(View.VISIBLE);
 
 				arrowFadeOutAnim.reset();
@@ -178,18 +169,11 @@ public class GameView extends LinearLayout implements
 					@Override
 					public void onAnimationRepeat(Animation animation) { }
 				});
-
-
                 break;
 
             case CustomSwipeRefreshLayout.State.STATE_COMPLETE:
-				Timber.d("complete state");
 				stopSnowflakes();
                 break;
-
-            default:
-				Timber.d("default");
-				break;
         }
     }
 

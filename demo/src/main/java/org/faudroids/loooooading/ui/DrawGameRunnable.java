@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.PorterDuff;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -15,10 +16,10 @@ import org.faudroids.loooooading.game.GameState;
 import org.faudroids.loooooading.game.Player;
 import org.faudroids.loooooading.game.Snowflake;
 
-import timber.log.Timber;
-
 
 class DrawGameRunnable implements Runnable {
+
+	private static final String TAG = DrawGameRunnable.class.getName();
 
 	private static final boolean DEBUG = false;
 
@@ -133,7 +134,7 @@ class DrawGameRunnable implements Runnable {
 				long sleepTime = Math.max(0, MS_PER_FRAME - timeDiff);
 				Thread.sleep(sleepTime);
 			} catch (InterruptedException e) {
-				Timber.e(e, "interrupted while sleeping in draw");
+				Log.e(TAG, "interrupted while sleeping in draw", e);
 			}
 		}
 

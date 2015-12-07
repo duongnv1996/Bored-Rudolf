@@ -48,8 +48,8 @@ import org.faudroids.loooooading.R;
  */
 public class CustomSwipeRefreshLayout extends ViewGroup {
 
-	public static final boolean DEBUG = false;
-	public static final String TAG = "csrl";
+	private static final boolean DEBUG = false;
+	private static final String TAG = CustomSwipeRefreshHeadLayout.class.getName();
 
 	// time out for no movements during swipe action
 	private static final int RETURN_TO_ORIGINAL_POSITION_TIMEOUT = 500;
