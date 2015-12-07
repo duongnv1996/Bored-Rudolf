@@ -81,7 +81,6 @@ public class Snowflake {
 	public void setAlpha(float alpha) {
 		this.alpha = alpha;
 	}
-
 	private void updateCenter() {
 		center.x = getxPos() + getSize() / 2;
 		center.y = getyPos() + getSize() / 2;

@@ -29,6 +29,7 @@ public class GameManager {
 
 	private final Player player;
 	private final List<Snowflake> snowflakes = new ArrayList<>();
+	private final SupermanClouds supermanClouds;
 	private final Score score;
 
 	private long lastRunTimestamp;
@@ -46,6 +47,7 @@ public class GameManager {
 		this.context = context;
 		this.snowflakeBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake);
 		this.player = new Player.Builder(context).xPos(100).build();
+		this.supermanClouds = new SupermanClouds.Builder(context).build();
 		this.score = new Score(context);
 	}
 
@@ -96,6 +98,7 @@ public class GameManager {
 		if (gameState.equals(GameState.SHUTDOWN_REQUESTED)) {
 			// let player fly away
 			player.setyPos(getDefaultPlayerHeight() * (1 - shutdownProgress) - (player.getHeight() * shutdownProgress));
+			supermanClouds.setyPos(supermanClouds.getHeight() * (1 - shutdownProgress) - ((supermanClouds.getHeight() - fieldHeight) * shutdownProgress));
 
 			// update state
 			if (shutdownProgress >= 1) {
@@ -180,6 +183,11 @@ public class GameManager {
 
 	public Player getPlayer() {
 		return player;
+	}
+
+
+	public SupermanClouds getSupermanClouds() {
+		return supermanClouds;
 	}
 
 

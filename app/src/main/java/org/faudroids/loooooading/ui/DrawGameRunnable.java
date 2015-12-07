@@ -107,9 +107,13 @@ class DrawGameRunnable implements Runnable {
 			for (Snowflake snowflake : gameManager.getSnowflakes()) {
 				PAINT.setAlpha((int) (snowflake.getAlpha() * 255));
 				canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
-				// Timber.d("alpha = " + snowflake.getAlpha());
 			}
 			PAINT.setAlpha(255);
+
+			// draw superman clouds
+			if (gameManager.getState().equals(GameState.SHUTDOWN_REQUESTED)) {
+				canvas.drawBitmap(gameManager.getSupermanClouds().getBitmap(), gameManager.getSupermanClouds().getMatrix(), PAINT);
+			}
 
 			// draw debug
 			if (DEBUG) {
