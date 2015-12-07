@@ -18,6 +18,16 @@
             android:orientation="vertical"
             >
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="16sp"
+                android:textColor="@android:color/black"
+                android:text="@string/pull_hint"
+                android:layout_marginBottom="32dp"
+                android:gravity="center"
+                />
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
