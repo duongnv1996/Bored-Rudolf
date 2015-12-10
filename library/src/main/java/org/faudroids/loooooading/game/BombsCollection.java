@@ -13,7 +13,7 @@ class BombsCollection extends FallingObjectsCollection {
 	private final int fieldWidth;
 
 	public BombsCollection(Context context, int fieldWidth) {
-		super(2, 2000, 3000);
+		super(2, 1500, 2500);
 		this.bombBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.bomb);
 		this.fieldWidth = fieldWidth;
 	}
@@ -23,9 +23,9 @@ class BombsCollection extends FallingObjectsCollection {
 		return new FallingObject.Builder(bombBitmap)
 				.xPos(RandomUtils.randomInt(bombBitmap.getWidth(), fieldWidth - bombBitmap.getWidth() * 2))
 				.yPos(-bombBitmap.getHeight())
-				.fallSpeed(RandomUtils.randomInt(200, 250))
+				.fallSpeed(RandomUtils.randomInt(250, 300))
 				.scale(1)
-				.rotation(RandomUtils.randomInt(-30, 30))
+				.rotation(RandomUtils.randomInt(-45, 45))
 				.maxVerticalVelocity(0)
 				.verticalVelocityAccelerationDiff(0)
 				.accelerateToRight(RandomUtils.randomBoolean())
