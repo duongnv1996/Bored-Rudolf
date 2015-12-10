@@ -2,15 +2,12 @@ package org.faudroids.loooooading.game;
 
 
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
 import org.faudroids.loooooading.R;
-import org.faudroids.loooooading.utils.RandomUtils;
 
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -22,16 +19,13 @@ public class GameManager {
 
 	private final Context context;
 
-	private final Bitmap snowflakeBitmap;
-
 	private final Player player;
-	private final List<FallingObject> snowflakes = new ArrayList<>();
+	private SnowflakesCollection snowflakesCollection;
 	private final SupermanClouds supermanClouds;
 	private final Score score;
 
 	private long lastRunTimestamp;
-	private int fieldWidth, fieldHeight;
-	private int nextSnowflakeCountdown;
+	private int fieldHeight;
 	private PointF newPlayerLocation = null;
 
 	private GameState gameState = GameState.STOPPED;
@@ -41,7 +35,6 @@ public class GameManager {
 	public GameManager(Context context) {
 		this.GAME_SHUTDOWN_DELAY = context.getResources().getInteger(R.integer.game_shutdown_delay);
 		this.context = context;
-		this.snowflakeBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake);
 		this.player = new Player.Builder(context).xPos(100).build();
 		this.supermanClouds = new SupermanClouds.Builder(context).build();
 		this.score = new Score(context);
@@ -49,9 +42,9 @@ public class GameManager {
 
 
 	public void start(int fieldWidth, int fieldHeight) {
-		this.nextSnowflakeCountdown = 0;
-		this.snowflakes.clear();
-		this.fieldWidth = fieldWidth;
+		this.snowflakesCollection = new SnowflakesCollection(
+				BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake),
+				fieldWidth);
 		this.fieldHeight = fieldHeight;
 		this.lastRunTimestamp = System.currentTimeMillis();
 		this.player.setState(PlayerState.DEFAULT);
@@ -69,31 +62,14 @@ public class GameManager {
 	 */
 	public long loop() {
 		final long currentTimestamp = System.currentTimeMillis();
-		final long timeDiff = currentTimestamp - lastRunTimestamp;
+		final long timeDiff = currentTimestamp - lastRunTimestamp; // in ms
 		final int shutdownDiff = (int) (System.currentTimeMillis() - gameShutdownRequestTimestamp);
 		final float shutdownProgress = shutdownDiff >= FLYING_SUPERMAN_DELAY && gameState.equals(GameState.SHUTDOWN_REQUESTED)
 				? (shutdownDiff - FLYING_SUPERMAN_DELAY) / (float) (GAME_SHUTDOWN_DELAY - FLYING_SUPERMAN_DELAY)
 				: 0;
 
 		// create new snowflakes
-		if (nextSnowflakeCountdown <= 0 && snowflakes.size() < 10) {
-			FallingObject snowflake = new FallingObject.Builder(FallingObjectType.SNOWFLAKE, snowflakeBitmap)
-					.xPos(RandomUtils.randomInt(snowflakeBitmap.getWidth(), fieldWidth - snowflakeBitmap.getWidth() * 2))
-					.yPos(-snowflakeBitmap.getHeight())
-					.fallSpeed(RandomUtils.randomInt(100, 150))
-					.scale(RandomUtils.randomInt(750, 1000) / 1000f)
-					.rotation(RandomUtils.randomInt(0, 90))
-					.maxVerticalVelocity(RandomUtils.randomInt(90, 150))
-					.verticalVelocityAccelerationDiff(RandomUtils.randomInt(80, 120))
-					.accelerateToRight(RandomUtils.randomBoolean())
-					.build();
-
-			snowflakes.add(snowflake);
-			nextSnowflakeCountdown = RandomUtils.randomInt(20, 50);
-
-		} else {
-			--nextSnowflakeCountdown;
-		}
+		snowflakesCollection.onTimePassed(timeDiff);
 
 		if (gameState.equals(GameState.SHUTDOWN_REQUESTED)) {
 			// let player fly away
@@ -120,7 +96,7 @@ public class GameManager {
 		}
 
 		boolean playerBelowSnowflake = false;
-		Iterator<FallingObject> iterator = snowflakes.iterator();
+		Iterator<FallingObject> iterator = snowflakesCollection.iterator();
 		while (iterator.hasNext()) {
 			FallingObject snowflake = iterator.next();
 			RectF mouthRect = player.getMouthRect();
@@ -192,7 +168,7 @@ public class GameManager {
 
 
 	public List<FallingObject> getSnowflakes() {
-		return snowflakes;
+		return snowflakesCollection.getObjects();
 	}
 
 

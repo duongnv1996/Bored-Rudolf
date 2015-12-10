@@ -10,8 +10,6 @@ import android.graphics.RectF;
  */
 public class FallingObject {
 
-	private final FallingObjectType type;
-
 	// used for getting the final orientation
 	private final Matrix matrix = new Matrix();
 	private final Bitmap bitmap;
@@ -30,10 +28,9 @@ public class FallingObject {
 
 	private float alpha;
 
-	private FallingObject(FallingObjectType type, Bitmap bitmap, PointF location, float size, float fallSpeed, float scale, float rotation,
+	private FallingObject(Bitmap bitmap, PointF location, float size, float fallSpeed, float scale, float rotation,
 						  float maxVerticalVelocity, float verticalVelocityAccelerationDiff, boolean accelerateToRight) {
 
-		this.type = type;
 		this.bitmap = bitmap;
 		this.location = location;
 		this.size = size;
@@ -86,10 +83,6 @@ public class FallingObject {
 		return center;
 	}
 
-	public FallingObjectType getType() {
-		return type;
-	}
-
 	public Bitmap getBitmap() {
 		return bitmap;
 	}
@@ -129,7 +122,6 @@ public class FallingObject {
 
 	public static class Builder {
 
-		private final FallingObjectType type;
 		private final Bitmap bitmap;
 		private float size;
 
@@ -143,8 +135,7 @@ public class FallingObject {
 		private boolean accelerateToRight = false;
 
 
-		public Builder(FallingObjectType type, Bitmap bitmap) {
-			this.type = type;
+		public Builder(Bitmap bitmap) {
 			this.bitmap = bitmap;
 		}
 
@@ -190,7 +181,7 @@ public class FallingObject {
 		}
 
 		public FallingObject build() {
-			return new FallingObject(type, bitmap, new PointF(xPos, yPos), size, fallSpeed, scale, rotation,
+			return new FallingObject(bitmap, new PointF(xPos, yPos), size, fallSpeed, scale, rotation,
 					maxVerticalVelocity, verticalVelocityAccelerationDiff, accelerateToRight);
 		}
 
