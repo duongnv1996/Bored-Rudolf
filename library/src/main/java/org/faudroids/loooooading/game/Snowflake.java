@@ -21,9 +21,16 @@ public class Snowflake {
 	private final float rotation; // degrees
 	private final RectF boundingBox;
 
+	private final float maxVerticalVelocity; // pixel / seconds
+	private final float verticalVelocityAccelerationDiff; // pixel / seconds
+	private float verticalVelocity; // pixel / seconds
+	private boolean accelerateToRight;
+
 	private float alpha;
 
-	private Snowflake(Bitmap bitmap, PointF location, float size, float fallSpeed, float scale, float rotation) {
+	private Snowflake(Bitmap bitmap, PointF location, float size, float fallSpeed, float scale, float rotation,
+					  float maxVerticalVelocity, float verticalVelocityAccelerationDiff, boolean accelerateToRight) {
+
 		this.bitmap = bitmap;
 		this.location = location;
 		this.size = size;
@@ -33,11 +40,29 @@ public class Snowflake {
 		this.center = new PointF();
 		updateCenter();
 		this.boundingBox = new RectF();
+		this.maxVerticalVelocity = maxVerticalVelocity;
+		this.verticalVelocityAccelerationDiff = verticalVelocityAccelerationDiff;
+		this.verticalVelocity = 0;
+		this.accelerateToRight = accelerateToRight;
 		this.alpha = 1;
 	}
 
 	public void onTimePassed(long timeInMs) {
 		location.y += fallSpeed / 1000f * timeInMs;
+		location.x += verticalVelocity / 1000 * timeInMs;
+
+		if (accelerateToRight) {
+			verticalVelocity += verticalVelocityAccelerationDiff / 1000 * timeInMs;
+		} else {
+			verticalVelocity -= verticalVelocityAccelerationDiff / 1000 * timeInMs;
+		}
+		if (verticalVelocity >= maxVerticalVelocity) {
+			accelerateToRight = false;
+		}
+		if (verticalVelocity <= -maxVerticalVelocity) {
+			accelerateToRight = true;
+		}
+
 		updateCenter();
 		updateBoundingBox();
 	}
@@ -105,6 +130,10 @@ public class Snowflake {
 		private float scale;
 		private float rotation;
 
+		private float maxVerticalVelocity = 100; // pixel / seconds
+		private float verticalVelocityAccelerationDiff = 100; // pixel / seconds
+		private boolean accelerateToRight = false;
+
 
 		public Builder(Bitmap bitmap) {
 			this.bitmap = bitmap;
@@ -136,8 +165,24 @@ public class Snowflake {
 			return this;
 		}
 
+		public Builder maxVerticalVelocity(float maxVerticalVelocity) {
+			this.maxVerticalVelocity = maxVerticalVelocity;
+			return this;
+		}
+
+		public Builder verticalVelocityAccelerationDiff(float verticalVelocityAccelerationDiff) {
+			this.verticalVelocityAccelerationDiff = verticalVelocityAccelerationDiff;
+			return this;
+		}
+
+		public Builder accelerateToRight(boolean accelerateToRight) {
+			this.accelerateToRight = accelerateToRight;
+			return this;
+		}
+
 		public Snowflake build() {
-			return new Snowflake(bitmap, new PointF(xPos, yPos), size, fallSpeed, scale, rotation);
+			return new Snowflake(bitmap, new PointF(xPos, yPos), size, fallSpeed, scale, rotation,
+					maxVerticalVelocity, verticalVelocityAccelerationDiff, accelerateToRight);
 		}
 
 	}

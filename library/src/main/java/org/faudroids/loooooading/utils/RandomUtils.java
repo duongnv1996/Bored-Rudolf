@@ -13,4 +13,8 @@ public class RandomUtils {
 		return random.nextInt((max - min) + 1) + min;
 	}
 
+	public static boolean randomBoolean() {
+		return random.nextBoolean();
+	}
+
 }

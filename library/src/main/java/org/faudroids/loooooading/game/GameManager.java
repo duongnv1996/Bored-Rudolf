@@ -83,6 +83,9 @@ public class GameManager {
 					.fallSpeed(RandomUtils.randomInt(100, 150))
 					.scale(RandomUtils.randomInt(750, 1000) / 1000f)
 					.rotation(RandomUtils.randomInt(0, 90))
+					.maxVerticalVelocity(RandomUtils.randomInt(90, 150))
+					.verticalVelocityAccelerationDiff(RandomUtils.randomInt(80, 120))
+					.accelerateToRight(RandomUtils.randomBoolean())
 					.build();
 
 			snowflakes.add(snowflake);
