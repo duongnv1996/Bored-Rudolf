@@ -3,7 +3,6 @@ package org.faudroids.loooooading.game;
 
 import android.content.Context;
 import android.graphics.PointF;
-import android.graphics.RectF;
 
 import org.faudroids.loooooading.R;
 
@@ -96,7 +95,6 @@ public class GameManager {
 		Iterator<FallingObject> iterator = snowflakesCollection.iterator();
 		while (iterator.hasNext()) {
 			FallingObject snowflake = iterator.next();
-			RectF mouthRect = player.getMouthRect();
 
 			// update snowflakes
 			snowflake.onTimePassed(timeDiff);
@@ -109,7 +107,7 @@ public class GameManager {
 			if (!gameState.equals(GameState.RUNNING)) continue;
 
 			// check for collisions
-			if (player.canEatSnowflake() && mouthRect.contains(snowflake.getCenter().x, snowflake.getCenter().y)) {
+			if (player.canEatSnowflake() && player.doesMouthContainPoint(snowflake.getCenter())) {
 				iterator.remove();
 				player.setState(PlayerState.CHEWING);
 				player.startChewingTimer();
@@ -118,11 +116,8 @@ public class GameManager {
 			}
 
 			// make player look up
-			if (mouthRect.left <= snowflake.getCenter().x
-					&& mouthRect.right > snowflake.getCenter().x
-					&& mouthRect.bottom >= snowflake.getCenter().y) {
+			if (player.isPlayerBelowPoint(snowflake.getCenter()))
 				playerBelowSnowflake = true;
-			}
 		}
 
 		// let him finish eating that snow!

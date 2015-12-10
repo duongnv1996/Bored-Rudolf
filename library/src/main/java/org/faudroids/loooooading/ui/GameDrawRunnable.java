@@ -21,16 +21,12 @@ class GameDrawRunnable implements Runnable {
 
 	private static final String TAG = GameDrawRunnable.class.getName();
 
-	private static final boolean DEBUG = false;
-
 	private static final int MS_PER_FRAME = 1000 / 50;
 
 	private static final int CHEWING_ANIM_FRAME_LENGTH_IN_MS = 150;
 
 	private final Paint
-			PAINT = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG),
-			DEBUG_PAINT = new Paint(),
-			DEBUG_PAINT_STROKE = new Paint();
+			PAINT = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG);
 
 	private final GameManager gameManager;
 	private final SurfaceHolder surfaceHolder;
@@ -45,11 +41,6 @@ class GameDrawRunnable implements Runnable {
 		this.surfaceHolder = surfaceHolder;
 		this.scoreView = scoreView;
 		this.scoreAnimation = AnimationUtils.loadAnimation(context, R.anim.score_zoom);
-
-		DEBUG_PAINT.setColor(context.getResources().getColor(android.R.color.holo_red_light));
-		DEBUG_PAINT_STROKE.setColor(context.getResources().getColor(android.R.color.holo_red_light));
-		DEBUG_PAINT_STROKE.setStrokeWidth(3);
-		DEBUG_PAINT_STROKE.setStyle(Paint.Style.STROKE);
 	}
 
 	@Override
@@ -116,16 +107,6 @@ class GameDrawRunnable implements Runnable {
 			// draw superman clouds
 			if (!gameManager.getState().equals(GameState.RUNNING)) {
 				canvas.drawBitmap(gameManager.getSupermanClouds().getBitmap(), gameManager.getSupermanClouds().getMatrix(), PAINT);
-			}
-
-			// draw debug
-			if (DEBUG) {
-				canvas.drawRect(player.getMouthRect(), DEBUG_PAINT_STROKE);
-				canvas.drawCircle(player.getxPos(), player.getyPos(), 3, DEBUG_PAINT);
-				for (FallingObject snowflake : gameManager.getSnowflakes()) {
-					canvas.drawRect(snowflake.getBoundingBox(), DEBUG_PAINT_STROKE);
-					canvas.drawCircle(snowflake.getCenter().x, snowflake.getCenter().y, 3, DEBUG_PAINT);
-				}
 			}
 
 			surfaceHolder.unlockCanvasAndPost(canvas);

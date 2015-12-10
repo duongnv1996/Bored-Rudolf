@@ -70,8 +70,14 @@ public class Player {
 		return defaultBitmap.getHeight();
 	}
 
-	public RectF getMouthRect() {
-		return mouthRect;
+	public boolean doesMouthContainPoint(PointF point) {
+		return mouthRect.contains(point.x, point.y);
+	}
+
+	public boolean isPlayerBelowPoint(PointF point) {
+		return mouthRect.left <= point.x
+				&& mouthRect.right > point.x
+				&& mouthRect.bottom >= point.y;
 	}
 
 	private void updateMouthRect() {
@@ -83,14 +89,6 @@ public class Player {
 				(left + mouthWidth),
 				(top + mouthHeight)
 		);
-	}
-
-	public float getMouthHeight() {
-		return mouthHeight;
-	}
-
-	public float getMouthOffsetFromBottom() {
-		return mouthOffsetFromBottom;
 	}
 
 	public Matrix getMatrix() {
