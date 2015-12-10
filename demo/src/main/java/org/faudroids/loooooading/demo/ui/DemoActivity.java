@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 
 import org.faudroids.loooooading.demo.R;
+import org.faudroids.loooooading.ui.CustomSwipeRefreshLayout;
 
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;

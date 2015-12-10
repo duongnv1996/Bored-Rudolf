@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.demo.ui;
+package org.faudroids.loooooading.ui;
 
 import android.content.Context;
 import android.graphics.Color;

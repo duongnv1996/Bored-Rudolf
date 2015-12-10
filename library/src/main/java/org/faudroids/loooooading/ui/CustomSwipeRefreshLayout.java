@@ -17,7 +17,7 @@
  * https://github.com/xyxyLiu/SwipeRefreshLayout/blob/master/library/src/main/java/com/reginald/swiperefresh/CustomSwipeRefreshLayout.java
  */
 
-package org.faudroids.loooooading.demo.ui;
+package org.faudroids.loooooading.ui;
 
 import android.content.Context;
 import android.graphics.Rect;
@@ -36,6 +36,7 @@ import android.view.animation.Transformation;
 import android.widget.AbsListView;
 
 import org.faudroids.loooooading.R;
+import org.faudroids.loooooading.ui.GameView;
 
 
 /**
