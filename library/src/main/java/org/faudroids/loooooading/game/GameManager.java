@@ -13,7 +13,7 @@ public class GameManager {
 
 	private static final int
 			PLAYER_CHEWING_DURATION_IN_MS = 750,
-			PLAYER_BLASTED_DURATION_IN_MS = 1000;
+			PLAYER_BLASTED_DURATION_IN_MS = 1500;
 
 	private final int GAME_SHUTDOWN_DELAY;
 	private static final int FLYING_SUPERMAN_DELAY = 500;
@@ -166,6 +166,7 @@ public class GameManager {
 					iterator.remove();
 					player.setState(PlayerState.BLASTED);
 					player.startBlastedTimer();
+					score.onHitByBomb();
 					continue;
 				}
 			}

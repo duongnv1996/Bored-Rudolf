@@ -27,11 +27,15 @@ public class Score {
 		}
 	}
 
+	public void onHitByBomb() {
+		consumedSnowflakes -= 5;
+	}
+
 	public int getNumericScore() {
 		return consumedSnowflakes;
 	}
 
-	public int getNumbericHighScore() {
+	public int getNumericHighScore() {
 		return consumedSnowflakesHighScore;
 	}
 

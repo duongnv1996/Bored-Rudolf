@@ -90,7 +90,7 @@ public class Player {
 		// set player rect
 		playerRect.set(
 				getxPos(),
-				getyPos(),
+				getyPos() + getHeight() * 0.1f,
 				getxPos() + getWidth(),
 				getyPos() + getHeight()
 		);

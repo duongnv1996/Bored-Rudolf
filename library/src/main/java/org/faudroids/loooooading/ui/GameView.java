@@ -181,7 +181,7 @@ public class GameView extends LinearLayout implements
 
 
 	private void setHighScore() {
-		int highScore = gameManager.getScore().getNumbericHighScore();
+		int highScore = gameManager.getScore().getNumericHighScore();
 		if (highScore == 0) {
 			highScoreView.setVisibility(View.GONE);
 		} else {
