@@ -2,7 +2,6 @@ package org.faudroids.loooooading.game;
 
 
 import android.content.Context;
-import android.graphics.BitmapFactory;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
@@ -42,9 +41,7 @@ public class GameManager {
 
 
 	public void start(int fieldWidth, int fieldHeight) {
-		this.snowflakesCollection = new SnowflakesCollection(
-				BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake),
-				fieldWidth);
+		this.snowflakesCollection = new SnowflakesCollection(context, fieldWidth);
 		this.fieldHeight = fieldHeight;
 		this.lastRunTimestamp = System.currentTimeMillis();
 		this.player.setState(PlayerState.DEFAULT);

@@ -1,7 +1,10 @@
 package org.faudroids.loooooading.game;
 
+import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
+import org.faudroids.loooooading.R;
 import org.faudroids.loooooading.utils.RandomUtils;
 
 class SnowflakesCollection extends FallingObjectsCollection {
@@ -9,9 +12,9 @@ class SnowflakesCollection extends FallingObjectsCollection {
 	private final Bitmap snowflakeBitmap;
 	private final int fieldWidth;
 
-	public SnowflakesCollection(Bitmap snowflakeBitmap, int fieldWidth) {
+	public SnowflakesCollection(Context context, int fieldWidth) {
 		super(10, 1000, 1500);
-		this.snowflakeBitmap = snowflakeBitmap;
+		this.snowflakeBitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.snowflake);
 		this.fieldWidth = fieldWidth;
 	}
 
