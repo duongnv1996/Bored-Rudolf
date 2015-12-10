@@ -17,9 +17,9 @@ import org.faudroids.loooooading.game.GameState;
 import org.faudroids.loooooading.game.Player;
 
 
-class DrawGameRunnable implements Runnable {
+class GameDrawRunnable implements Runnable {
 
-	private static final String TAG = DrawGameRunnable.class.getName();
+	private static final String TAG = GameDrawRunnable.class.getName();
 
 	private static final boolean DEBUG = false;
 
@@ -40,7 +40,7 @@ class DrawGameRunnable implements Runnable {
 	private Runnable postAction = null; // action to be run after this thread stops
 
 
-	public DrawGameRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder, TextView scoreView) {
+	public GameDrawRunnable(Context context, GameManager gameManager, SurfaceHolder surfaceHolder, TextView scoreView) {
 		this.gameManager = gameManager;
 		this.surfaceHolder = surfaceHolder;
 		this.scoreView = scoreView;

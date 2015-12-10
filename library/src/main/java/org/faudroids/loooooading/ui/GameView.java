@@ -30,7 +30,7 @@ public class GameView extends LinearLayout implements
 	private ImageView downArrowView;
 	private Animation arrowFadeOutAnim;
 
-	private DrawGameRunnable drawRunnable = null;
+	private GameDrawRunnable drawRunnable = null;
 	private SurfaceHolder surfaceHolder = null;
 
 	public GameView(Context context) {
@@ -94,7 +94,7 @@ public class GameView extends LinearLayout implements
 
 	private void startSnowflakes() {
 		if (surfaceHolder != null) {
-			drawRunnable = new DrawGameRunnable(getContext(), gameManager, surfaceHolder, scoreView);
+			drawRunnable = new GameDrawRunnable(getContext(), gameManager, surfaceHolder, scoreView);
 			new Thread(drawRunnable).start();
 		}
 	}
