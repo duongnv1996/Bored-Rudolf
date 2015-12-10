@@ -16,6 +16,8 @@ import org.faudroids.loooooading.game.GameManager;
 import org.faudroids.loooooading.game.GameState;
 import org.faudroids.loooooading.game.Player;
 
+import java.util.List;
+
 
 class GameDrawRunnable implements Runnable {
 
@@ -92,17 +94,18 @@ class GameDrawRunnable implements Runnable {
 					}
 					break;
 
+				case BLASTED:
+					canvas.drawBitmap(player.getBlastedBitmap(), player.getMatrix(), PAINT);
+					break;
+
 				case SUPERMAN:
 					canvas.drawBitmap(player.getSupermanBitmap(), player.getMatrix(), PAINT);
 					break;
 			}
 
-			// draw snowflakes
-			for (FallingObject snowflake : gameManager.getSnowflakes()) {
-				PAINT.setAlpha((int) (snowflake.getAlpha() * 255));
-				canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
-			}
-			PAINT.setAlpha(255);
+			// draw snowflakes + bombs
+			drawObjects(gameManager.getSnowflakes(), canvas);
+			drawObjects(gameManager.getBombs(), canvas);
 
 			// draw superman clouds
 			if (!gameManager.getState().equals(GameState.RUNNING)) {
@@ -127,6 +130,14 @@ class GameDrawRunnable implements Runnable {
 	public void stop(Runnable postAction) {
 		this.postAction = postAction;
 		gameManager.requestShutdown();
+	}
+
+	private void drawObjects(List<FallingObject> objects, Canvas canvas) {
+		for (FallingObject object : objects) {
+			PAINT.setAlpha((int) (object.getAlpha() * 255));
+			canvas.drawBitmap(object.getBitmap(), object.getMatrix(), PAINT);
+		}
+		PAINT.setAlpha(255);
 	}
 
 }

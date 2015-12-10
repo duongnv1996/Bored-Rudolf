@@ -16,42 +16,44 @@ public class Player {
 
 	// used for getting the final orientation
 	private final Matrix matrix = new Matrix();
-	private final Bitmap defaultBitmap, lookingUpBitmap, chewing0Bitmap, chewing1Bitmap, supermanBitmap;
+	private final Bitmap defaultBitmap, lookingUpBitmap, chewing0Bitmap, chewing1Bitmap, blastedBitmap, supermanBitmap;
 
 	private final PointF location;
 
-	private final RectF mouthRect = new RectF();
+	private final RectF playerRect = new RectF(), mouthRect = new RectF();
 	private final float mouthWidth, mouthHeight;
 	private final float mouthOffsetFromBottom;
 
-	private long chewingStartTimestamp; // if player is eating, this will indicate when he / she started eating
+	private long chewingStartTimestamp; // if player is eating this will indicates the eating start timestamp
+	private long blastedStartTimestamp; // if player has been blasted this indicates the start timestamp
 
 	private PlayerState state;
 
-	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Bitmap chewing0Bitmap, Bitmap chewing1Bitmap, Bitmap supermanBitmap,
+	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Bitmap chewing0Bitmap, Bitmap chewing1Bitmap, Bitmap blastedBitmap, Bitmap supermanBitmap,
 				   PointF location, float mouthWidth, float mouthHeight, float mouthOffsetFromBottom) {
 
 		this.defaultBitmap = defaultBitmap;
 		this.lookingUpBitmap = lookingUpBitmap;
 		this.chewing0Bitmap = chewing0Bitmap;
 		this.chewing1Bitmap = chewing1Bitmap;
+		this.blastedBitmap = blastedBitmap;
 		this.supermanBitmap = supermanBitmap;
 		this.location = location;
 		this.mouthWidth = mouthWidth;
 		this.mouthHeight = mouthHeight;
 		this.mouthOffsetFromBottom = mouthOffsetFromBottom;
-		updateMouthRect();
+		updateRects();
 		this.state = PlayerState.DEFAULT;
 	}
 
 	public void setxPos(float xPos) {
 		this.location.x = xPos;
-		updateMouthRect();
+		updateRects();
 	}
 
 	public void setyPos(float yPos) {
 		this.location.y = yPos;
-		updateMouthRect();
+		updateRects();
 	}
 
 	public float getxPos() {
@@ -70,6 +72,10 @@ public class Player {
 		return defaultBitmap.getHeight();
 	}
 
+	public boolean doesPlayerContainPoint(PointF point) {
+		return playerRect.contains(point.x, point.y);
+	}
+
 	public boolean doesMouthContainPoint(PointF point) {
 		return mouthRect.contains(point.x, point.y);
 	}
@@ -80,7 +86,16 @@ public class Player {
 				&& mouthRect.bottom >= point.y;
 	}
 
-	private void updateMouthRect() {
+	private void updateRects() {
+		// set player rect
+		playerRect.set(
+				getxPos(),
+				getyPos(),
+				getxPos() + getWidth(),
+				getyPos() + getHeight()
+		);
+
+		// set mouth rect
 		float left = getxPos() + (getWidth() - mouthWidth) / 2;
 		float top = getyPos() + (getHeight() - mouthHeight - mouthOffsetFromBottom);
 		mouthRect.set(
@@ -93,7 +108,7 @@ public class Player {
 
 	public Matrix getMatrix() {
 		matrix.reset();
-		matrix.postTranslate(location.x , location.y);
+		matrix.postTranslate(location.x, location.y);
 		return matrix;
 	}
 
@@ -113,6 +128,10 @@ public class Player {
 		return chewing1Bitmap;
 	}
 
+	public Bitmap getBlastedBitmap() {
+		return blastedBitmap;
+	}
+
 	public Bitmap getSupermanBitmap() {
 		return supermanBitmap;
 	}
@@ -128,12 +147,24 @@ public class Player {
 		this.chewingStartTimestamp = System.currentTimeMillis();
 	}
 
+	public long getBlastedDuration() {
+		return System.currentTimeMillis() - blastedStartTimestamp;
+	}
+
+	public void startBlastedTimer() {
+		this.blastedStartTimestamp = System.currentTimeMillis();
+	}
+
 	public boolean canEatSnowflake() {
-		return !state.equals(PlayerState.CHEWING);
+		return state.equals(PlayerState.DEFAULT) || state.equals(PlayerState.LOOKING_UP);
 	}
 
 	public PlayerState getState() {
 		return state;
+	}
+
+	public boolean isInState(PlayerState state) {
+		return this.state.equals(state);
 	}
 
 	public void setState(PlayerState state) {
@@ -162,6 +193,7 @@ public class Player {
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_looking_up),
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_0),
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_1),
+					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_blasted),
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_superman),
 					new PointF(xPos, 0),
 					context.getResources().getDimension(R.dimen.player_mouth_width),
