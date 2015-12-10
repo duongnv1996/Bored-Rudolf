@@ -3,6 +3,7 @@ package org.faudroids.loooooading.game;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.os.Vibrator;
 
 import org.faudroids.loooooading.R;
 
@@ -19,6 +20,7 @@ public class GameManager {
 	private static final int FLYING_SUPERMAN_DELAY = 500;
 
 	private final Context context;
+	private final Vibrator vibrator;
 
 	private final Player player;
 	private SnowflakesCollection snowflakesCollection;
@@ -37,6 +39,7 @@ public class GameManager {
 	public GameManager(Context context) {
 		this.GAME_SHUTDOWN_DELAY = context.getResources().getInteger(R.integer.game_shutdown_delay);
 		this.context = context;
+		this.vibrator = (Vibrator) context.getSystemService(Context.VIBRATOR_SERVICE);
 		this.player = new Player.Builder(context).xPos(100).build();
 		this.supermanClouds = new SupermanClouds.Builder(context).build();
 		this.score = new Score(context);
@@ -167,6 +170,7 @@ public class GameManager {
 					player.setState(PlayerState.BLASTED);
 					player.startBlastedTimer();
 					score.onHitByBomb();
+					vibrator.vibrate(200);
 					continue;
 				}
 			}
