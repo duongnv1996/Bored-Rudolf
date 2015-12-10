@@ -189,8 +189,8 @@ public class GameManager {
 	 * @param xPos x-position of touch event
 	 */
 	public void onPlayerTouch(float xPos) {
-		// if eating / blasted don't move the player
-		if (player.isInState(PlayerState.CHEWING) || player.isInState(PlayerState.BLASTED))  return;
+		// if blasted don't move the player
+		if (player.isInState(PlayerState.BLASTED))  return;
 		xPos = xPos - player.getDefaultBitmap().getWidth() / 2;
 		float yPos = getDefaultPlayerHeight();
 		this.newPlayerLocation = new PointF(xPos, yPos);
