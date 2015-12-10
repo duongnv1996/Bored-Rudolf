@@ -6,9 +6,11 @@ import android.graphics.PointF;
 import android.graphics.RectF;
 
 /**
- * A snowflake!
+ * Something that's falling from the sky ...
  */
-public class Snowflake {
+public class FallingObject {
+
+	private final FallingObjectType type;
 
 	// used for getting the final orientation
 	private final Matrix matrix = new Matrix();
@@ -28,9 +30,10 @@ public class Snowflake {
 
 	private float alpha;
 
-	private Snowflake(Bitmap bitmap, PointF location, float size, float fallSpeed, float scale, float rotation,
-					  float maxVerticalVelocity, float verticalVelocityAccelerationDiff, boolean accelerateToRight) {
+	private FallingObject(FallingObjectType type, Bitmap bitmap, PointF location, float size, float fallSpeed, float scale, float rotation,
+						  float maxVerticalVelocity, float verticalVelocityAccelerationDiff, boolean accelerateToRight) {
 
+		this.type = type;
 		this.bitmap = bitmap;
 		this.location = location;
 		this.size = size;
@@ -83,6 +86,10 @@ public class Snowflake {
 		return center;
 	}
 
+	public FallingObjectType getType() {
+		return type;
+	}
+
 	public Bitmap getBitmap() {
 		return bitmap;
 	}
@@ -122,6 +129,7 @@ public class Snowflake {
 
 	public static class Builder {
 
+		private final FallingObjectType type;
 		private final Bitmap bitmap;
 		private float size;
 
@@ -135,7 +143,8 @@ public class Snowflake {
 		private boolean accelerateToRight = false;
 
 
-		public Builder(Bitmap bitmap) {
+		public Builder(FallingObjectType type, Bitmap bitmap) {
+			this.type = type;
 			this.bitmap = bitmap;
 		}
 
@@ -180,8 +189,8 @@ public class Snowflake {
 			return this;
 		}
 
-		public Snowflake build() {
-			return new Snowflake(bitmap, new PointF(xPos, yPos), size, fallSpeed, scale, rotation,
+		public FallingObject build() {
+			return new FallingObject(type, bitmap, new PointF(xPos, yPos), size, fallSpeed, scale, rotation,
 					maxVerticalVelocity, verticalVelocityAccelerationDiff, accelerateToRight);
 		}
 

@@ -11,10 +11,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.TextView;
 
 import org.faudroids.loooooading.R;
+import org.faudroids.loooooading.game.FallingObject;
 import org.faudroids.loooooading.game.GameManager;
 import org.faudroids.loooooading.game.GameState;
 import org.faudroids.loooooading.game.Player;
-import org.faudroids.loooooading.game.Snowflake;
 
 
 class DrawGameRunnable implements Runnable {
@@ -107,7 +107,7 @@ class DrawGameRunnable implements Runnable {
 			}
 
 			// draw snowflakes
-			for (Snowflake snowflake : gameManager.getSnowflakes()) {
+			for (FallingObject snowflake : gameManager.getSnowflakes()) {
 				PAINT.setAlpha((int) (snowflake.getAlpha() * 255));
 				canvas.drawBitmap(snowflake.getBitmap(), snowflake.getMatrix(), PAINT);
 			}
@@ -122,7 +122,7 @@ class DrawGameRunnable implements Runnable {
 			if (DEBUG) {
 				canvas.drawRect(player.getMouthRect(), DEBUG_PAINT_STROKE);
 				canvas.drawCircle(player.getxPos(), player.getyPos(), 3, DEBUG_PAINT);
-				for (Snowflake snowflake : gameManager.getSnowflakes()) {
+				for (FallingObject snowflake : gameManager.getSnowflakes()) {
 					canvas.drawRect(snowflake.getBoundingBox(), DEBUG_PAINT_STROKE);
 					canvas.drawCircle(snowflake.getCenter().x, snowflake.getCenter().y, 3, DEBUG_PAINT);
 				}

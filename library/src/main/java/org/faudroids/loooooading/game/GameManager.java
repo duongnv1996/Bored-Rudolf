@@ -25,7 +25,7 @@ public class GameManager {
 	private final Bitmap snowflakeBitmap;
 
 	private final Player player;
-	private final List<Snowflake> snowflakes = new ArrayList<>();
+	private final List<FallingObject> snowflakes = new ArrayList<>();
 	private final SupermanClouds supermanClouds;
 	private final Score score;
 
@@ -77,7 +77,7 @@ public class GameManager {
 
 		// create new snowflakes
 		if (nextSnowflakeCountdown <= 0 && snowflakes.size() < 10) {
-			Snowflake snowflake = new Snowflake.Builder(snowflakeBitmap)
+			FallingObject snowflake = new FallingObject.Builder(FallingObjectType.SNOWFLAKE, snowflakeBitmap)
 					.xPos(RandomUtils.randomInt(snowflakeBitmap.getWidth(), fieldWidth - snowflakeBitmap.getWidth() * 2))
 					.yPos(-snowflakeBitmap.getHeight())
 					.fallSpeed(RandomUtils.randomInt(100, 150))
@@ -120,9 +120,9 @@ public class GameManager {
 		}
 
 		boolean playerBelowSnowflake = false;
-		Iterator<Snowflake> iterator = snowflakes.iterator();
+		Iterator<FallingObject> iterator = snowflakes.iterator();
 		while (iterator.hasNext()) {
-			Snowflake snowflake = iterator.next();
+			FallingObject snowflake = iterator.next();
 			RectF mouthRect = player.getMouthRect();
 
 			// update snowflakes
@@ -191,7 +191,7 @@ public class GameManager {
 	}
 
 
-	public List<Snowflake> getSnowflakes() {
+	public List<FallingObject> getSnowflakes() {
 		return snowflakes;
 	}
 
