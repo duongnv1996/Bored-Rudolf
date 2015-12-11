@@ -56,6 +56,18 @@ public class DemoActivity extends RoboActionBarActivity implements CustomSwipeRe
 		}, loadingTime);
     }
 
+	@Override
+	public void onPause() {
+		super.onPause();
+		if (refreshLayout.isRefreshing()) stopRefreshing();
+	}
+
+	@Override
+	public void onResume() {
+		super.onResume();
+		stopLoadingButton.setEnabled(refreshLayout.isRefreshing());
+	}
+
 	private void stopRefreshing() {
 		stopLoadingButton.setEnabled(false);
 		refreshLayout.refreshComplete();

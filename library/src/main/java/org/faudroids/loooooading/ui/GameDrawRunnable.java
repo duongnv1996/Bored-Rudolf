@@ -71,6 +71,7 @@ class GameDrawRunnable implements Runnable {
 
 			// start drawing + clear background
 			final Canvas canvas = surfaceHolder.lockCanvas();
+			if (canvas == null) return;
 			canvas.drawColor(0, PorterDuff.Mode.CLEAR);
 
 			// draw player
