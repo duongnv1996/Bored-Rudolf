@@ -25,7 +25,17 @@
                 android:textColor="@android:color/black"
                 android:text="@string/pull_hint"
                 android:layout_marginBottom="32dp"
+                android:layout_marginTop="@dimen/margin_default"
                 android:gravity="center"
+                />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="#e4e4e4"
+                android:layout_marginLeft="@dimen/margin_default"
+                android:layout_marginRight="@dimen/margin_default"
+                android:layout_marginBottom="@dimen/margin_default"
                 />
 
             <RelativeLayout
