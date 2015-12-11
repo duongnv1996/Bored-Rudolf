@@ -191,7 +191,7 @@ public class GameManager {
 	public void onPlayerTouch(float xPos) {
 		// if blasted don't move the player
 		if (player.isInState(PlayerState.BLASTED))  return;
-		xPos = xPos - player.getDefaultBitmap().getWidth() / 2;
+		xPos = xPos - player.getBitmap().getWidth() / 2;
 		float yPos = getDefaultPlayerHeight();
 		this.newPlayerLocation = new PointF(xPos, yPos);
 	}
@@ -235,7 +235,7 @@ public class GameManager {
 
 
 	private float getDefaultPlayerHeight() {
-		return fieldHeight - player.getDefaultBitmap().getHeight() - context.getResources().getDimension(R.dimen.player_vertical_offset);
+		return fieldHeight - player.getBitmap().getHeight() - context.getResources().getDimension(R.dimen.player_vertical_offset);
 	}
 
 }

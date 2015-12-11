@@ -25,8 +25,6 @@ class GameDrawRunnable implements Runnable {
 
 	private static final int MS_PER_FRAME = 1000 / 50;
 
-	private static final int CHEWING_ANIM_FRAME_LENGTH_IN_MS = 150;
-
 	private final Paint
 			PAINT = new Paint(Paint.ANTI_ALIAS_FLAG | Paint.FILTER_BITMAP_FLAG | Paint.DITHER_FLAG);
 
@@ -77,31 +75,7 @@ class GameDrawRunnable implements Runnable {
 
 			// draw player
 			Player player = gameManager.getPlayer();
-			switch (player.getState()) {
-				case DEFAULT:
-					canvas.drawBitmap(player.getDefaultBitmap(), player.getMatrix(), PAINT);
-					break;
-
-				case LOOKING_UP:
-					canvas.drawBitmap(player.getLookingUpBitmap(), player.getMatrix(), PAINT);
-					break;
-
-				case CHEWING:
-					if ((player.getChewingDuration() / CHEWING_ANIM_FRAME_LENGTH_IN_MS) % 2 == 0) {
-						canvas.drawBitmap(player.getChewing0Bitmap(), player.getMatrix(), PAINT);
-					} else {
-						canvas.drawBitmap(player.getChewing1Bitmap(), player.getMatrix(), PAINT);
-					}
-					break;
-
-				case BLASTED:
-					canvas.drawBitmap(player.getBlastedBitmap(), player.getMatrix(), PAINT);
-					break;
-
-				case SUPERMAN:
-					canvas.drawBitmap(player.getSupermanBitmap(), player.getMatrix(), PAINT);
-					break;
-			}
+			canvas.drawBitmap(player.getBitmap(), player.getMatrix(), PAINT);
 
 			// draw snowflakes + presents
 			drawObjects(gameManager.getSnowflakes(), canvas);

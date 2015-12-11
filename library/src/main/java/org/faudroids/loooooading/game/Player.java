@@ -14,9 +14,12 @@ import org.faudroids.loooooading.R;
  */
 public class Player {
 
+	private static final int CHEWING_ANIM_FRAME_LENGTH_IN_MS = 150;
+
 	// used for getting the final orientation
 	private final Matrix matrix = new Matrix();
-	private final Bitmap defaultBitmap, lookingUpBitmap, chewing0Bitmap, chewing1Bitmap, blastedBitmap, supermanBitmap;
+	private final Bitmap defaultBitmap, lookingUpBitmap, blastedBitmap, supermanBitmap;
+	private final Bitmap[] chewingBitmaps;
 
 	private final PointF location;
 
@@ -29,13 +32,12 @@ public class Player {
 
 	private PlayerState state;
 
-	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Bitmap chewing0Bitmap, Bitmap chewing1Bitmap, Bitmap blastedBitmap, Bitmap supermanBitmap,
+	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Bitmap[] chewingBitmaps, Bitmap blastedBitmap, Bitmap supermanBitmap,
 				   PointF location, float mouthWidth, float mouthHeight, float mouthOffsetFromBottom) {
 
 		this.defaultBitmap = defaultBitmap;
 		this.lookingUpBitmap = lookingUpBitmap;
-		this.chewing0Bitmap = chewing0Bitmap;
-		this.chewing1Bitmap = chewing1Bitmap;
+		this.chewingBitmaps = chewingBitmaps;
 		this.blastedBitmap = blastedBitmap;
 		this.supermanBitmap = supermanBitmap;
 		this.location = location;
@@ -112,28 +114,24 @@ public class Player {
 		return matrix;
 	}
 
-	public Bitmap getDefaultBitmap() {
-		return defaultBitmap;
-	}
+	public Bitmap getBitmap() {
+		switch (state) {
+			case DEFAULT:
+				return defaultBitmap;
 
-	public Bitmap getLookingUpBitmap() {
-		return lookingUpBitmap;
-	}
+			case LOOKING_UP:
+				return lookingUpBitmap;
 
-	public Bitmap getChewing0Bitmap() {
-		return chewing0Bitmap;
-	}
+			case CHEWING:
+				return chewingBitmaps[(int) ((getChewingDuration() / CHEWING_ANIM_FRAME_LENGTH_IN_MS) % 2)];
 
-	public Bitmap getChewing1Bitmap() {
-		return chewing1Bitmap;
-	}
+			case BLASTED:
+				return blastedBitmap;
 
-	public Bitmap getBlastedBitmap() {
-		return blastedBitmap;
-	}
-
-	public Bitmap getSupermanBitmap() {
-		return supermanBitmap;
+			case SUPERMAN:
+				return supermanBitmap;
+		}
+		throw new IllegalStateException("unkown state " + state.name());
 	}
 
 	/**
@@ -191,8 +189,10 @@ public class Player {
 			return new Player(
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_default),
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_looking_up),
-					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_0),
-					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_1),
+					new Bitmap[] {
+							BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_0),
+							BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_1)
+					},
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_blasted),
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_superman),
 					new PointF(xPos, 0),
