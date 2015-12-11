@@ -14,12 +14,14 @@ import org.faudroids.loooooading.R;
  */
 public class Player {
 
-	private static final int CHEWING_ANIM_FRAME_LENGTH_IN_MS = 150;
+	private static final int
+			CHEWING_ANIM_FRAME_LENGTH_IN_MS = 150,
+			HIT_ANIM_FRAME_LENGTH_IN_MS = 250;
 
 	// used for getting the final orientation
 	private final Matrix matrix = new Matrix();
-	private final Bitmap defaultBitmap, lookingUpBitmap, blastedBitmap, supermanBitmap;
-	private final Bitmap[] chewingBitmaps;
+	private final Bitmap defaultBitmap, lookingUpBitmap, supermanBitmap;
+	private final Bitmap[] chewingBitmaps, hitBitmaps;
 
 	private final PointF location;
 
@@ -28,17 +30,17 @@ public class Player {
 	private final float mouthOffsetFromBottom;
 
 	private long chewingStartTimestamp; // if player is eating this will indicates the eating start timestamp
-	private long blastedStartTimestamp; // if player has been blasted this indicates the start timestamp
+	private long hitStartTimestamp; // if player has been hit by a present this indicates the start timestamp
 
 	private PlayerState state;
 
-	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Bitmap[] chewingBitmaps, Bitmap blastedBitmap, Bitmap supermanBitmap,
+	private Player(Bitmap defaultBitmap, Bitmap lookingUpBitmap, Bitmap[] chewingBitmaps, Bitmap[] hitBitmaps, Bitmap supermanBitmap,
 				   PointF location, float mouthWidth, float mouthHeight, float mouthOffsetFromBottom) {
 
 		this.defaultBitmap = defaultBitmap;
 		this.lookingUpBitmap = lookingUpBitmap;
 		this.chewingBitmaps = chewingBitmaps;
-		this.blastedBitmap = blastedBitmap;
+		this.hitBitmaps = hitBitmaps;
 		this.supermanBitmap = supermanBitmap;
 		this.location = location;
 		this.mouthWidth = mouthWidth;
@@ -125,13 +127,13 @@ public class Player {
 			case CHEWING:
 				return chewingBitmaps[(int) ((getChewingDuration() / CHEWING_ANIM_FRAME_LENGTH_IN_MS) % 2)];
 
-			case BLASTED:
-				return blastedBitmap;
+			case HIT:
+				return hitBitmaps[(int) ((getHitDuration() / HIT_ANIM_FRAME_LENGTH_IN_MS) % 2)];
 
 			case SUPERMAN:
 				return supermanBitmap;
 		}
-		throw new IllegalStateException("unkown state " + state.name());
+		throw new IllegalStateException("unknown state " + state.name());
 	}
 
 	/**
@@ -145,12 +147,12 @@ public class Player {
 		this.chewingStartTimestamp = System.currentTimeMillis();
 	}
 
-	public long getBlastedDuration() {
-		return System.currentTimeMillis() - blastedStartTimestamp;
+	public long getHitDuration() {
+		return System.currentTimeMillis() - hitStartTimestamp;
 	}
 
-	public void startBlastedTimer() {
-		this.blastedStartTimestamp = System.currentTimeMillis();
+	public void startHitTimer() {
+		this.hitStartTimestamp = System.currentTimeMillis();
 	}
 
 	public boolean canEatSnowflake() {
@@ -193,7 +195,10 @@ public class Player {
 							BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_0),
 							BitmapFactory.decodeResource(context.getResources(), R.drawable.player_chewing_1)
 					},
-					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_blasted),
+					new Bitmap[] {
+							BitmapFactory.decodeResource(context.getResources(), R.drawable.player_hit_0),
+							BitmapFactory.decodeResource(context.getResources(), R.drawable.player_hit_1)
+					},
 					BitmapFactory.decodeResource(context.getResources(), R.drawable.player_superman),
 					new PointF(xPos, 0),
 					context.getResources().getDimension(R.dimen.player_mouth_width),

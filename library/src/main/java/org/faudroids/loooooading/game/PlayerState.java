@@ -12,8 +12,8 @@ public enum PlayerState {
 	LOOKING_UP,
 	// not moving, eating the snowflake
 	CHEWING,
-	// bomb exploded!
-	BLASTED,
+	// hit by present!
+	HIT,
 	// game over, flying out!
 	SUPERMAN
 

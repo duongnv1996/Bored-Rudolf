@@ -14,7 +14,7 @@ public class GameManager {
 
 	private static final int
 			PLAYER_CHEWING_DURATION_IN_MS = 750,
-			PLAYER_BLASTED_DURATION_IN_MS = 1500;
+			PLAYER_HIT_DURATION_IN_MS = 1500;
 
 	private final int GAME_SHUTDOWN_DELAY;
 	private static final int FLYING_SUPERMAN_DELAY = 500;
@@ -92,8 +92,8 @@ public class GameManager {
 				player.setState(PlayerState.DEFAULT);
 			}
 
-			// stop blasted if necessary
-			if (player.isInState(PlayerState.BLASTED)  && player.getBlastedDuration() >= PLAYER_BLASTED_DURATION_IN_MS) {
+			// stop hit if necessary
+			if (player.isInState(PlayerState.HIT)  && player.getHitDuration() >= PLAYER_HIT_DURATION_IN_MS) {
 				player.setState(PlayerState.DEFAULT);
 			}
 
@@ -167,8 +167,8 @@ public class GameManager {
 			if (isPresent) {
 				if (player.doesPlayerContainPoint(object.getCenter())) {
 					iterator.remove();
-					player.setState(PlayerState.BLASTED);
-					player.startBlastedTimer();
+					player.setState(PlayerState.HIT);
+					player.startHitTimer();
 					score.onHitByPresent();
 					vibrator.vibrate(200);
 					continue;
@@ -189,8 +189,8 @@ public class GameManager {
 	 * @param xPos x-position of touch event
 	 */
 	public void onPlayerTouch(float xPos) {
-		// if blasted don't move the player
-		if (player.isInState(PlayerState.BLASTED))  return;
+		// if hit don't move the player
+		if (player.isInState(PlayerState.HIT))  return;
 		xPos = xPos - player.getBitmap().getWidth() / 2;
 		float yPos = getDefaultPlayerHeight();
 		this.newPlayerLocation = new PointF(xPos, yPos);
