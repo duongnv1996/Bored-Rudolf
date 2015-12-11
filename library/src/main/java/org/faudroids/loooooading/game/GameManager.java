@@ -24,7 +24,7 @@ public class GameManager {
 
 	private final Player player;
 	private SnowflakesCollection snowflakesCollection;
-	private BombsCollection bombsCollection;
+	private PresentsCollection presentsCollection;
 	private final SupermanClouds supermanClouds;
 	private final Score score;
 
@@ -48,7 +48,7 @@ public class GameManager {
 
 	public void start(int fieldWidth, int fieldHeight) {
 		this.snowflakesCollection = new SnowflakesCollection(context, fieldWidth);
-		this.bombsCollection = new BombsCollection(context, fieldWidth);
+		this.presentsCollection = new PresentsCollection(context, fieldWidth);
 		this.fieldHeight = fieldHeight;
 		this.lastRunTimestamp = System.currentTimeMillis();
 		this.player.setState(PlayerState.DEFAULT);
@@ -74,7 +74,7 @@ public class GameManager {
 
 		// create new falling objects
 		snowflakesCollection.onTimePassed(timeDiff);
-		bombsCollection.onTimePassed(timeDiff);
+		presentsCollection.onTimePassed(timeDiff);
 
 		if (gameState.equals(GameState.SHUTDOWN_REQUESTED)) {
 			// let player fly away
@@ -107,7 +107,7 @@ public class GameManager {
 
 		boolean playerBelowObject =
 				updateFallingObjects(timeDiff, shutdownProgress, snowflakesCollection, true, false)
-				| updateFallingObjects(timeDiff, shutdownProgress, bombsCollection, false, true);
+				| updateFallingObjects(timeDiff, shutdownProgress, presentsCollection, false, true);
 
 		// make player look up!
 		if (player.isInState(PlayerState.DEFAULT) || player.isInState(PlayerState.LOOKING_UP)) {
@@ -133,9 +133,9 @@ public class GameManager {
 			float shutdownProgress,
 			FallingObjectsCollection fallingObjects,
 			boolean isSnowflake,
-			boolean isBomb) {
+			boolean isPresent) {
 
-		if (isSnowflake && isBomb) throw new IllegalArgumentException("cannot be both snowflake and bomb");
+		if (isSnowflake && isPresent) throw new IllegalArgumentException("cannot be both snowflake and present");
 
 		boolean playerBelowObject = false;
 		Iterator<FallingObject> iterator = fallingObjects.iterator();
@@ -163,13 +163,13 @@ public class GameManager {
 				}
 			}
 
-			// check for bomb collisions
-			if (isBomb) {
+			// check for presents collisions
+			if (isPresent) {
 				if (player.doesPlayerContainPoint(object.getCenter())) {
 					iterator.remove();
 					player.setState(PlayerState.BLASTED);
 					player.startBlastedTimer();
-					score.onHitByBomb();
+					score.onHitByPresent();
 					vibrator.vibrate(200);
 					continue;
 				}
@@ -212,8 +212,8 @@ public class GameManager {
 	}
 
 
-	public List<FallingObject> getBombs() {
-		return bombsCollection.getObjects();
+	public List<FallingObject> getPresents() {
+		return presentsCollection.getObjects();
 	}
 
 

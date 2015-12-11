@@ -103,9 +103,9 @@ class GameDrawRunnable implements Runnable {
 					break;
 			}
 
-			// draw snowflakes + bombs
+			// draw snowflakes + presents
 			drawObjects(gameManager.getSnowflakes(), canvas);
-			drawObjects(gameManager.getBombs(), canvas);
+			drawObjects(gameManager.getPresents(), canvas);
 
 			// draw superman clouds
 			if (!gameManager.getState().equals(GameState.RUNNING)) {

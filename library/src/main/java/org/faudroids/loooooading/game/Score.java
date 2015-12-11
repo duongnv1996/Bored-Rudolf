@@ -27,7 +27,7 @@ public class Score {
 		}
 	}
 
-	public void onHitByBomb() {
+	public void onHitByPresent() {
 		consumedSnowflakes -= 5;
 	}
 
