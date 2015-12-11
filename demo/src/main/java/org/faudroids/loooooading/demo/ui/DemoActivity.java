@@ -30,7 +30,7 @@ public class DemoActivity extends RoboActionBarActivity implements CustomSwipeRe
 		ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this, R.array.loading_time_strings, android.R.layout.simple_spinner_item);
 		adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		loadingTimesSpinner.setAdapter(adapter);
-		loadingTimesSpinner.setSelection(2);
+		loadingTimesSpinner.setSelection(4);
 
 		loadingTimeValues = getResources().getIntArray(R.array.loading_time_values);
 
