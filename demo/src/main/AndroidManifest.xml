@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="org.faudroids.loooooading.demo" >
+    package="org.faudroids.loooooading" >
 
-    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".app.LoooooadingApplication"
+        android:name="org.faudroids.boredrudolf.demo.app.LoooooadingApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -13,7 +13,7 @@
         >
 
         <activity
-            android:name=".ui.DemoActivity"
+            android:name="org.faudroids.boredrudolf.demo.ui.DemoActivity"
             >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -30,5 +30,4 @@
             android:value="d24b6175dc50a0705e30d49f9f580ca61cbddbed" />
     </application>
 
-    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

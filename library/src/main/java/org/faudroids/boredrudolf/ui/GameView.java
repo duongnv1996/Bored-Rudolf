@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.ui;
+package org.faudroids.boredrudolf.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -15,8 +15,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.faudroids.loooooading.R;
-import org.faudroids.loooooading.game.GameManager;
+import org.faudroids.boredrudolf.R;
+import org.faudroids.boredrudolf.game.GameManager;
 
 
 public class GameView extends LinearLayout implements

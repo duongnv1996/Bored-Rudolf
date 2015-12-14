@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.utils;
+package org.faudroids.boredrudolf.utils;
 
 import java.util.Random;
 

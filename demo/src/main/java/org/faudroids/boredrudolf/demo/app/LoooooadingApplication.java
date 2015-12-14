@@ -1,11 +1,11 @@
-package org.faudroids.loooooading.demo.app;
+package org.faudroids.boredrudolf.demo.app;
 
 import android.app.Application;
 import android.util.Log;
 
 import com.crashlytics.android.Crashlytics;
 
-import org.faudroids.loooooading.demo.BuildConfig;
+import org.faudroids.loooooading.BuildConfig;
 
 import io.fabric.sdk.android.Fabric;
 import roboguice.RoboGuice;

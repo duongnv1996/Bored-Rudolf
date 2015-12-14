@@ -1,11 +1,11 @@
-package org.faudroids.loooooading.game;
+package org.faudroids.boredrudolf.game;
 
 
 import android.content.Context;
 import android.graphics.PointF;
 import android.os.Vibrator;
 
-import org.faudroids.loooooading.R;
+import org.faudroids.boredrudolf.R;
 
 import java.util.Iterator;
 import java.util.List;

@@ -1,11 +1,11 @@
-package org.faudroids.loooooading.game;
+package org.faudroids.boredrudolf.game;
 
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import org.faudroids.loooooading.R;
-import org.faudroids.loooooading.utils.RandomUtils;
+import org.faudroids.boredrudolf.R;
+import org.faudroids.boredrudolf.utils.RandomUtils;
 
 class PresentsCollection extends FallingObjectsCollection {
 

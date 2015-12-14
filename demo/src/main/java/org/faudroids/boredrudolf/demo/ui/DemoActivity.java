@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.demo.ui;
+package org.faudroids.boredrudolf.demo.ui;
 
 import android.os.Bundle;
 import android.view.View;
@@ -6,8 +6,8 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 
-import org.faudroids.loooooading.demo.R;
-import org.faudroids.loooooading.ui.CustomSwipeRefreshLayout;
+import org.faudroids.boredrudolf.ui.CustomSwipeRefreshLayout;
+import org.faudroids.loooooading.R;
 
 import roboguice.activity.RoboActionBarActivity;
 import roboguice.inject.ContentView;

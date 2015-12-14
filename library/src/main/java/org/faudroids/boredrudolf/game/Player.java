@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.game;
+package org.faudroids.boredrudolf.game;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -7,7 +7,7 @@ import android.graphics.Matrix;
 import android.graphics.PointF;
 import android.graphics.RectF;
 
-import org.faudroids.loooooading.R;
+import org.faudroids.boredrudolf.R;
 
 /**
  * The player!

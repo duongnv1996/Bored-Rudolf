@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.game;
+package org.faudroids.boredrudolf.game;
 
 import android.graphics.Bitmap;
 import android.graphics.Matrix;

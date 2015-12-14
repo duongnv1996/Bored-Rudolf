@@ -1,4 +1,4 @@
-package org.faudroids.loooooading.game;
+package org.faudroids.boredrudolf.game;
 
 import android.content.Context;
 import android.content.SharedPreferences;

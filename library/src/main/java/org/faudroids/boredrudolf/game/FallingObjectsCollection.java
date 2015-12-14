@@ -1,6 +1,6 @@
-package org.faudroids.loooooading.game;
+package org.faudroids.boredrudolf.game;
 
-import org.faudroids.loooooading.utils.RandomUtils;
+import org.faudroids.boredrudolf.utils.RandomUtils;
 
 import java.util.ArrayList;
 import java.util.Iterator;
