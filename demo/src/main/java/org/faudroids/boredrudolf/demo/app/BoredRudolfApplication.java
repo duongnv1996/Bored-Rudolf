@@ -11,7 +11,7 @@ import io.fabric.sdk.android.Fabric;
 import roboguice.RoboGuice;
 import timber.log.Timber;
 
-public class LoooooadingApplication extends Application {
+public class BoredRudolfApplication extends Application {
 
 	@Override
 	public void onCreate() {
