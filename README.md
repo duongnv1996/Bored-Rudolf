@@ -2,8 +2,6 @@
 
 ![Playstore banner](demo/playstore/banner.png)
 
-Tired of seeing spinners while loading content? Try eating snowflakes instead!
-
 
 ## What?
 
