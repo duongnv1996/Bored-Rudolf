@@ -1,0 +1,54 @@
+apply plugin: 'com.android.library'
+
+ext {
+    bintrayRepo = 'maven'
+    bintrayName = 'boredrudolf'
+
+    publishedGroupId = 'org.faudroids.boredrudolf'
+    libraryName = 'Bored Rudolf'
+    artifact = 'boredrudolf'
+
+    siteUrl = 'https://github.com/FauDroids/bored-rudolf'
+    gitUrl = 'https://github.com/FauDroids/bored-rudolf.git'
+
+	libraryDescription = 'Tired of seeing spinners while loading content? Try eating snowflakes instead!'
+    libraryVersion = project.versionName
+
+    developerId = 'faudroids'
+    developerName = 'FauDroids'
+    developerEmail = 'ideas@faudroids.org'
+
+    licenseName = 'The Apache Software License, Version 2.0'
+    licenseUrl = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+    allLicenses = ["Apache-2.0"]
+}
+
+android {
+    compileSdkVersion 23
+    buildToolsVersion "23.0.1"
+
+    defaultConfig {
+        minSdkVersion 16
+        targetSdkVersion 23
+        versionCode project.versionCode.toInteger()
+        versionName project.versionName
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_7
+        targetCompatibility JavaVersion.VERSION_1_7
+    }
+}
+
+
+dependencies {
+    compile 'com.android.support:appcompat-v7:23.1.0'
+}
+
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/installv1.gradle'
+apply from: 'https://raw.githubusercontent.com/nuuneoi/JCenter/master/bintrayv1.gradle'
