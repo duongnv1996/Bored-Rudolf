@@ -39,7 +39,8 @@ refreshLayout.setOnRefreshListener(new CustomSwipeRefreshLayout.OnRefreshListene
 	public void onRefresh() {
 		// update content etc.
 	}
-});```
+});
+```
 
 To stop refreshing use
 
